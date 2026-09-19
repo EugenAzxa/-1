@@ -98,10 +98,27 @@ python3 -m http.server 8080
 
 ## Публикация
 
-GitHub Pages: Settings - Pages - Deploy from branch, ветка `main`, папка `/root`.
-Файл `.nojekyll` уже лежит в репозитории, чтобы Pages не трогал структуру.
+Сайт живёт на Vercel: **https://photo-bureau.vercel.app**
+(проект `photo-bureau` в аккаунте eugenazxa).
 
-Vercel: New Project - Import - Framework Preset `Other`, Output Directory оставить пустым.
+Выкатка новой версии:
+
+```bash
+python3 build.py
+npx vercel deploy --prod
+```
+
+Настройки лежат в `vercel.json`: адреса без `.html` (`/museums` вместо
+`/museums.html`, старый адрес отдаёт постоянный редирект), картинки кешируются
+на сутки, стили и скрипты проверяются при каждом заходе, чтобы правки
+доезжали сразу. Исходники (`src/`, `build.py`, `README.md`, `PROMPTS.md`)
+на сервер не попадают - их отсекает `.vercelignore`.
+
+Свой домен подключается так: `npx vercel domains add <домен>` и затем
+`npx vercel alias` либо через панель проекта, раздел Domains.
+
+Альтернатива - GitHub Pages: Settings - Pages - Deploy from branch, ветка
+`main`, папка `/root`. Файл `.nojekyll` для этого уже лежит в репозитории.
 
 ## Правовая сторона
 
