@@ -12,7 +12,7 @@
   if (pre) {
     var arc = pre.querySelector('.preloader__arc');
     var pct = pre.querySelector('[data-pct]');
-    var LEN = 169.6, MIN_MS = 700, MAX_MS = 4000;
+    var LEN = 169.6, MIN_MS = 700, MAX_MS = 3200;
     var shown = 0, real = 0.05, finished = false, raf = null;
     var seen = false;
     try { seen = sessionStorage.getItem('aib-intro') === '1'; } catch (e) {}
@@ -38,7 +38,10 @@
     if (seen || still) {
       finish(true);
     } else {
-      var imgs = [].slice.call(document.images).filter(function (i) { return i.getAttribute('src'); });
+      // ждём только кадры первого экрана: остальные грузятся лениво и
+      // никогда не дождались бы события load без прокрутки
+      var imgs = [].slice.call(document.querySelectorAll('.hero img, .phero img'))
+        .filter(function (i) { return i.getAttribute('src'); });
       var total = imgs.length, done = 0;
 
       function frame() {

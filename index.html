@@ -17,7 +17,7 @@
 <noscript><style>
   .preloader{display:none!important}
   body.is-loading{overflow:auto}
-  body.is-loading .hero__inner>*,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
+  body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1}
 </style></noscript>
 </head>
 <body class="is-loading">
@@ -72,24 +72,37 @@
 
 <main>
 <section class="hero">
-  <div class="hero__media">
-    <img src="assets/img/station-hall.jpg" alt="Фотограф снимает семью у фотозоны в музее, рядом киоск с выбором сюжета">
-  </div>
+  <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
-    <span class="eyebrow">Фотозоны · AI-образы · Альбомы</span>
-    <h1>Гость уходит из зала <em>с кадром, которого нет ни у кого</em></h1>
-    <p class="hero__sub">Мы строим фотозону под тему площадки, настраиваем пресеты под её сюжеты и отдаём готовое фото через три минуты после съёмки. Музеям и паркам - фотозона под ключ. Садам и школам - выездная съёмка со стилистом и выпускные альбомы.</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="museums.html">Фотозона для музея или парка
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a class="btn btn--ghost" href="schools.html">Съёмка в саду и школе</a>
+    <div class="hero__text">
+      <span class="eyebrow">Фотозоны · AI-образы · Альбомы</span>
+      <h1>Гость уходит из зала <em>с кадром, которого нет ни у кого</em></h1>
+      <p class="hero__sub">Мы строим фотозону под тему площадки, настраиваем пресеты под её сюжеты и отдаём готовое фото через три минуты после съёмки. Музеям и паркам - фотозона под ключ. Садам и школам - выездная съёмка со стилистом и выпускные альбомы.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="museums.html">Фотозона для музея или парка
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="schools.html">Съёмка в саду и школе</a>
+      </div>
+      <div class="hero__meta">
+        <div><b>3 мин</b><span>от кадра до печати</span></div>
+        <div><b>6-12</b><span>сюжетов в пакете</span></div>
+        <div><b>2 формата</b><span>киоск или фотограф</span></div>
+        <div><b>0</b><span>промптов для сотрудника</span></div>
+      </div>
     </div>
-    <div class="hero__meta">
-      <div><b>3 мин</b><span>от кадра до печати</span></div>
-      <div><b>6-12</b><span>сюжетов в базовом пакете</span></div>
-      <div><b>2 формата</b><span>киоск или фотограф</span></div>
-      <div><b>0</b><span>промптов для сотрудника</span></div>
+
+    <div class="hero__gallery">
+      <figure class="hero__shot hero__shot--wide">
+        <img fetchpriority="high" src="assets/img/kiosk/main.jpg" alt="Фотограф показывает семье готовые снимки у фотозоны, рядом экран с выбором сюжета" width="1440" height="956">
+        <figcaption class="hero__tag">Концепт-визуализация</figcaption>
+      </figure>
+      <figure class="hero__shot hero__shot--a">
+        <img decoding="async" src="assets/img/kiosk/kids.jpg" alt="Брат и сестра у экрана фотозоны" width="760" height="760">
+      </figure>
+      <figure class="hero__shot hero__shot--b">
+        <img decoding="async" src="assets/img/kiosk/mother.jpg" alt="Мама смотрит на детей во время съёмки" width="760" height="760">
+      </figure>
     </div>
   </div>
 </section>
@@ -103,7 +116,7 @@
     </div>
     <div class="dirs">
       <a class="dir dir--blue reveal" href="museums.html">
-        <div class="dir__bg"><img src="assets/img/kid-astronaut.jpg" alt="Мальчик в скафандре в зале музея космонавтики"></div>
+        <div class="dir__bg"><img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg" alt="Мальчик в скафандре в зале музея космонавтики"></div>
         <span class="dir__tag">Музеи, парки, выставки</span>
         <h3>Фотозона под тему площадки</h3>
         <p>Конструкция, свет, экран выбора сюжета и набор пресетов в вашей вселенной: космос, небылицы, мистика, наука. Гость получает QR и печать.</p>
@@ -113,7 +126,7 @@
       </a>
       <a class="dir reveal" data-delay="90" href="schools.html">
         <div class="dir__art"></div>
-        <div class="dir__bg"><img data-src="assets/img/works/school-cover.jpg" alt=""></div>
+        <div class="dir__bg"><img loading="lazy" decoding="async" data-src="assets/img/works/school-cover.jpg" alt=""></div>
         <span class="dir__tag">Детские сады и школы</span>
         <h3>Выездная съёмка и выпускные альбомы</h3>
         <p>Приезжаем со студийным светом, гардеробом и стилистом. Портреты с ретушью, тематические сюжеты, альбомы к выпускному в саду, 1, 4, 9 и 11 классе.</p>
@@ -151,12 +164,12 @@
     </div>
     <div class="shots">
       <div class="shot shot--g2 reveal">
-        <img src="assets/img/kid-astronaut.jpg" alt="Ребёнок в образе космонавта">
+        <img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg" alt="Ребёнок в образе космонавта">
         <div class="shot__veil"></div>
         <b>Космонавт</b><span>скафандр, шлем, зал станции</span>
       </div>
       <div class="shot shot--g3 reveal" data-delay="60">
-        <img src="assets/img/mars-walk.jpg" alt="Выход на поверхность Марса">
+        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg" alt="Выход на поверхность Марса">
         <div class="shot__veil"></div>
         <b>Исследователь Марса</b><span>красная пустыня, база на горизонте</span>
       </div>
@@ -211,7 +224,7 @@
   <div class="wrap">
     <div class="split">
       <div class="split__media reveal">
-        <img src="assets/img/family-orbit.jpg" alt="Семья в скафандрах у иллюминатора орбитальной станции">
+        <img loading="lazy" decoding="async" src="assets/img/family-orbit.jpg" alt="Семья в скафандрах у иллюминатора орбитальной станции">
         <span class="split__caption">Пилот · Музей космонавтики</span>
       </div>
       <div class="reveal" data-delay="80">

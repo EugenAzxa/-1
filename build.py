@@ -54,7 +54,7 @@ LAYOUT = """<!DOCTYPE html>
 <noscript><style>
   .preloader{{display:none!important}}
   body.is-loading{{overflow:auto}}
-  body.is-loading .hero__inner>*,body.is-loading .phero>.wrap>*{{opacity:1;transform:none}}
+  body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{{opacity:1}}
 </style></noscript>
 </head>
 <body class="is-loading">
