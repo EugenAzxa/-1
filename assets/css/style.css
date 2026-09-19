@@ -417,3 +417,64 @@ body.menu-open .burger span::after{opacity:0}
 .band span{font-size:14.5px;color:var(--muted)}
 .album{display:flex;gap:18px;align-items:flex-start}
 .album__n{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--blue);padding-top:4px;white-space:nowrap}
+
+/* ==========================================================================
+   Прелоадер: кольцо прогресса по реальной загрузке кадров, затем шторки
+   расходятся как затвор фотоаппарата. Анимируем только transform и opacity.
+   ========================================================================== */
+body.is-loading{overflow:hidden}
+
+.preloader{
+  position:fixed;inset:0;z-index:200;display:grid;place-items:center;
+  pointer-events:none;
+}
+.preloader__panel{
+  position:absolute;left:0;width:100%;height:50.5%;background:var(--ink);
+  transition:transform .72s cubic-bezier(.76,0,.24,1);will-change:transform;
+}
+.preloader__panel--t{top:0}
+.preloader__panel--b{bottom:0}
+.preloader__inner{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px;
+  transition:opacity .22s var(--ease),transform .22s var(--ease);
+}
+.preloader__mark{width:88px;height:88px;overflow:visible}
+.preloader__arc{transition:stroke-dashoffset .4s var(--ease)}
+.preloader__blades{transform-origin:32px 32px;animation:pre-iris 7s linear infinite}
+.preloader__iris{transform-origin:32px 32px;animation:pre-pulse 1.8s ease-in-out infinite}
+.preloader__name{
+  font-family:'Unbounded',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:.34em;text-indent:.34em;color:var(--text);opacity:.9;
+}
+.preloader__pct{
+  font-size:11.5px;font-weight:600;letter-spacing:.18em;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.preloader__pct i{font-style:normal}
+
+@keyframes pre-iris{to{transform:rotate(360deg)}}
+@keyframes pre-pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(.62);opacity:.55}}
+
+/* выход: быстрее входа, содержимое страницы открывается затвором */
+.preloader.is-out .preloader__inner{opacity:0;transform:translateY(-8px)}
+.preloader.is-out .preloader__panel--t{transform:translateY(-101%)}
+.preloader.is-out .preloader__panel--b{transform:translateY(101%)}
+.preloader.is-done{display:none}
+
+/* повторные страницы в той же сессии: без шоу, только мгновенное снятие */
+.preloader.is-instant,.preloader.is-instant .preloader__panel,
+.preloader.is-instant .preloader__inner{transition:none}
+
+/* выход первого экрана следом за затвором */
+.hero__inner>*,.phero>.wrap>*{transition:opacity .62s var(--ease),transform .62s var(--ease)}
+body.is-loading .hero__inner>*,body.is-loading .phero>.wrap>*{opacity:0;transform:translateY(20px)}
+.hero__inner>*:nth-child(2),.phero>.wrap>*:nth-child(2){transition-delay:.06s}
+.hero__inner>*:nth-child(3),.phero>.wrap>*:nth-child(3){transition-delay:.12s}
+.hero__inner>*:nth-child(4),.phero>.wrap>*:nth-child(4){transition-delay:.18s}
+.hero__inner>*:nth-child(5),.phero>.wrap>*:nth-child(5){transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  .preloader__blades,.preloader__iris{animation:none}
+  .preloader__panel,.preloader__inner,.hero__inner>*,.phero>.wrap>*{transition:none!important}
+  body.is-loading .hero__inner>*,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
+}

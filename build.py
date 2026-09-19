@@ -51,8 +51,39 @@ LAYOUT = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
+<noscript><style>
+  .preloader{{display:none!important}}
+  body.is-loading{{overflow:auto}}
+  body.is-loading .hero__inner>*,body.is-loading .phero>.wrap>*{{opacity:1;transform:none}}
+</style></noscript>
 </head>
-<body>
+<body class="is-loading">
+
+<div class="preloader" id="preloader" role="status" aria-live="off" aria-label="Загрузка страницы">
+  <span class="preloader__panel preloader__panel--t"></span>
+  <span class="preloader__panel preloader__panel--b"></span>
+  <div class="preloader__inner">
+    <svg class="preloader__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+      <circle cx="32" cy="32" r="27" stroke="rgba(255,255,255,.10)" stroke-width="2"/>
+      <circle class="preloader__arc" cx="32" cy="32" r="27" stroke="#e8a33d" stroke-width="2"
+              stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"
+              transform="rotate(-90 32 32)"/>
+      <g class="preloader__blades" stroke="rgba(255,255,255,.32)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M45.0 32.0L38.5 20.7L25.5 20.7L19.0 32.0L25.5 43.3L38.5 43.3Z" stroke="rgba(255,255,255,.5)"/>
+        <path d="M45.0 32.0L46.7 10.3"/>
+        <path d="M38.5 20.7L20.5 8.5"/>
+        <path d="M25.5 20.7L5.9 30.2"/>
+        <path d="M19.0 32.0L17.3 53.7"/>
+        <path d="M25.5 43.3L43.5 55.5"/>
+        <path d="M38.5 43.3L58.1 33.8"/>
+      </g>
+      <circle class="preloader__iris" cx="32" cy="32" r="5.5" fill="#5b8cff"/>
+    </svg>
+    <span class="preloader__name" aria-hidden="true">AI BUREAU</span>
+    <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="index.html" aria-label="{brand}, на главную">

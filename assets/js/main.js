@@ -2,6 +2,78 @@
 (function () {
   'use strict';
 
+  /* ---- прелоадер ---------------------------------------------------------
+     Кольцо показывает загрузку кадров страницы. Правила простые:
+     показатель никогда не замирает (иначе кажется, что всё зависло),
+     никогда не врёт про 100% раньше времени, снимается не позже четырёх
+     секунд от старта навигации, а на повторных страницах сессии
+     не показывается вовсе. */
+  var pre = document.getElementById('preloader');
+  if (pre) {
+    var arc = pre.querySelector('.preloader__arc');
+    var pct = pre.querySelector('[data-pct]');
+    var LEN = 169.6, MIN_MS = 700, MAX_MS = 4000;
+    var shown = 0, real = 0.05, finished = false, raf = null;
+    var seen = false;
+    try { seen = sessionStorage.getItem('aib-intro') === '1'; } catch (e) {}
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function draw(p) {
+      if (arc) arc.style.strokeDashoffset = String(LEN * (1 - p));
+      if (pct) pct.textContent = String(Math.round(p * 100));
+    }
+
+    function finish(instant) {
+      if (finished) return;
+      finished = true;
+      if (raf) cancelAnimationFrame(raf);
+      try { sessionStorage.setItem('aib-intro', '1'); } catch (e) {}
+      if (instant) pre.classList.add('is-instant');
+      draw(1);
+      pre.classList.add('is-out');
+      document.body.classList.remove('is-loading');
+      setTimeout(function () { pre.classList.add('is-done'); }, instant ? 0 : 820);
+    }
+
+    if (seen || still) {
+      finish(true);
+    } else {
+      var imgs = [].slice.call(document.images).filter(function (i) { return i.getAttribute('src'); });
+      var total = imgs.length, done = 0;
+
+      function frame() {
+        // страховка от замирания: пока ждём картинки, индикатор всё равно
+        // ползёт по времени, но выше 90% без реальной загрузки не поднимается
+        var creep = Math.min(0.9, performance.now() / MAX_MS * 0.9);
+        var target = Math.max(real, creep);
+        shown += (target - shown) * 0.12;
+        draw(shown);
+        raf = requestAnimationFrame(frame);
+      }
+
+      function tick() {
+        done++;
+        real = total ? Math.min(done / total, 1) : 1;
+        if (done >= total) ready();
+      }
+
+      function ready() {
+        real = 1;
+        setTimeout(function () { finish(false); }, Math.max(0, MIN_MS - performance.now()));
+      }
+
+      raf = requestAnimationFrame(frame);
+      imgs.forEach(function (img) {
+        if (img.complete) { tick(); return; }
+        img.addEventListener('load', tick, { once: true });
+        img.addEventListener('error', tick, { once: true });
+      });
+      if (!total) ready();
+      // предохранитель считаем от старта навигации, а не от запуска скрипта
+      setTimeout(function () { finish(false); }, Math.max(0, MAX_MS - performance.now()));
+    }
+  }
+
   /* ---- sticky header ---------------------------------------------------- */
   var header = document.querySelector('.site-header');
   function onScroll() {
