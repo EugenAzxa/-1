@@ -177,6 +177,42 @@ def fill(text):
     return text
 
 
+def label_tables(html_text):
+    """Проставляет каждой ячейке подпись её колонки.
+
+    На телефоне таблицы разворачиваются в карточки, и подпись из шапки
+    становится заголовком строки - иначе на узком экране непонятно,
+    что означает каждое значение.
+    """
+    def one_table(m):
+        table = m.group(0)
+        heads = re.findall(r"<th[^>]*>(.*?)</th>", table, re.S)
+        heads = [re.sub(r"<[^>]+>", "", h).strip() for h in heads]
+        if not heads:
+            return table
+
+        def row(rm):
+            cells = re.split(r"(<td[^>]*>)", rm.group(0))
+            idx = [0]
+
+            def cell(cm):
+                i = idx[0]
+                idx[0] += 1
+                if i < len(heads) and "data-label" not in cm.group(0):
+                    return cm.group(0)[:-1] + ' data-label="%s">' % heads[i]
+                return cm.group(0)
+
+            return re.sub(r"<td[^>]*>", cell, rm.group(0))
+
+        body = re.search(r"<tbody>.*?</tbody>", table, re.S)
+        if not body:
+            return table
+        new_body = re.sub(r"<tr>.*?</tr>", row, body.group(0), flags=re.S)
+        return table.replace(body.group(0), new_body)
+
+    return re.sub(r"<table class=\"tbl\">.*?</table>", one_table, html_text, flags=re.S)
+
+
 def build():
     # библиотека пресетов собирается из src/presets.py
     sys.path.insert(0, str(ROOT / "src"))
@@ -199,7 +235,7 @@ def build():
             desc=html.escape(meta.get("desc", "")),
             nav=nav_html(src.name),
             fnav=footer_nav(),
-            body=fill(raw.strip()),
+            body=label_tables(fill(raw.strip())),
             **CONFIG,
         )
         (ROOT / src.name).write_text(page, encoding="utf-8")

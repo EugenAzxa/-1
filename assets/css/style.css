@@ -79,10 +79,11 @@ section{position:relative}
 .nav{display:flex;align-items:center;gap:28px;height:78px}
 .brand{display:flex;align-items:center;gap:11px;font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;white-space:nowrap}
 .brand svg{flex:none}
-.brand span small{display:block;font-family:'Manrope',sans-serif;font-weight:500;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin-top:2px}
+.brand span small{display:block;font-family:'Manrope',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);margin-top:2px}
 .nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
 .nav-links a{
   padding:9px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--muted);
+  white-space:nowrap;
   transition:color .2s var(--ease),background .2s var(--ease);
 }
 .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
@@ -161,7 +162,7 @@ body.menu-open .burger span::after{opacity:0}
 .hero__shot--b{aspect-ratio:4/5;transform:translateY(clamp(10px,1.5vw,24px))}
 .hero__tag{
   position:absolute;left:14px;bottom:14px;z-index:2;
-  padding:7px 13px;border-radius:999px;font-size:11px;font-weight:700;
+  padding:7px 13px;border-radius:999px;font-size:11.5px;font-weight:700;
   letter-spacing:.14em;text-transform:uppercase;color:var(--text);
   background:rgba(8,9,12,.66);border:1px solid var(--line);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -309,7 +310,7 @@ body.menu-open .burger span::after{opacity:0}
 .preset{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden}
 .preset__head{display:flex;align-items:flex-start;gap:16px;padding:24px 24px 18px}
 .preset__head h3{font-size:20px;flex:1}
-.preset__tag{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:6px 11px;border-radius:999px;white-space:nowrap}
+.preset__tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:6px 11px;border-radius:999px;white-space:nowrap}
 .preset__desc{padding:0 24px 18px;color:var(--muted);font-size:15px}
 .preset pre{
   margin:0;padding:20px 24px;background:#0a0c11;border-top:1px solid var(--line-soft);
@@ -354,7 +355,7 @@ body.menu-open .burger span::after{opacity:0}
 .form__ok.is-on{display:block}
 
 .contacts-list{display:grid;gap:18px;margin-top:26px}
-.contacts-list a,.contacts-list span{display:flex;gap:13px;align-items:center;font-size:16.5px;color:var(--text)}
+.contacts-list a,.contacts-list span{display:flex;gap:13px;align-items:center;min-height:44px;font-size:16.5px;color:var(--text)}
 .contacts-list svg{flex:none;color:var(--gold)}
 .contacts-list a:hover{color:var(--gold)}
 
@@ -363,7 +364,7 @@ body.menu-open .burger span::after{opacity:0}
 .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid var(--line-soft)}
 .footer-top h4{font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:16px}
 .footer-top nav{display:grid;gap:10px}
-.footer-top nav a{color:var(--muted);font-size:15px;transition:color .2s}
+.footer-top nav a{color:var(--muted);font-size:15px;padding:3px 0;transition:color .2s}
 .footer-top nav a:hover{color:var(--text)}
 .footer-bottom{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;padding-top:26px;font-size:13.5px;color:var(--muted-2)}
 
@@ -372,6 +373,39 @@ body.menu-open .burger span::after{opacity:0}
 .reveal.is-in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */
+/* шапка уходит в бургер раньше остальной вёрстки: пять пунктов плюс кнопка
+   перестают помещаться в строку уже около 1060px */
+@media (max-width:1080px){
+  .nav-links{
+    position:fixed;inset:78px 0 auto 0;flex-direction:column;align-items:stretch;gap:2px;
+    background:rgba(8,9,12,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    padding:14px var(--pad) 26px;border-bottom:1px solid var(--line-soft);
+    transform:translateY(-12px);opacity:0;pointer-events:none;
+    max-height:calc(100svh - 78px);overflow-y:auto;
+    transition:opacity .28s var(--ease),transform .28s var(--ease);
+  }
+  body.menu-open .nav-links{opacity:1;transform:none;pointer-events:auto}
+  .nav-links a{padding:15px 4px;font-size:17px}
+  .nav-links a.is-active::after{display:none}
+  .nav-links a.is-active{color:var(--gold)}
+  .nav-links a.nav-cta{margin:14px 0 0;justify-content:center;min-height:50px;font-size:15px}
+  .burger{display:flex}
+}
+
+/* пальцу нужна цель побольше - независимо от ширины экрана */
+@media (pointer:coarse){
+  .footer-top nav{gap:2px}
+  .footer-top nav a{padding:10px 0}
+  .acc summary{padding-block:24px}
+}
+
+/* самые узкие телефоны: заголовок пресета и метка перестают делить строку */
+@media (max-width:400px){
+  .preset__head{flex-wrap:wrap;gap:10px}
+  .preset__head h3{flex:1 1 100%;order:2}
+  .preset__tag{order:1}
+}
+
 @media (max-width:1040px){
   .hero{min-height:0;padding-top:clamp(104px,14vw,132px)}
   .hero__inner{grid-template-columns:1fr;gap:38px}
@@ -386,18 +420,7 @@ body.menu-open .burger span::after{opacity:0}
   .cta{grid-template-columns:1fr}
 }
 @media (max-width:860px){
-  .nav-links{
-    position:fixed;inset:78px 0 auto 0;flex-direction:column;align-items:stretch;gap:2px;
-    background:rgba(8,9,12,.97);backdrop-filter:blur(18px);padding:18px var(--pad) 28px;
-    border-bottom:1px solid var(--line-soft);transform:translateY(-12px);opacity:0;pointer-events:none;
-    transition:opacity .28s var(--ease),transform .28s var(--ease);
-  }
-  body.menu-open .nav-links{opacity:1;transform:none;pointer-events:auto}
-  .nav-links a{padding:14px 4px;font-size:17px}
-  .nav-links a.is-active::after{display:none}
-  .nav-links a.is-active{color:var(--gold)}
-  .nav-cta{margin:12px 0 0}
-  .burger{display:flex}
+  .contacts-list{gap:10px}
   .grid--2,.grid--3,.dirs,.split{grid-template-columns:1fr}
   .split--rev .split__media{order:0}
   .shots{grid-template-columns:repeat(2,1fr)}
@@ -407,6 +430,14 @@ body.menu-open .burger span::after{opacity:0}
 }
 @media (max-width:560px){
   body{font-size:16px}
+  .btn{white-space:normal;text-align:center;line-height:1.25;padding:12px 20px;min-height:48px}
+  .hero__actions .btn,.phero__actions .btn{width:100%}
+  /* карточки образов становятся узкими: длинные слова не влезали в строку */
+  .shot{padding:16px}
+  .shot b{font-size:15px;line-height:1.16;hyphens:auto;-webkit-hyphens:auto}
+  .shot span{font-size:12.5px;margin-top:4px}
+  .shot__art svg{width:62px;height:62px;transform:translateY(-26px)}
+  .shot__veil{background:linear-gradient(180deg,rgba(8,9,12,0) 18%,rgba(8,9,12,.92) 72%)}
   .hero__gallery{gap:10px}
   .hero__shot--wide{aspect-ratio:3/2}
   .hero__shot--a,.hero__shot--b{aspect-ratio:1/1}
@@ -521,4 +552,27 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
   .preloader__panel,.preloader__inner,.hero__text>*,.hero__shot,.phero>.wrap>*{transition:none!important}
   body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
   body.is-loading .hero__shot--b,.hero__shot--b{transform:translateY(clamp(10px,1.5vw,24px))}
+}
+
+/* ---------- таблицы на телефоне разворачиваются в карточки ---------- */
+@media (max-width:760px){
+  /* iOS увеличивает страницу при фокусе, если шрифт поля меньше 16px */
+  .field input,.field textarea,.field select{font-size:16px}
+  /* промпт показываем целиком: обрезанная на полуслове фраза читается как ошибка */
+  .preset pre{max-height:none}
+  .tbl-scroll{overflow:visible;border:0;background:transparent;border-radius:0}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}   /* заголовки колонок переезжают в подписи ячеек */
+  .tbl tr{
+    background:var(--surface);border:1px solid var(--line-soft);
+    border-radius:var(--radius);margin-bottom:12px;overflow:hidden;
+  }
+  .tbl tr:last-child{margin-bottom:0}
+  .tbl td{padding:14px 18px;border-bottom:1px solid var(--line-soft)}
+  .tbl tr td:last-child{border-bottom:0}
+  .tbl td::before{
+    content:attr(data-label);display:block;margin-bottom:6px;
+    font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);
+  }
+  .tbl td:not([data-label])::before{display:none}
 }
