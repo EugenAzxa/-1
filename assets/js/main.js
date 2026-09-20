@@ -1,4 +1,4 @@
-/* AI BUREAU - site behaviour. No dependencies. */
+/* Миллениум - поведение сайта. Без зависимостей. */
 (function () {
   'use strict';
 
@@ -211,7 +211,7 @@
       var data = new FormData(form);
       var lines = [];
       data.forEach(function (v, k) { if (v) lines.push(k + ': ' + v); });
-      var subject = 'Заявка с сайта AI BUREAU';
+      var subject = 'Заявка с сайта «Миллениум»';
       var body = lines.join('\n');
       var mail = form.getAttribute('data-mail') || 'hello@example.com';
       window.location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent(subject) +

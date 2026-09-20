@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Сборка статического сайта AI BUREAU.
+Сборка статического сайта «Миллениум».
 
 Запуск:  python3 build.py
 Результат: готовые .html в корне репозитория (их и деплоим).
@@ -17,14 +17,14 @@ ROOT = pathlib.Path(__file__).parent
 PAGES = ROOT / "src" / "pages"
 
 CONFIG = {
-    "brand": "AI BUREAU",
+    "brand": "Миллениум",
     "brand_sub": "photo experience",
     "phone": "+7 (995) 000-00-00",
     "phone_href": "+79950000000",
-    "email": "hello@aibureau.studio",
-    "telegram": "aibureau",
+    "email": "hello@millenium-photo.ru",
+    "telegram": "millenium_photo",
     "city": "Москва и область, выезд по России",
-    "domain": "https://aibureau.studio",
+    "domain": "https://millenium-photo.ru",
 }
 
 NAV = [
@@ -89,7 +89,7 @@ LAYOUT = """<!DOCTYPE html>
       </g>
       <circle class="preloader__iris" cx="32" cy="32" r="5.5"/>
     </svg>
-    <span class="preloader__name" aria-hidden="true">AI BUREAU</span>
+    <span class="preloader__name" aria-hidden="true">{brand}</span>
     <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
   </div>
 </div>
@@ -249,8 +249,8 @@ def build():
                     meta[k.strip()] = v.strip()
             raw = raw[m.end():]
         page = LAYOUT.format(
-            title=html.escape(meta.get("title", CONFIG["brand"])),
-            desc=html.escape(meta.get("desc", "")),
+            title=html.escape(fill(meta.get("title", CONFIG["brand"]))),
+            desc=html.escape(fill(meta.get("desc", ""))),
             nav=nav_html(src.name),
             fnav=footer_nav(),
             body=label_tables(fill(raw.strip())),
