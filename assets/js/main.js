@@ -77,6 +77,33 @@
     }
   }
 
+  /* ---- переключатель темы ------------------------------------------------
+     Светлая тема - по умолчанию. Выбор гостя живёт в localStorage и
+     применяется до отрисовки скриптом в <head>, здесь только кнопка. */
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    var root = document.documentElement;
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var BG = { light: '#f7f5f2', dark: '#08090c' };
+
+    function paint(theme) {
+      var dark = theme === 'dark';
+      if (dark) { root.setAttribute('data-theme', 'dark'); }
+      else { root.removeAttribute('data-theme'); }
+      themeBtn.setAttribute('aria-pressed', String(dark));
+      themeBtn.setAttribute('aria-label', dark ? 'Светлая тема' : 'Тёмная тема');
+      if (meta) meta.setAttribute('content', dark ? BG.dark : BG.light);
+    }
+
+    paint(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+    themeBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      paint(next);
+      try { localStorage.setItem('aib-theme', next); } catch (e) {}
+    });
+  }
+
   /* ---- sticky header ---------------------------------------------------- */
   var header = document.querySelector('.site-header');
   function onScroll() {
