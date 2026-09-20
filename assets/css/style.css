@@ -309,6 +309,7 @@ body.menu-open .burger span::after{opacity:0}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .7s var(--ease)}
 .shot:hover img{transform:scale(1.06)}
 .shot__art{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center}
+.shot img[src] ~ .shot__art{display:none}
 .shot__art svg{width:84px;height:84px;opacity:.5;color:#fff;transform:translateY(-14px)}
 .shot__veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,9,12,0) 35%,rgba(8,9,12,.9) 100%)}
 .shot>b,.shot>span{position:relative;z-index:2}
