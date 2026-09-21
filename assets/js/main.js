@@ -203,25 +203,6 @@
     });
   }
 
-  /* ---- request form ----------------------------------------------------- */
-  var form = document.querySelector('.form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      var lines = [];
-      data.forEach(function (v, k) { if (v) lines.push(k + ': ' + v); });
-      var subject = 'Заявка с сайта «Миллениум»';
-      var body = lines.join('\n');
-      var mail = form.getAttribute('data-mail') || 'hello@example.com';
-      window.location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
-      var ok = form.querySelector('.form__ok');
-      if (ok) ok.classList.add('is-on');
-      form.reset();
-    });
-  }
-
   /* ---- current year ----------------------------------------------------- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

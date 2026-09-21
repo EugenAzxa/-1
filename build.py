@@ -19,10 +19,9 @@ PAGES = ROOT / "src" / "pages"
 CONFIG = {
     "brand": "Миллениум",
     "brand_sub": "photo experience",
-    "phone": "+7 (995) 000-00-00",
-    "phone_href": "+79950000000",
-    "email": "hello@millenium-photo.ru",
-    "telegram": "millenium_photo",
+    "phone": "+7 (921) 406-33-84",
+    "phone_href": "+79214063384",
+    "manager": "Андрей",
     "city": "Москва и область, выезд по России",
     "domain": "https://millenium-photo.ru",
 }
@@ -55,7 +54,7 @@ LAYOUT = """<!DOCTYPE html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{domain}/assets/img/station-hall.jpg">
+<meta property="og:image" content="{domain}/assets/img/kiosk/main.jpg">
 <meta property="og:locale" content="ru_RU">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +106,7 @@ LAYOUT = """<!DOCTYPE html>
     </a>
     <nav class="nav-links">
       {nav}
-      <a class="btn btn--primary btn--sm nav-cta" href="contacts.html">Обсудить проект</a>
+      <a class="btn btn--primary btn--sm nav-cta" href="tel:{phone_href}">Позвонить</a>
     </nav>
     <button class="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false">
       <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
@@ -147,9 +146,8 @@ LAYOUT = """<!DOCTYPE html>
       <div>
         <h4>Связаться</h4>
         <nav>
-          <a href="tel:{phone_href}">{phone}</a>
-          <a href="mailto:{email}">{email}</a>
-          <a href="https://t.me/{telegram}" target="_blank" rel="noopener">Telegram: @{telegram}</a>
+          <a class="footer-phone" href="tel:{phone_href}">{phone}</a>
+          <span class="footer-who">{manager}, по всем вопросам</span>
           <a href="presets.html">Библиотека пресетов</a>
         </nav>
       </div>
