@@ -669,3 +669,19 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 .theme-toggle .i-moon{display:none}
 :root[data-theme="dark"] .theme-toggle .i-moon{display:block}
 :root[data-theme="dark"] .theme-toggle .i-sun{display:none}
+
+/* нумерованные списки выгоды */
+.num{list-style:none;margin:0;padding:0;display:grid;gap:15px;counter-reset:n}
+.num li{
+  position:relative;padding-left:42px;counter-increment:n;
+  color:var(--muted);font-size:15.5px;line-height:1.55;
+}
+.num li::before{
+  content:counter(n);position:absolute;left:0;top:0;
+  width:27px;height:27px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;
+  background:var(--gold-soft);color:var(--gold-ink);
+}
+.num--blue li::before{background:var(--blue-soft);color:var(--blue-ink)}
+.card--value h3{margin-bottom:18px}
