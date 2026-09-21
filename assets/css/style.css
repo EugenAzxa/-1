@@ -911,3 +911,6 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 @media (max-width:560px){
   .strip figcaption{padding:11px 14px;font-size:13px}
 }
+
+.scheme--photo{margin-top:0;background:var(--photo-dark)}
+.scheme--photo img{max-height:min(60vh,540px);object-fit:cover;object-position:center 42%}
