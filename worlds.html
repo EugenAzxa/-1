@@ -36,28 +36,37 @@
   <span class="preloader__panel preloader__panel--t"></span>
   <span class="preloader__panel preloader__panel--b"></span>
   <span class="preloader__flash" aria-hidden="true"></span>
-  <div class="preloader__inner">
-    <svg class="preloader__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle class="preloader__track" cx="32" cy="32" r="27" stroke-width="2"/>
-      <circle class="preloader__arc" cx="32" cy="32" r="27" stroke-width="2"
-              stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"
-              transform="rotate(-90 32 32)"/>
-      <g class="preloader__blades" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
-        <path class="p-hex" d="M45.0 32.0L38.5 20.7L25.5 20.7L19.0 32.0L25.5 43.3L38.5 43.3Z"/>
-        <path d="M45.0 32.0L46.7 10.3"/>
-        <path d="M38.5 20.7L20.5 8.5"/>
-        <path d="M25.5 20.7L5.9 30.2"/>
-        <path d="M19.0 32.0L17.3 53.7"/>
-        <path d="M25.5 43.3L43.5 55.5"/>
-        <path d="M38.5 43.3L58.1 33.8"/>
-      </g>
-      <circle class="preloader__iris" cx="32" cy="32" r="5.5"/>
-    </svg>
-    <p class="preloader__title" aria-hidden="true">Выбери свой мир</p>
-    <p class="preloader__worlds" aria-hidden="true">
-      <span>космос</span><span>гонки</span><span>профессии</span><span>волшебная школа</span><span>динозавры</span><span>зимняя сказка</span>
+  <div class="preloader__inner" aria-hidden="true">
+
+    <div class="finder">
+      <div class="finder__shots">
+        <img src="assets/img/intro/space.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/jungle.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/stadium.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/winter.jpg" alt="" width="560" height="700">
+      </div>
+      <span class="finder__blind finder__blind--t"></span>
+      <span class="finder__blind finder__blind--b"></span>
+      <span class="finder__c finder__c--tl"></span>
+      <span class="finder__c finder__c--tr"></span>
+      <span class="finder__c finder__c--bl"></span>
+      <span class="finder__c finder__c--br"></span>
+      <svg class="finder__cam" viewBox="0 0 64 44" fill="none">
+        <rect class="cam-body" x="1" y="9" width="62" height="34" rx="7"/>
+        <path class="cam-top" d="M19 9l3.4-6.2h19.2L45 9"/>
+        <circle class="cam-ring" cx="32" cy="26" r="11"/>
+        <circle class="cam-lens" cx="32" cy="26" r="5.4"/>
+        <circle class="cam-flash" cx="52" cy="16" r="2.2"/>
+      </svg>
+    </div>
+
+    <div class="pbar"><i data-bar></i></div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космос</span><span>джунгли</span><span>стадион</span><span>зимняя сказка</span>
     </p>
-    <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
+    <span class="preloader__pct"><i data-pct>0</i>%</span>
   </div>
 </div>
 
@@ -140,15 +149,15 @@
     </div>
     <div class="shots reveal">
       <div class="shot shot--g2">
-        <img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg" alt="Ребёнок в скафандре в музейном зале">
+        <img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg?v=631e9cf1" alt="Ребёнок в скафандре в музейном зале">
         <div class="shot__veil"></div><b>Космонавт будущего</b><span>скафандр, шлем в руках</span>
       </div>
       <div class="shot shot--g3">
-        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg" alt="Выход на поверхность Марса">
+        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg?v=3ad05589" alt="Выход на поверхность Марса">
         <div class="shot__veil"></div><b>Исследователь Марса</b><span>красная пустыня, база</span>
       </div>
       <div class="shot shot--g6">
-        <img loading="lazy" decoding="async" src="assets/img/family-orbit.jpg" alt="Семья в иллюминаторе станции">
+        <img loading="lazy" decoding="async" src="assets/img/family-orbit.jpg?v=c156937f" alt="Семья в иллюминаторе станции">
         <div class="shot__veil"></div><b>Экипаж станции</b><span>иллюминатор, вид Земли</span>
       </div>
       <div class="shot shot--g8">
@@ -168,22 +177,22 @@
     </div>
     <div class="shots reveal">
       <div class="shot shot--g7">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/firefighter.jpg" alt="Ребёнок в образе пожарного">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/firefighter.jpg?v=5a26b87d" alt="Ребёнок в образе пожарного">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5c3 6 1 9-1 11 4 1 7 5 7 10a10 10 0 11-20 0c0-7 6-10 8-16 2 3 4 3 6-5z"/></svg></div>
         <div class="shot__veil"></div><b>Пожарный</b><span>каска, боевая одежда, ствол</span>
       </div>
       <div class="shot shot--g8">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/pilot.jpg" alt="Ребёнок в образе пилота в кабине самолёта">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/pilot.jpg?v=5659a039" alt="Ребёнок в образе пилота в кабине самолёта">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 18 16 6v4l-16-3-2 9 5 4v3l-7-2-7 2v-3l5-4-2-9-16 3v-4l16-6z"/></svg></div>
         <div class="shot__veil"></div><b>Пилот</b><span>форма, кабина, облака</span>
       </div>
       <div class="shot shot--g4">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/doctor.jpg" alt="Ребёнок в образе врача">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/doctor.jpg?v=37fdddd3" alt="Ребёнок в образе врача">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6v10a10 10 0 0020 0V6"/><path d="M24 26v6a8 8 0 0016 0v-2"/><circle cx="40" cy="26" r="4"/></svg></div>
         <div class="shot__veil"></div><b>Врач</b><span>халат, кабинет, свет</span>
       </div>
       <div class="shot shot--g5">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/chef.jpg" alt="Ребёнок в образе шеф-повара у плиты">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/chef.jpg?v=a43fb11f" alt="Ребёнок в образе шеф-повара у плиты">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22a7 7 0 01-1-14 8 8 0 0122 0 7 7 0 01-1 14z"/><path d="M14 22v16h20V22M14 30h20"/></svg></div>
         <div class="shot__veil"></div><b>Шеф-повар</b><span>кухня, колпак, огонь</span>
       </div>
@@ -199,17 +208,17 @@
     </div>
     <div class="shots reveal">
       <div class="shot shot--g3">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/racer.jpg" alt="Ребёнок в образе автогонщика за рулём болида">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/racer.jpg?v=58ba9ad7" alt="Ребёнок в образе автогонщика за рулём болида">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="22" r="13"/><path d="M11 22h26M24 9v26"/></svg></div>
         <div class="shot__veil"></div><b>Гонщик</b><span>комбинезон, кокпит, боксы</span>
       </div>
       <div class="shot shot--g6">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/football.jpg" alt="Ребёнок в образе футболиста на стадионе">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/football.jpg?v=82dbd965" alt="Ребёнок в образе футболиста на стадионе">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14l7 5-3 9h-8l-3-9z"/></svg></div>
         <div class="shot__veil"></div><b>Футболист</b><span>форма, стадион, свет софитов</span>
       </div>
       <div class="shot shot--g8">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/hockey.jpg" alt="Ребёнок в образе хоккеиста на льду">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/hockey.jpg?v=39595262" alt="Ребёнок в образе хоккеиста на льду">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 8v20c0 6 5 10 14 10s14-4 14-10V8"/><path d="M10 18h28"/></svg></div>
         <div class="shot__veil"></div><b>Хоккеист</b><span>лёд, форма, отражения</span>
       </div>
@@ -230,22 +239,22 @@
     </div>
     <div class="shots reveal">
       <div class="shot shot--g1">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/hero.jpg" alt="Ребёнок в образе супергероя: плащ, маска, собственная эмблема">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/hero.jpg?v=9173c3e6" alt="Ребёнок в образе супергероя: плащ, маска, собственная эмблема">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l14 5v12c0 9-6 15-14 19-8-4-14-10-14-19V11z"/><path d="M19 22l4 4 7-8"/></svg></div>
         <div class="shot__veil"></div><b>Галактический страж</b><span>свой костюм героя</span>
       </div>
       <div class="shot shot--g5">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/magic.jpg" alt="Ребёнок в образе ученика волшебной школы">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/magic.jpg?v=6aadc0f3" alt="Ребёнок в образе ученика волшебной школы">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40L34 14M30 10l8 8M24 6l1.5 4L30 11l-3 3 1 4.5L24 16l-4 2.5 1-4.5-3-3 4.5-1z"/></svg></div>
         <div class="shot__veil"></div><b>Волшебная школа</b><span>мантия, свечи, фолианты</span>
       </div>
       <div class="shot shot--g4">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/dino.jpg" alt="Ребёнок в образе исследователя, на фоне динозавр">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/dino.jpg?v=3a497f29" alt="Ребёнок в образе исследователя, на фоне динозавр">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34c8 2 12-4 12-10 0-8 6-14 14-14 6 0 10 4 10 9 0 8-8 10-8 16"/><path d="M12 34v8M30 35v7"/></svg></div>
         <div class="shot__veil"></div><b>Мир динозавров</b><span>экспедиция, следы, рассвет</span>
       </div>
       <div class="shot shot--g8">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/newyear.jpg" alt="Ребёнок в зимнем сюжете: снег, гирлянды, огни города">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/newyear.jpg?v=632943c6" alt="Ребёнок в зимнем сюжете: снег, гирлянды, огни города">
         <div class="shot__art" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M24 6v36M8 15l32 18M40 15L8 33"/></svg></div>
         <div class="shot__veil"></div><b>Новогодний мир</b><span>снег, гирлянды, подарки</span>
       </div>

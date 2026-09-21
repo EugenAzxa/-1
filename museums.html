@@ -36,28 +36,37 @@
   <span class="preloader__panel preloader__panel--t"></span>
   <span class="preloader__panel preloader__panel--b"></span>
   <span class="preloader__flash" aria-hidden="true"></span>
-  <div class="preloader__inner">
-    <svg class="preloader__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle class="preloader__track" cx="32" cy="32" r="27" stroke-width="2"/>
-      <circle class="preloader__arc" cx="32" cy="32" r="27" stroke-width="2"
-              stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"
-              transform="rotate(-90 32 32)"/>
-      <g class="preloader__blades" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
-        <path class="p-hex" d="M45.0 32.0L38.5 20.7L25.5 20.7L19.0 32.0L25.5 43.3L38.5 43.3Z"/>
-        <path d="M45.0 32.0L46.7 10.3"/>
-        <path d="M38.5 20.7L20.5 8.5"/>
-        <path d="M25.5 20.7L5.9 30.2"/>
-        <path d="M19.0 32.0L17.3 53.7"/>
-        <path d="M25.5 43.3L43.5 55.5"/>
-        <path d="M38.5 43.3L58.1 33.8"/>
-      </g>
-      <circle class="preloader__iris" cx="32" cy="32" r="5.5"/>
-    </svg>
-    <p class="preloader__title" aria-hidden="true">Выбери свой мир</p>
-    <p class="preloader__worlds" aria-hidden="true">
-      <span>космос</span><span>гонки</span><span>профессии</span><span>волшебная школа</span><span>динозавры</span><span>зимняя сказка</span>
+  <div class="preloader__inner" aria-hidden="true">
+
+    <div class="finder">
+      <div class="finder__shots">
+        <img src="assets/img/intro/space.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/jungle.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/stadium.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/winter.jpg" alt="" width="560" height="700">
+      </div>
+      <span class="finder__blind finder__blind--t"></span>
+      <span class="finder__blind finder__blind--b"></span>
+      <span class="finder__c finder__c--tl"></span>
+      <span class="finder__c finder__c--tr"></span>
+      <span class="finder__c finder__c--bl"></span>
+      <span class="finder__c finder__c--br"></span>
+      <svg class="finder__cam" viewBox="0 0 64 44" fill="none">
+        <rect class="cam-body" x="1" y="9" width="62" height="34" rx="7"/>
+        <path class="cam-top" d="M19 9l3.4-6.2h19.2L45 9"/>
+        <circle class="cam-ring" cx="32" cy="26" r="11"/>
+        <circle class="cam-lens" cx="32" cy="26" r="5.4"/>
+        <circle class="cam-flash" cx="52" cy="16" r="2.2"/>
+      </svg>
+    </div>
+
+    <div class="pbar"><i data-bar></i></div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космос</span><span>джунгли</span><span>стадион</span><span>зимняя сказка</span>
     </p>
-    <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
+    <span class="preloader__pct"><i data-pct>0</i>%</span>
   </div>
 </div>
 
@@ -115,7 +124,7 @@
   <div class="wrap">
     <div class="split">
       <div class="split__media reveal">
-        <img fetchpriority="high" decoding="async" src="assets/img/kiosk/atrium.jpg" alt="Фотозона в атриуме: семья у экрана с выбором сюжета, рядом фотограф и станция печати">
+        <img fetchpriority="high" decoding="async" src="assets/img/kiosk/atrium.jpg?v=3552fce0" alt="Фотозона в атриуме: семья у экрана с выбором сюжета, рядом фотограф и станция печати">
         <span class="split__caption">Концепт-визуализация</span>
       </div>
       <div class="reveal" data-delay="80">
@@ -134,8 +143,8 @@
     </div>
 
     <figure class="scheme reveal">
-      <a href="assets/img/kiosk/station-spec.jpg" target="_blank" rel="noopener">
-        <img loading="lazy" decoding="async" src="assets/img/kiosk/station-spec.jpg"
+      <a href="assets/img/kiosk/station-spec.jpg?v=7a756356" target="_blank" rel="noopener">
+        <img loading="lazy" decoding="async" src="assets/img/kiosk/station-spec.jpg?v=7a756356"
              alt="Схема аппарата фотозоны: сенсорный экран для выбора сюжета, камера на штативе, принтер моментальной печати и QR-код для скачивания фото"
              width="2000" height="1131">
       </a>
@@ -277,7 +286,7 @@
   <div class="wrap">
     <div class="split split--rev">
       <div class="split__media reveal">
-        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg" alt="Взрослый и ребёнок в скафандрах смотрят на марсианскую базу">
+        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg?v=3ad05589" alt="Взрослый и ребёнок в скафандрах смотрят на марсианскую базу">
         <span class="split__caption">Сюжет · Выход на поверхность</span>
       </div>
       <div class="reveal" data-delay="80">

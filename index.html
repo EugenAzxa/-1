@@ -36,28 +36,37 @@
   <span class="preloader__panel preloader__panel--t"></span>
   <span class="preloader__panel preloader__panel--b"></span>
   <span class="preloader__flash" aria-hidden="true"></span>
-  <div class="preloader__inner">
-    <svg class="preloader__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-      <circle class="preloader__track" cx="32" cy="32" r="27" stroke-width="2"/>
-      <circle class="preloader__arc" cx="32" cy="32" r="27" stroke-width="2"
-              stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"
-              transform="rotate(-90 32 32)"/>
-      <g class="preloader__blades" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
-        <path class="p-hex" d="M45.0 32.0L38.5 20.7L25.5 20.7L19.0 32.0L25.5 43.3L38.5 43.3Z"/>
-        <path d="M45.0 32.0L46.7 10.3"/>
-        <path d="M38.5 20.7L20.5 8.5"/>
-        <path d="M25.5 20.7L5.9 30.2"/>
-        <path d="M19.0 32.0L17.3 53.7"/>
-        <path d="M25.5 43.3L43.5 55.5"/>
-        <path d="M38.5 43.3L58.1 33.8"/>
-      </g>
-      <circle class="preloader__iris" cx="32" cy="32" r="5.5"/>
-    </svg>
-    <p class="preloader__title" aria-hidden="true">Выбери свой мир</p>
-    <p class="preloader__worlds" aria-hidden="true">
-      <span>космос</span><span>гонки</span><span>профессии</span><span>волшебная школа</span><span>динозавры</span><span>зимняя сказка</span>
+  <div class="preloader__inner" aria-hidden="true">
+
+    <div class="finder">
+      <div class="finder__shots">
+        <img src="assets/img/intro/space.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/jungle.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/stadium.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/winter.jpg" alt="" width="560" height="700">
+      </div>
+      <span class="finder__blind finder__blind--t"></span>
+      <span class="finder__blind finder__blind--b"></span>
+      <span class="finder__c finder__c--tl"></span>
+      <span class="finder__c finder__c--tr"></span>
+      <span class="finder__c finder__c--bl"></span>
+      <span class="finder__c finder__c--br"></span>
+      <svg class="finder__cam" viewBox="0 0 64 44" fill="none">
+        <rect class="cam-body" x="1" y="9" width="62" height="34" rx="7"/>
+        <path class="cam-top" d="M19 9l3.4-6.2h19.2L45 9"/>
+        <circle class="cam-ring" cx="32" cy="26" r="11"/>
+        <circle class="cam-lens" cx="32" cy="26" r="5.4"/>
+        <circle class="cam-flash" cx="52" cy="16" r="2.2"/>
+      </svg>
+    </div>
+
+    <div class="pbar"><i data-bar></i></div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космос</span><span>джунгли</span><span>стадион</span><span>зимняя сказка</span>
     </p>
-    <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
+    <span class="preloader__pct"><i data-pct>0</i>%</span>
   </div>
 </div>
 
@@ -116,14 +125,14 @@
 
     <div class="hero__gallery">
       <figure class="hero__shot hero__shot--wide">
-        <img fetchpriority="high" src="assets/img/kiosk/main.jpg" alt="Семья у фотозоны в торговом центре выбирает сюжет на экране, рядом камера на штативе" width="1440" height="956">
+        <img fetchpriority="high" src="assets/img/kiosk/main.jpg?v=46ac6c64" alt="Семья у фотозоны в торговом центре выбирает сюжет на экране, рядом камера на штативе" width="1440" height="956">
         <figcaption class="hero__tag">Концепт-визуализация</figcaption>
       </figure>
       <figure class="hero__shot hero__shot--a">
-        <img decoding="async" src="assets/img/kiosk/kids.jpg" alt="Брат и сестра у экрана фотозоны" width="760" height="760">
+        <img decoding="async" src="assets/img/kiosk/kids.jpg?v=13b2a76f" alt="Брат и сестра у экрана фотозоны" width="760" height="760">
       </figure>
       <figure class="hero__shot hero__shot--b">
-        <img decoding="async" src="assets/img/kiosk/mother.jpg" alt="Мама смотрит на детей во время съёмки" width="760" height="760">
+        <img decoding="async" src="assets/img/kiosk/mother.jpg?v=43ce3bbf" alt="Мама смотрит на детей во время съёмки" width="760" height="760">
       </figure>
     </div>
   </div>
@@ -138,7 +147,7 @@
     </div>
     <div class="dirs">
       <a class="dir dir--blue reveal" href="museums.html">
-        <div class="dir__bg"><img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg" alt="Мальчик в скафандре в зале музея космонавтики"></div>
+        <div class="dir__bg"><img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg?v=631e9cf1" alt="Мальчик в скафандре в зале музея космонавтики"></div>
         <span class="dir__tag">Музеи, парки, выставки</span>
         <h3>Фотозона под тему площадки</h3>
         <p>Конструкция, свет, экран выбора сюжета и набор пресетов в вашей вселенной: космос, небылицы, мистика, наука. Гость получает QR и печать.</p>
@@ -211,17 +220,17 @@
     </div>
     <div class="shots">
       <div class="shot shot--g2 reveal">
-        <img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg" alt="Ребёнок в образе космонавта">
+        <img loading="lazy" decoding="async" src="assets/img/kid-astronaut.jpg?v=631e9cf1" alt="Ребёнок в образе космонавта">
         <div class="shot__veil"></div>
         <b>Космонавт</b><span>скафандр, шлем, зал станции</span>
       </div>
       <div class="shot shot--g3 reveal" data-delay="60">
-        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg" alt="Выход на поверхность Марса">
+        <img loading="lazy" decoding="async" src="assets/img/mars-walk.jpg?v=3ad05589" alt="Выход на поверхность Марса">
         <div class="shot__veil"></div>
         <b>Исследователь Марса</b><span>красная пустыня, база на горизонте</span>
       </div>
       <div class="shot shot--g1 reveal" data-delay="120">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/hero.jpg" alt="Ребёнок в образе супергероя: плащ, маска, собственная эмблема">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/hero.jpg?v=9173c3e6" alt="Ребёнок в образе супергероя: плащ, маска, собственная эмблема">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l4 8 9 1-6.5 6.4L32 31l-8-4.2L16 31l1.5-9.6L11 15l9-1z"/><path d="M12 38h24M16 43h16"/></svg>
         </div>
@@ -229,7 +238,7 @@
         <b>Супергерой</b><span>плащ, маска, собственная эмблема</span>
       </div>
       <div class="shot shot--g4 reveal" data-delay="180">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/racer.jpg" alt="Ребёнок в образе автогонщика за рулём болида">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/racer.jpg?v=58ba9ad7" alt="Ребёнок в образе автогонщика за рулём болида">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="22" r="13"/><path d="M11 22h26M24 9v26M17 34l-3 7M31 34l3 7"/></svg>
         </div>
@@ -237,7 +246,7 @@
         <b>Гонщик</b><span>комбинезон, кокпит, боксы</span>
       </div>
       <div class="shot shot--g7 reveal">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/firefighter.jpg" alt="Ребёнок в образе пожарного: каска и боевая одежда">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/firefighter.jpg?v=5a26b87d" alt="Ребёнок в образе пожарного: каска и боевая одежда">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5c3 6 1 9-1 11 4 1 7 5 7 10a10 10 0 11-20 0c0-7 6-10 8-16 2 3 4 3 6-5z"/><path d="M31 27c4 2 7 6 7 11"/></svg>
         </div>
@@ -245,7 +254,7 @@
         <b>Пожарный</b><span>каска, боевая одежда, ствол</span>
       </div>
       <div class="shot shot--g6 reveal" data-delay="60">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/doctor.jpg" alt="Ребёнок в образе врача: белый халат и стетоскоп">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/doctor.jpg?v=37fdddd3" alt="Ребёнок в образе врача: белый халат и стетоскоп">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6v10a10 10 0 0020 0V6"/><path d="M24 26v8a8 8 0 0016 0v-4"/><circle cx="40" cy="26" r="4"/></svg>
         </div>
@@ -253,7 +262,7 @@
         <b>Врач и учёный</b><span>лаборатория, халат, приборы</span>
       </div>
       <div class="shot shot--g5 reveal" data-delay="120">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/magic.jpg" alt="Ребёнок в образе ученика волшебной школы">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/magic.jpg?v=6aadc0f3" alt="Ребёнок в образе ученика волшебной школы">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40L34 14"/><path d="M30 10l8 8"/><path d="M24 6l1.5 4L30 11l-3 3 1 4.5L24 16l-4 2.5 1-4.5-3-3 4.5-1z"/></svg>
         </div>
@@ -261,7 +270,7 @@
         <b>Волшебная школа</b><span>мантия, свечи, старая библиотека</span>
       </div>
       <div class="shot shot--g8 reveal" data-delay="180">
-        <img loading="lazy" decoding="async" data-src="assets/img/works/dino.jpg" alt="Ребёнок в образе исследователя джунглей, на фоне динозавр">
+        <img loading="lazy" decoding="async" data-src="assets/img/works/dino.jpg?v=3a497f29" alt="Ребёнок в образе исследователя джунглей, на фоне динозавр">
         <div class="shot__art" aria-hidden="true">
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30c6-14 16-20 30-20 0 14-8 24-22 28"/><path d="M14 38c2-8 7-14 14-17"/><circle cx="34" cy="16" r="2"/></svg>
         </div>
@@ -277,7 +286,7 @@
   <div class="wrap">
     <div class="split">
       <div class="split__media reveal">
-        <img loading="lazy" decoding="async" src="assets/img/family-orbit.jpg" alt="Семья в скафандрах у иллюминатора орбитальной станции">
+        <img loading="lazy" decoding="async" src="assets/img/family-orbit.jpg?v=c156937f" alt="Семья в скафандрах у иллюминатора орбитальной станции">
         <span class="split__caption">Пилот · Музей космонавтики</span>
       </div>
       <div class="reveal" data-delay="80">

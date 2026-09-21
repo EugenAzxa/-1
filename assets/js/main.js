@@ -2,24 +2,25 @@
 (function () {
   'use strict';
 
-  /* ---- прелоадер ---------------------------------------------------------
-     Кольцо показывает загрузку кадров страницы. Правила простые:
-     показатель никогда не замирает (иначе кажется, что всё зависло),
-     никогда не врёт про 100% раньше времени, снимается не позже четырёх
-     секунд от старта навигации, а на повторных страницах сессии
-     не показывается вовсе. */
+  /* ---- экран загрузки -----------------------------------------------------
+     Показывает видоискатель с локациями и полосу реального прогресса.
+     Правила прежние: ждём только кадры первого экрана, минимум 0.75 с,
+     предохранитель 3.2 с от старта навигации, внутри сессии один раз.
+     Финал - щелчок затвора: шторки видоискателя, чернота, вспышка. */
   var pre = document.getElementById('preloader');
   if (pre) {
-    var arc = pre.querySelector('.preloader__arc');
+    var bar = pre.querySelector('[data-bar]');
     var pct = pre.querySelector('[data-pct]');
-    var LEN = 169.6, MIN_MS = 850, MAX_MS = 3200;
+    var MIN_MS = 750, MAX_MS = 3200;
     var shown = 0, real = 0.05, finished = false, raf = null;
     var seen = false;
     try { seen = sessionStorage.getItem('aib-intro') === '1'; } catch (e) {}
+    // ?intro в адресе показывает вступление принудительно - удобно показывать клиенту
+    if (/[?&]intro/.test(location.search)) seen = false;
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function draw(p) {
-      if (arc) arc.style.strokeDashoffset = String(LEN * (1 - p));
+      if (bar) bar.style.transform = 'scaleX(' + p + ')';
       if (pct) pct.textContent = String(Math.round(p * 100));
     }
 
@@ -31,22 +32,19 @@
       draw(1);
 
       if (instant) {
-        // повторная страница в сессии или отключённая анимация: снимаем сразу
         pre.classList.add('is-instant', 'is-out');
         document.body.classList.remove('is-loading');
         pre.classList.add('is-done');
         return;
       }
 
-      // щелчок затвора: диафрагма схлопывается, бьёт вспышка,
-      // под ней уже открывается страница
-      pre.classList.add('is-snap');
-      setTimeout(function () { pre.classList.add('is-flash'); }, 290);
-      setTimeout(function () {
+      pre.classList.add('is-snap');                                  // шторки закрываются, экран чернеет
+      setTimeout(function () { pre.classList.add('is-flash'); }, 240); // вспышка
+      setTimeout(function () {                                        // сайт открывается под вспышкой
         pre.classList.add('is-out');
         document.body.classList.remove('is-loading');
-      }, 350);
-      setTimeout(function () { pre.classList.add('is-done'); }, 1250);
+      }, 320);
+      setTimeout(function () { pre.classList.add('is-done'); }, 1300);
     }
 
     if (seen || still) {
@@ -59,7 +57,7 @@
       var total = imgs.length, done = 0;
 
       function frame() {
-        // страховка от замирания: пока ждём картинки, индикатор всё равно
+        // страховка от замирания: пока ждём картинки, полоса всё равно
         // ползёт по времени, но выше 90% без реальной загрузки не поднимается
         var creep = Math.min(0.9, performance.now() / MAX_MS * 0.9);
         var target = Math.max(real, creep);

@@ -558,6 +558,158 @@ body.menu-open .burger span::after{opacity:0}
 .album__n{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--blue-ink);padding-top:4px;white-space:nowrap}
 
 /* ==========================================================================
+   Экран загрузки: видоискатель с локациями, камера, затем щелчок затвора -
+   шторки закрываются, экран уходит в черноту, бьёт вспышка и открывается сайт.
+   Через черноту вспышка видна и в светлой теме, где белое по белому терялось.
+   ========================================================================== */
+body.is-loading{overflow:hidden}
+
+.preloader{position:fixed;inset:0;z-index:200;display:grid;place-items:center;pointer-events:none}
+.preloader__panel{
+  position:absolute;left:0;width:100%;height:50.5%;background:var(--ink);
+  transition:transform .72s cubic-bezier(.76,0,.24,1),background-color .16s linear;
+  will-change:transform;
+}
+.preloader__panel--t{top:0}
+.preloader__panel--b{bottom:0}
+.preloader__flash{position:absolute;inset:0;z-index:6;background:#fff;opacity:0;pointer-events:none}
+.preloader__inner{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:16px;
+  padding:0 20px;transition:opacity .2s var(--ease),transform .3s var(--ease);
+}
+
+/* видоискатель */
+.finder{
+  position:relative;width:min(78vw,340px);aspect-ratio:4/5;max-height:46svh;
+  border-radius:16px;overflow:hidden;background:#0d1017;
+}
+.finder__shots{position:absolute;inset:0}
+.finder__shots img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  animation:finder-cycle 5.2s linear infinite;
+}
+.finder__shots img:nth-child(2){animation-delay:1.3s}
+.finder__shots img:nth-child(3){animation-delay:2.6s}
+.finder__shots img:nth-child(4){animation-delay:3.9s}
+@keyframes finder-cycle{
+  0%{opacity:0;transform:scale(1.1)}
+  4%,21%{opacity:1}
+  25%,100%{opacity:0;transform:scale(1.02)}
+}
+.finder__c{position:absolute;width:26px;height:26px;border:2px solid rgba(255,255,255,.85);z-index:3}
+.finder__c--tl{top:12px;left:12px;border-right:0;border-bottom:0;border-radius:6px 0 0 0}
+.finder__c--tr{top:12px;right:12px;border-left:0;border-bottom:0;border-radius:0 6px 0 0}
+.finder__c--bl{bottom:12px;left:12px;border-right:0;border-top:0;border-radius:0 0 0 6px}
+.finder__c--br{bottom:12px;right:12px;border-left:0;border-top:0;border-radius:0 0 6px 0}
+.finder__blind{position:absolute;left:0;width:100%;height:51%;background:#07080b;z-index:4;transition:transform .2s cubic-bezier(.6,0,.9,.2)}
+.finder__blind--t{top:0;transform:translateY(-101%)}
+.finder__blind--b{bottom:0;transform:translateY(101%)}
+.finder__cam{
+  position:absolute;left:50%;bottom:16px;z-index:5;width:64px;height:44px;
+  transform:translateX(-50%);filter:drop-shadow(0 6px 16px rgba(0,0,0,.45));
+}
+.finder__cam .cam-body,.finder__cam .cam-top{fill:rgba(12,14,19,.82);stroke:rgba(255,255,255,.7);stroke-width:1.6;stroke-linejoin:round}
+.finder__cam .cam-ring{fill:none;stroke:rgba(255,255,255,.7);stroke-width:1.6}
+.finder__cam .cam-lens{fill:var(--gold)}
+.finder__cam .cam-flash{fill:rgba(255,255,255,.55)}
+
+/* полоса прогресса */
+.pbar{width:min(78vw,340px);height:3px;border-radius:3px;background:var(--wash-3);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease)}
+
+.preloader__title{
+  font-family:'Unbounded',sans-serif;font-size:clamp(20px,3vw,29px);font-weight:600;
+  letter-spacing:-.02em;line-height:1.1;color:var(--text);margin:0;text-align:center;
+}
+.preloader__worlds{position:relative;width:min(78vw,340px);height:1.4em;margin:0}
+.preloader__worlds span{
+  position:absolute;left:0;right:0;top:0;text-align:center;opacity:0;
+  font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-ink);animation:pre-worlds 5.2s linear infinite;
+}
+.preloader__worlds span:nth-child(2){animation-delay:1.3s}
+.preloader__worlds span:nth-child(3){animation-delay:2.6s}
+.preloader__worlds span:nth-child(4){animation-delay:3.9s}
+@keyframes pre-worlds{
+  0%{opacity:0;transform:translateY(6px)}
+  5%,21%{opacity:1;transform:none}
+  25%,100%{opacity:0;transform:translateY(-6px)}
+}
+.preloader__pct{
+  font-size:11.5px;font-weight:600;letter-spacing:.18em;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.preloader__pct i{font-style:normal}
+
+/* щелчок затвора */
+.preloader.is-snap .finder__blind--t,
+.preloader.is-snap .finder__blind--b{transform:translateY(0)}
+.preloader.is-snap .cam-lens{fill:#fff;transition:fill .12s linear}
+.preloader.is-snap .preloader__panel{background:#07080b}
+.preloader.is-snap .preloader__inner{opacity:0;transform:scale(.985);transition:opacity .22s .14s var(--ease),transform .3s var(--ease)}
+.preloader.is-flash .preloader__flash{animation:pre-flash .52s ease-out forwards}
+@keyframes pre-flash{0%{opacity:0}8%{opacity:1}30%{opacity:.92}100%{opacity:0}}
+
+/* выход: шторки расходятся */
+.preloader.is-out .preloader__panel--t{transform:translateY(-101%)}
+.preloader.is-out .preloader__panel--b{transform:translateY(101%)}
+.preloader.is-done{display:none}
+.preloader.is-instant,.preloader.is-instant .preloader__panel,
+.preloader.is-instant .preloader__inner{transition:none}
+
+/* первый экран выезжает следом за шторками */
+.hero__text>*,.hero__shot,.phero>.wrap>*{transition:opacity .62s var(--ease),transform .62s var(--ease)}
+body.is-loading .hero__text>*,body.is-loading .phero>.wrap>*{opacity:0;transform:translateY(20px)}
+body.is-loading .hero__shot{opacity:0;transform:translateY(26px)}
+body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) + 26px))}
+.hero__text>*:nth-child(2),.phero>.wrap>*:nth-child(2){transition-delay:.06s}
+.hero__text>*:nth-child(3),.phero>.wrap>*:nth-child(3){transition-delay:.12s}
+.hero__text>*:nth-child(4),.phero>.wrap>*:nth-child(4){transition-delay:.18s}
+.hero__text>*:nth-child(5),.phero>.wrap>*:nth-child(5){transition-delay:.24s}
+.hero__shot--wide{transition-delay:.10s}
+.hero__shot--a{transition-delay:.18s}
+.hero__shot--b{transition-delay:.26s}
+
+@media (prefers-reduced-motion:reduce){
+  .finder__shots img,.preloader__worlds span{animation:none}
+  .finder__shots img:first-child{opacity:1}
+  .preloader__worlds span:first-child{opacity:1}
+  .preloader__panel,.preloader__inner,.hero__text>*,.hero__shot,.phero>.wrap>*{transition:none!important}
+  body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
+  body.is-loading .hero__shot--b,.hero__shot--b{transform:translateY(clamp(10px,1.5vw,24px))}
+}
+
+/* ---------- page hero (внутренние страницы) ---------- */
+.phero{position:relative;overflow:hidden;padding:clamp(128px,15vw,186px) 0 clamp(48px,7vw,84px)}
+.phero::before{
+  content:'';position:absolute;inset:-40% 30% auto -20%;height:120%;z-index:0;
+  background:radial-gradient(50% 50% at 50% 50%,var(--glow-gold),transparent 70%);
+  pointer-events:none;
+}
+.phero--blue::before{background:radial-gradient(50% 50% at 50% 50%,var(--glow-blue),transparent 70%)}
+.phero>.wrap{position:relative;z-index:1}
+.phero h1{max-width:19ch}
+.phero .lede{margin-top:24px}
+.phero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.phero__strip{display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line-soft);font-size:14.5px;color:var(--muted)}
+.phero__strip b{color:var(--text);font-weight:600}
+
+/* ---------- misc utilities ---------- */
+.mt-s{margin-top:18px}
+.mt-m{margin-top:30px}
+.mt-l{margin-top:48px}
+.note{font-size:14.5px;color:var(--muted-2)}
+.pill{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--wash);border:1px solid var(--line-soft);font-size:13px;color:var(--muted);margin:0 6px 6px 0}
+.link-gold{color:var(--gold-ink);text-decoration:underline;text-underline-offset:4px}
+.link-gold:hover{color:var(--gold-hover)}
+.band{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--radius-lg);overflow:hidden}
+.band>div{background:var(--surface);padding:clamp(22px,2.6vw,32px)}
+.band b{display:block;font-family:'Unbounded',sans-serif;font-size:clamp(20px,2.1vw,25px);font-weight:600;line-height:1.15;margin-bottom:10px}
+.band span{font-size:14.5px;color:var(--muted)}
+.album{display:flex;gap:18px;align-items:flex-start}
+.album__n{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;color:var(--blue-ink);padding-top:4px;white-space:nowrap}
+
+/* ==========================================================================
    Прелоадер: кольцо прогресса по реальной загрузке кадров, затем шторки
    расходятся как затвор фотоаппарата. Анимируем только transform и opacity.
    ========================================================================== */
@@ -683,8 +835,6 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 .brand__mark .m-frame,.brand__mark .m-top{stroke:var(--gold-ink)}
 .brand__mark .m-lens{stroke:var(--text)}
 .brand__mark .m-dot{fill:var(--blue-ink)}
-.preloader__blades .p-hex{stroke:var(--iris-hex)}
-.preloader__track{stroke:var(--line)}
 
 /* переключатель темы */
 .theme-toggle{
