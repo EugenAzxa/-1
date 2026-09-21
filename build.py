@@ -77,11 +77,12 @@ LAYOUT = """<!DOCTYPE html>
 
     <div class="finder">
       <div class="finder__shots">
-        <img src="assets/img/intro/space.jpg" alt="" width="560" height="700">
-        <img src="assets/img/intro/jungle.jpg" alt="" width="560" height="700">
-        <img src="assets/img/intro/stadium.jpg" alt="" width="560" height="700">
-        <img src="assets/img/intro/winter.jpg" alt="" width="560" height="700">
+        <img src="assets/img/intro/role-1.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-2.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-3.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-4.jpg" alt="" width="480" height="600" fetchpriority="high">
       </div>
+      <span class="finder__blink"></span>
       <span class="finder__blind finder__blind--t"></span>
       <span class="finder__blind finder__blind--b"></span>
       <span class="finder__c finder__c--tl"></span>
@@ -101,7 +102,7 @@ LAYOUT = """<!DOCTYPE html>
 
     <p class="preloader__title">Выбери свой мир</p>
     <p class="preloader__worlds">
-      <span>космос</span><span>джунгли</span><span>стадион</span><span>зимняя сказка</span>
+      <span>космонавт</span><span>пожарный</span><span>шеф-повар</span><span>хоккеист</span>
     </p>
     <span class="preloader__pct"><i data-pct>0</i>%</span>
   </div>
@@ -284,10 +285,10 @@ def build():
             desc=html.escape(fill(meta.get("desc", ""))),
             nav=nav_html(src.name),
             fnav=footer_nav(),
-            body=stamp_assets(label_tables(fill(raw.strip()))),
+            body=label_tables(fill(raw.strip())),
             **CONFIG,
         )
-        (ROOT / src.name).write_text(page, encoding="utf-8")
+        (ROOT / src.name).write_text(stamp_assets(page), encoding="utf-8")
         made.append(src.name)
     print("Собрано:", ", ".join(made))
 
