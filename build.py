@@ -71,6 +71,7 @@ LAYOUT = """<!DOCTYPE html>
 <div class="preloader" id="preloader" role="status" aria-live="off" aria-label="Загрузка страницы">
   <span class="preloader__panel preloader__panel--t"></span>
   <span class="preloader__panel preloader__panel--b"></span>
+  <span class="preloader__flash" aria-hidden="true"></span>
   <div class="preloader__inner">
     <svg class="preloader__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <circle class="preloader__track" cx="32" cy="32" r="27" stroke-width="2"/>
@@ -88,7 +89,10 @@ LAYOUT = """<!DOCTYPE html>
       </g>
       <circle class="preloader__iris" cx="32" cy="32" r="5.5"/>
     </svg>
-    <span class="preloader__name" aria-hidden="true">{brand}</span>
+    <p class="preloader__title" aria-hidden="true">Выбери свой мир</p>
+    <p class="preloader__worlds" aria-hidden="true">
+      <span>космос</span><span>гонки</span><span>профессии</span><span>волшебная школа</span><span>динозавры</span><span>зимняя сказка</span>
+    </p>
     <span class="preloader__pct" aria-hidden="true"><i data-pct>0</i>%</span>
   </div>
 </div>

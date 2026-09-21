@@ -12,7 +12,7 @@
   if (pre) {
     var arc = pre.querySelector('.preloader__arc');
     var pct = pre.querySelector('[data-pct]');
-    var LEN = 169.6, MIN_MS = 700, MAX_MS = 3200;
+    var LEN = 169.6, MIN_MS = 850, MAX_MS = 3200;
     var shown = 0, real = 0.05, finished = false, raf = null;
     var seen = false;
     try { seen = sessionStorage.getItem('aib-intro') === '1'; } catch (e) {}
@@ -28,11 +28,25 @@
       finished = true;
       if (raf) cancelAnimationFrame(raf);
       try { sessionStorage.setItem('aib-intro', '1'); } catch (e) {}
-      if (instant) pre.classList.add('is-instant');
       draw(1);
-      pre.classList.add('is-out');
-      document.body.classList.remove('is-loading');
-      setTimeout(function () { pre.classList.add('is-done'); }, instant ? 0 : 820);
+
+      if (instant) {
+        // повторная страница в сессии или отключённая анимация: снимаем сразу
+        pre.classList.add('is-instant', 'is-out');
+        document.body.classList.remove('is-loading');
+        pre.classList.add('is-done');
+        return;
+      }
+
+      // щелчок затвора: диафрагма схлопывается, бьёт вспышка,
+      // под ней уже открывается страница
+      pre.classList.add('is-snap');
+      setTimeout(function () { pre.classList.add('is-flash'); }, 290);
+      setTimeout(function () {
+        pre.classList.add('is-out');
+        document.body.classList.remove('is-loading');
+      }, 350);
+      setTimeout(function () { pre.classList.add('is-done'); }, 1250);
     }
 
     if (seen || still) {
