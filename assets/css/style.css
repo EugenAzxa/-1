@@ -914,3 +914,7 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 
 .scheme--photo{margin-top:0;background:var(--photo-dark)}
 .scheme--photo img{max-height:min(60vh,540px);object-fit:cover;object-position:center 42%}
+
+/* шаги без подзаголовков: текст крупнее, номер отбит сильнее */
+.steps--plain .step b{margin-bottom:14px}
+.steps--plain .step p{font-size:15.5px;line-height:1.55}
