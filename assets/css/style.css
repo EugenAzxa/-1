@@ -189,12 +189,54 @@ body.menu-open .burger span::after{opacity:0}
   min-height:min(100svh,960px);
   padding:clamp(112px,13vw,152px) 0 clamp(48px,7vw,84px);
 }
-.hero__glow{
-  position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(54% 48% at 76% 30%,var(--glow-blue),transparent 68%),
-    radial-gradient(48% 42% at 8% 74%,var(--glow-gold),transparent 70%);
+/* живой фон первого экрана: два медленно плывущих пятна и боке-точки.
+   Двигаем только transform и opacity - это уходит на видеокарту и не грузит
+   прокрутку. При prefers-reduced-motion всё замирает. */
+.hero__glow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero__glow::before,.hero__glow::after{
+  content:'';position:absolute;border-radius:50%;will-change:transform;
 }
+.hero__glow::before{
+  width:min(62vw,860px);aspect-ratio:1;right:-8vw;top:-16vh;
+  background:radial-gradient(circle at 50% 50%,var(--glow-blue),transparent 66%);
+  animation:blob-a 26s ease-in-out infinite alternate;
+}
+.hero__glow::after{
+  width:min(54vw,760px);aspect-ratio:1;left:-12vw;bottom:-20vh;
+  background:radial-gradient(circle at 50% 50%,var(--glow-gold),transparent 66%);
+  animation:blob-b 33s ease-in-out infinite alternate;
+}
+@keyframes blob-a{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(-7%,8%,0) scale(1.16)}
+}
+@keyframes blob-b{
+  from{transform:translate3d(0,0,0) scale(1.06)}
+  to{transform:translate3d(9%,-7%,0) scale(.9)}
+}
+.bokeh{
+  position:absolute;border-radius:50%;opacity:0;will-change:transform,opacity;
+  background:radial-gradient(circle at 42% 38%,rgba(232,163,61,.34),rgba(232,163,61,.09) 46%,transparent 70%);
+  filter:blur(7px);animation:bokeh-float linear infinite;
+}
+:root[data-theme="dark"] .bokeh{
+  background:radial-gradient(circle at 42% 38%,rgba(255,216,160,.30),rgba(232,163,61,.08) 46%,transparent 70%);
+}
+.bokeh--1{width:140px;height:140px;left:12%;top:68%;animation-duration:34s;animation-delay:-2s}
+.bokeh--2{width:86px;height:86px;left:34%;top:82%;animation-duration:28s;animation-delay:-9s}
+.bokeh--3{width:200px;height:200px;left:58%;top:74%;animation-duration:42s;animation-delay:-16s}
+.bokeh--4{width:64px;height:64px;left:78%;top:88%;animation-duration:25s;animation-delay:-5s}
+.bokeh--5{width:116px;height:116px;left:90%;top:64%;animation-duration:38s;animation-delay:-22s}
+.bokeh--6{width:52px;height:52px;left:22%;top:92%;animation-duration:31s;animation-delay:-13s}
+@keyframes bokeh-float{
+  0%{transform:translate3d(0,0,0) scale(.85);opacity:0}
+  14%{opacity:.6}
+  70%{opacity:.38}
+  100%{transform:translate3d(6vw,-78vh,0) scale(1.25);opacity:0}
+}
+
+/* на внутренних страницах пятно тоже дышит */
+.phero::before{animation:blob-b 30s ease-in-out infinite alternate;will-change:transform}
 .hero__inner{
   position:relative;z-index:1;width:100%;display:grid;align-items:center;
   grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);
@@ -683,6 +725,8 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 @media (prefers-reduced-motion:reduce){
   .finder__shots img,.preloader__worlds span,.finder__blink{animation:none}
   .finder__shots img:first-child,.preloader__worlds span:first-child{opacity:1}
+  .hero__glow::before,.hero__glow::after,.bokeh,.phero::before{animation:none}
+  .bokeh{opacity:.35}
   .preloader__panel,.preloader__inner,.hero__text>*,.hero__shot,.phero>.wrap>*{transition:none!important}
   body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
   body.is-loading .hero__shot--b,.hero__shot--b{transform:translateY(clamp(10px,1.5vw,24px))}
@@ -812,6 +856,8 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 
 @media (prefers-reduced-motion:reduce){
   .preloader__blades,.preloader__iris{animation:none}
+  .hero__glow::before,.hero__glow::after,.bokeh,.phero::before{animation:none}
+  .bokeh{opacity:.35}
   .preloader__panel,.preloader__inner,.hero__text>*,.hero__shot,.phero>.wrap>*{transition:none!important}
   body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1;transform:none}
   body.is-loading .hero__shot--b,.hero__shot--b{transform:translateY(clamp(10px,1.5vw,24px))}
