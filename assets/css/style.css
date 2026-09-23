@@ -500,7 +500,11 @@ body.menu-open .burger span::after{opacity:0}
   .collage{-webkit-mask-image:none;mask-image:none}
   .ring{left:0;top:0;width:100%;height:100%;animation:none;transform:none}
   .tile{display:none}
-  .tile>span{animation:none}
+  /* дрейф с лёгким поворотом, у каждой плитки свой период и фаза */
+  .tile>span{animation:mob-drift var(--t,14s) ease-in-out infinite alternate}
+  .ring .tile:nth-child(4)>span,.ring .tile:nth-child(13)>span{animation-delay:-6s;animation-direction:alternate-reverse}
+  .ring .tile:nth-child(7)>span,.ring .tile:nth-child(16)>span{animation-delay:-3s}
+  .ring .tile:nth-child(10)>span,.ring .tile:nth-child(19)>span{animation-delay:-9s;animation-direction:alternate-reverse}
   .ring .tile:nth-child(1),.ring .tile:nth-child(4),.ring .tile:nth-child(7),
   .ring .tile:nth-child(10),.ring .tile:nth-child(13),.ring .tile:nth-child(16),
   .ring .tile:nth-child(19){
@@ -520,6 +524,10 @@ body.menu-open .burger span::after{opacity:0}
   .ring .tile:nth-child(13) img{opacity:.4}
   .ring .tile:nth-child(16) img{opacity:.48}
   .ring .tile:nth-child(19) img{opacity:.44}
+}
+@keyframes mob-drift{
+  from{transform:translate(0,0) rotate(0deg)}
+  to{transform:translate(14px,-18px) rotate(5deg)}
 }
 
 @media (max-width:1040px){
@@ -775,7 +783,7 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 
 @media (prefers-reduced-motion:reduce){
   .finder__shots img,.preloader__worlds span,.finder__blink,.gauge__num span,
-  .finder__grain,.preloader__inner{animation:none}
+  .finder__grain,.preloader__inner,.ring,.tile>span,.tile img{animation:none}
   .finder__shots img:first-child,.preloader__worlds span:first-child,
   .gauge__num span:first-child{opacity:1}
   .preloader__panel,.preloader__inner,.hero__text>*,.hero__shot,.phero>.wrap>*{transition:none!important}
