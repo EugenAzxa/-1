@@ -120,6 +120,14 @@
   /* ---- коллаж первого экрана ----------------------------------------------
      Плитки слегка следуют за курсором: каждая со своим коэффициентом глубины,
      поэтому получается лёгкая параллакс-сцена. Двигаем только transform. */
+  var ring = document.querySelector('.ring');
+  if (ring) {
+    var onScrollRing = function () {
+      ring.style.setProperty('--sr', (window.scrollY * 0.03).toFixed(2) + 'deg');
+    };
+    window.addEventListener('scroll', onScrollRing, { passive: true });
+  }
+
   var collage = document.querySelector('.collage');
   if (collage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       && window.matchMedia('(hover: hover)').matches) {
@@ -173,6 +181,10 @@
         if (!e.isIntersecting) return;
         var el = e.target;
         var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+        if (!el.hasAttribute('data-delay') && el.parentElement) {
+          var sib = [].slice.call(el.parentElement.children).filter(function (c) { return c.classList.contains('reveal'); });
+          if (sib.length > 1) delay = Math.min(sib.indexOf(el), 7) * 70;
+        }
         setTimeout(function () { el.classList.add('is-in'); }, delay);
         io.unobserve(el);
       });

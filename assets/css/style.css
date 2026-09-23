@@ -232,15 +232,15 @@ body.menu-open .burger span::after{opacity:0}
   mask-composite:intersect;
 }
 .ring{
-  position:absolute;left:50%;top:50%;width:0;height:0;
-  transform:translate3d(calc(var(--px,0px) * .6),calc(var(--py,0px) * .6),0);
+  position:absolute;left:50%;top:var(--cy,50%);width:0;height:0;--k:1;
+  transform:translate3d(calc(var(--px,0px) * .6),calc(var(--py,0px) * .6),0) rotate(var(--sr,0deg));
   animation:ring-orbit 150s linear infinite;
   will-change:transform;
 }
 .tile{
   position:absolute;left:0;top:0;
-  width:calc(var(--s) * 92px);margin:calc(var(--s) * -46px);
-  transform:translate(var(--x),var(--y));
+  width:calc(var(--s) * 92px * var(--k));margin:calc(var(--s) * -46px * var(--k));
+  transform:translate(calc(var(--x) * var(--k)),calc(var(--y) * var(--k)));
 }
 .tile>span{display:block;animation:ring-orbit-rev 150s linear infinite}
 .tile img{
@@ -490,9 +490,20 @@ body.menu-open .burger span::after{opacity:0}
   .preset__tag{order:1}
 }
 
-/* на узких экранах коллаж ложится прямо на текст - убираем его */
+/* на узких экранах кольцо меньше и поднято: плитки идут дугой над заголовком,
+   нижняя часть кольца скрыта маской, чтобы не ложиться на текст */
 @media (max-width:900px){
-  .collage{display:none}
+  .ring{--k:.5;--cy:15%}
+  .collage{
+    -webkit-mask-image:
+      radial-gradient(farthest-side circle at 50% 15%,transparent 8%,#000 20%,#000 100%),
+      linear-gradient(180deg,#000 17%,rgba(0,0,0,.4) 25%,transparent 31%);
+    mask-image:
+      radial-gradient(farthest-side circle at 50% 15%,transparent 8%,#000 20%,#000 100%),
+      linear-gradient(180deg,#000 17%,rgba(0,0,0,.4) 25%,transparent 31%);
+  }
+  .hero{padding-top:clamp(270px,72vw,330px)}
+}
 }
 
 @media (max-width:1040px){
