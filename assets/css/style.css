@@ -240,7 +240,7 @@ body.menu-open .burger span::after{opacity:0}
 .tile{
   position:absolute;left:0;top:0;
   width:calc(var(--s) * 92px * var(--k));margin:calc(var(--s) * -46px * var(--k));
-  transform:translate(calc(var(--x) * var(--k)),calc(var(--y) * var(--k)));
+  transform:translate(calc(var(--x) * var(--kx,var(--k))),calc(var(--y) * var(--ky,var(--k))));
 }
 .tile>span{display:block;animation:ring-orbit-rev 150s linear infinite}
 .tile img{
@@ -492,42 +492,18 @@ body.menu-open .burger span::after{opacity:0}
 
 /* на узких экранах кольцо меньше и поднято: плитки идут дугой над заголовком,
    нижняя часть кольца скрыта маской, чтобы не ложиться на текст */
-/* телефон: как у Cosmos - над заголовком много воздуха, плитки живут в верхней
-   зоне и внизу, по бокам от текста видны только срезы. Прозрачность задаётся
-   картинке напрямую: у плитки она в атрибуте style */
+/* телефон: та же орбита, но эллипс вытянут выше экрана по вертикали.
+   Плитки проходят через полосу над заголовком, уходят за боковые края и
+   выныривают под кнопками; полоса с текстом закрыта маской. Внутренний пояс
+   скрыт - он шёл бы прямо по тексту */
 @media (max-width:900px){
-  .hero{min-height:100svh;padding:226px 0 96px}
-  .collage{-webkit-mask-image:none;mask-image:none}
-  .ring{left:0;top:0;width:100%;height:100%;animation:none;transform:none}
-  .tile{display:none}
-  /* дрейф с лёгким поворотом, у каждой плитки свой период и фаза */
-  .tile>span{animation:mob-drift var(--t,14s) ease-in-out infinite alternate}
-  .ring .tile:nth-child(4)>span,.ring .tile:nth-child(13)>span{animation-delay:-6s;animation-direction:alternate-reverse}
-  .ring .tile:nth-child(7)>span,.ring .tile:nth-child(16)>span{animation-delay:-3s}
-  .ring .tile:nth-child(10)>span,.ring .tile:nth-child(19)>span{animation-delay:-9s;animation-direction:alternate-reverse}
-  .ring .tile:nth-child(1),.ring .tile:nth-child(4),.ring .tile:nth-child(7),
-  .ring .tile:nth-child(10),.ring .tile:nth-child(13),.ring .tile:nth-child(16),
-  .ring .tile:nth-child(19){
-    display:block;margin:0;transform:rotate(var(--rot));
+  .hero{min-height:100svh;padding:214px 0 110px}
+  .ring{--k:.64;--kx:.98;--ky:2.4;--cy:53%}
+  .tile--in{display:none}
+  .collage{
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 17%,transparent 23%,transparent 89%,#000 94%,#000 100%);
+    mask-image:linear-gradient(180deg,#000 0,#000 17%,transparent 23%,transparent 89%,#000 94%,#000 100%);
   }
-  .ring .tile:nth-child(1){left:-5%;top:1.5%;width:100px}
-  .ring .tile:nth-child(4){right:-5%;left:auto;top:.5%;width:112px}
-  .ring .tile:nth-child(7){left:38%;top:9%;width:76px}
-  .ring .tile:nth-child(10){left:-62px;top:44%;width:92px}
-  .ring .tile:nth-child(13){right:-60px;left:auto;top:37%;width:88px}
-  .ring .tile:nth-child(16){left:-6%;top:91%;width:100px}
-  .ring .tile:nth-child(19){right:-6%;left:auto;top:92%;width:94px}
-  .ring .tile:nth-child(1) img{opacity:.55}
-  .ring .tile:nth-child(4) img{opacity:.5}
-  .ring .tile:nth-child(7) img{opacity:.38}
-  .ring .tile:nth-child(10) img{opacity:.4}
-  .ring .tile:nth-child(13) img{opacity:.4}
-  .ring .tile:nth-child(16) img{opacity:.48}
-  .ring .tile:nth-child(19) img{opacity:.44}
-}
-@keyframes mob-drift{
-  from{transform:translate(0,0) rotate(0deg)}
-  to{transform:translate(14px,-18px) rotate(5deg)}
 }
 
 @media (max-width:1040px){
