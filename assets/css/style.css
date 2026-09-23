@@ -618,10 +618,16 @@ body.is-loading{overflow:hidden}
 .preloader__inner{
   position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
   gap:clamp(14px,2.2vh,22px);padding:0 20px;
-  animation:pre-enter .8s cubic-bezier(.16,1,.3,1) both;
   transition:opacity .2s var(--ease),transform .3s var(--ease);
 }
-@keyframes pre-enter{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+/* появление вешаем на дочерние элементы: контейнер должен остаться
+   свободным, иначе залитое значение анимации перебьёт затухание */
+.finder{animation:pre-frame .75s cubic-bezier(.16,1,.3,1) backwards}
+.preloader__brand{animation:pre-rise .6s cubic-bezier(.16,1,.3,1) backwards}
+.gauge{animation:pre-rise .6s .1s cubic-bezier(.16,1,.3,1) backwards}
+.preloader__title{animation:pre-rise .6s .16s cubic-bezier(.16,1,.3,1) backwards}
+@keyframes pre-frame{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes pre-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 .preloader__brand{
   margin:0;font-family:'Unbounded',sans-serif;font-size:11px;font-weight:500;
@@ -734,10 +740,12 @@ body.is-loading{overflow:hidden}
 .preloader.is-snap .finder__blind--b{transform:translateY(0)}
 .preloader.is-snap .cam-lens{fill:#fff;transition:fill .12s linear}
 .preloader.is-snap .preloader__panel{background:#07080b}
-.preloader.is-snap .preloader__brand,
-.preloader.is-snap .gauge,
-.preloader.is-snap .preloader__title,
-.preloader.is-snap .preloader__worlds{opacity:0;transition:opacity .22s .1s var(--ease)}
+/* гасим всё содержимое разом: у слов и счётчика анимация с forwards,
+   поэтому сначала снимаем её, иначе залитое значение перебивает прозрачность */
+.preloader.is-snap .preloader__inner{opacity:0;transform:scale(.99);transition:opacity .2s .06s var(--ease),transform .3s var(--ease)}
+.preloader.is-snap .preloader__worlds span,
+.preloader.is-snap .gauge__num span,
+.preloader.is-snap .finder__shots img{animation:none}
 .preloader.is-flash .preloader__flash{animation:pre-flash .52s ease-out forwards}
 @keyframes pre-flash{0%{opacity:0}8%{opacity:1}30%{opacity:.92}100%{opacity:0}}
 
