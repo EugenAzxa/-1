@@ -75,6 +75,8 @@ LAYOUT = """<!DOCTYPE html>
   <span class="preloader__flash" aria-hidden="true"></span>
   <div class="preloader__inner" aria-hidden="true">
 
+    <p class="preloader__brand">{brand}</p>
+
     <div class="finder">
       <div class="finder__shots">
         <img src="assets/img/intro/role-1.jpg" alt="" width="480" height="600" fetchpriority="high">
@@ -82,6 +84,8 @@ LAYOUT = """<!DOCTYPE html>
         <img src="assets/img/intro/role-3.jpg" alt="" width="480" height="600" fetchpriority="high">
         <img src="assets/img/intro/role-4.jpg" alt="" width="480" height="600" fetchpriority="high">
       </div>
+      <span class="finder__grain"></span>
+      <span class="finder__vignette"></span>
       <span class="finder__blink"></span>
       <span class="finder__blind finder__blind--t"></span>
       <span class="finder__blind finder__blind--b"></span>
@@ -97,6 +101,19 @@ LAYOUT = """<!DOCTYPE html>
         <circle class="cam-flash" cx="52" cy="16" r="2.2"/>
       </svg>
     </div>
+
+    <div class="gauge">
+      <span class="gauge__num"><span>01/04</span><span>02/04</span><span>03/04</span><span>04/04</span></span>
+      <span class="gauge__track"><i data-bar></i></span>
+      <span class="gauge__pct"><i data-pct>0</i>%</span>
+    </div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космонавт</span><span>пожарный</span><span>шеф-повар</span><span>хоккеист</span>
+    </p>
+  </div>
+</div>
 
     <div class="pbar"><i data-bar></i></div>
 
