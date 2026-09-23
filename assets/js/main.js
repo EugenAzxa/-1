@@ -117,6 +117,30 @@
     });
   }
 
+  /* ---- коллаж первого экрана ----------------------------------------------
+     Плитки слегка следуют за курсором: каждая со своим коэффициентом глубины,
+     поэтому получается лёгкая параллакс-сцена. Двигаем только transform. */
+  var collage = document.querySelector('.collage');
+  if (collage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      && window.matchMedia('(hover: hover)').matches) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, ticking = false;
+
+    window.addEventListener('pointermove', function (e) {
+      tx = (e.clientX / window.innerWidth - .5) * 26;
+      ty = (e.clientY / window.innerHeight - .5) * 18;
+      if (!ticking) { ticking = true; requestAnimationFrame(step); }
+    }, { passive: true });
+
+    function step() {
+      cx += (tx - cx) * .06;
+      cy += (ty - cy) * .06;
+      collage.style.setProperty('--px', cx.toFixed(2) + 'px');
+      collage.style.setProperty('--py', cy.toFixed(2) + 'px');
+      if (Math.abs(tx - cx) > .1 || Math.abs(ty - cy) > .1) requestAnimationFrame(step);
+      else ticking = false;
+    }
+  }
+
   /* ---- sticky header ---------------------------------------------------- */
   var header = document.querySelector('.site-header');
   function onScroll() {

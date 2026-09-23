@@ -228,9 +228,10 @@ def fill(text):
 def stamp_assets(html_text):
     """Добавляет к картинкам метку версии: assets/img/x.jpg?v=<хэш файла>.
 
-    Картинки кешируются на сутки. Без метки заменённый файл с тем же именем
-    ещё день показывался бы старым - именно так и получилось с кадром
-    первого экрана. Метка меняется вместе с файлом, и браузер забирает новый.
+    Картинки кешируются на сутки, стили и скрипт браузер тоже держит у себя.
+    Без метки заменённый файл с тем же именем ещё показывался бы старым -
+    так и случилось и с кадром первого экрана, и со стилями. Метка меняется
+    вместе с файлом, и браузер забирает новый.
     """
     def one(m):
         attr, path, q = m.group(1), m.group(2), m.group(3)
@@ -241,7 +242,7 @@ def stamp_assets(html_text):
         ver = hashlib.md5(f"{st.st_size}-{int(st.st_mtime)}".encode()).hexdigest()[:8]
         return f'{attr}="{path}?v={ver}"'
 
-    return re.sub(r'(src|data-src|href)="(assets/[^"?]+\.(?:jpg|jpeg|png|webp|svg))"()', one, html_text)
+    return re.sub(r'(src|data-src|href)="(assets/[^"?]+\.(?:jpg|jpeg|png|webp|svg|css|js))"()', one, html_text)
 
 
 def label_tables(html_text):
