@@ -223,12 +223,12 @@ body.menu-open .burger span::after{opacity:0}
 .collage{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   -webkit-mask-image:
-    radial-gradient(farthest-side circle at 50% 46%,transparent 24%,#000 42%,#000 94%,transparent 100%),
-    linear-gradient(180deg,#000 52%,rgba(0,0,0,.35) 78%,transparent 96%);
+    radial-gradient(farthest-side circle at 50% 46%,transparent 36%,#000 56%,#000 96%,transparent 100%),
+    linear-gradient(180deg,#000 46%,rgba(0,0,0,.28) 68%,transparent 84%);
   -webkit-mask-composite:source-in;
   mask-image:
-    radial-gradient(farthest-side circle at 50% 46%,transparent 24%,#000 42%,#000 94%,transparent 100%),
-    linear-gradient(180deg,#000 52%,rgba(0,0,0,.35) 78%,transparent 96%);
+    radial-gradient(farthest-side circle at 50% 46%,transparent 36%,#000 56%,#000 96%,transparent 100%),
+    linear-gradient(180deg,#000 46%,rgba(0,0,0,.28) 68%,transparent 84%);
   mask-composite:intersect;
 }
 .ring{
@@ -239,14 +239,14 @@ body.menu-open .burger span::after{opacity:0}
 }
 .tile{
   position:absolute;left:0;top:0;
-  width:calc(var(--s) * 104px);margin:calc(var(--s) * -52px);
-  transform:rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a)));
+  width:calc(var(--s) * 92px);margin:calc(var(--s) * -46px);
+  transform:translate(var(--x),var(--y));
 }
 .tile>span{display:block;animation:ring-orbit-rev 150s linear infinite}
 .tile img{
   display:block;width:100%;height:auto;aspect-ratio:var(--ar,1);object-fit:cover;
   border-radius:12px;transform:rotate(var(--rot));
-  opacity:var(--o);filter:blur(var(--b));
+  opacity:var(--o);
   animation:tile-breathe var(--t,14s) ease-in-out infinite alternate;
 }
 @keyframes tile-breathe{from{translate:0 0}to{translate:0 -8px}}
