@@ -31,7 +31,7 @@ NAV = [
     ("index.html", "Главная"),
     ("museums.html", "Музеям и паркам"),
     ("schools.html", "Сады и школы"),
-    ("worlds.html", "AI-образы"),
+    ("worlds.html", "Образы"),
     ("contacts.html", "Контакты"),
 ]
 
@@ -152,7 +152,7 @@ LAYOUT = """<!DOCTYPE html>
           </svg>
           <span>{brand}<small>{brand_sub}</small></span>
         </a>
-        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны и AI-образы для музеев, парков, детских садов и школ. Снимаем, обрабатываем, отдаём гостю готовый кадр.</p>
+        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны и авторские образы для музеев, парков, детских садов и школ. Снимаем, обрабатываем, отдаём гостю готовый кадр.</p>
       </div>
       <div>
         <h4>Разделы</h4>
