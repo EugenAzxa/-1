@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f5f2">
+<script>
+  // выполняется до отрисовки: иначе выбранная гостем тёмная тема моргнёт белым
+  try {
+    var t = localStorage.getItem("aib-theme");
+    if (t === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  } catch (e) {}
+</script>
+<title>Лаборатория движения - Миллениум</title>
+<meta name="description" content="Тестовая страница: только первый экран с кольцом кадров, чтобы смотреть анимацию отдельно.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Лаборатория движения - Миллениум">
+<meta property="og:description" content="Тестовая страница: только первый экран с кольцом кадров, чтобы смотреть анимацию отдельно.">
+<meta property="og:image" content="https://millenium-photo.ru/assets/img/kiosk/main.jpg">
+<meta property="og:locale" content="ru_RU">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg?v=b18bf816" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=2041fd7d">
+<noscript><style>
+  .preloader{display:none!important}
+  body.is-loading{overflow:auto}
+  body.is-loading .hero__text>*,body.is-loading .hero__shot,body.is-loading .phero>.wrap>*{opacity:1}
+</style></noscript>
+</head>
+<body class="is-loading">
+
+<div class="preloader" id="preloader" role="status" aria-live="off" aria-label="Загрузка страницы">
+  <span class="preloader__panel preloader__panel--t"></span>
+  <span class="preloader__panel preloader__panel--b"></span>
+  <span class="preloader__flash" aria-hidden="true"></span>
+  <div class="preloader__inner" aria-hidden="true">
+
+    <p class="preloader__brand">Миллениум</p>
+
+    <div class="finder">
+      <div class="finder__shots">
+        <img src="assets/img/intro/role-1.jpg?v=84469a7f" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-2.jpg?v=00936af5" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-3.jpg?v=e260f705" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/role-4.jpg?v=8e636b12" alt="" width="480" height="600" fetchpriority="high">
+      </div>
+      <span class="finder__grain"></span>
+      <span class="finder__vignette"></span>
+      <span class="finder__blink"></span>
+      <span class="finder__blind finder__blind--t"></span>
+      <span class="finder__blind finder__blind--b"></span>
+      <span class="finder__c finder__c--tl"></span>
+      <span class="finder__c finder__c--tr"></span>
+      <span class="finder__c finder__c--bl"></span>
+      <span class="finder__c finder__c--br"></span>
+      <svg class="finder__cam" viewBox="0 0 64 44" fill="none">
+        <rect class="cam-body" x="1" y="9" width="62" height="34" rx="7"/>
+        <path class="cam-top" d="M19 9l3.4-6.2h19.2L45 9"/>
+        <circle class="cam-ring" cx="32" cy="26" r="11"/>
+        <circle class="cam-lens" cx="32" cy="26" r="5.4"/>
+        <circle class="cam-flash" cx="52" cy="16" r="2.2"/>
+      </svg>
+    </div>
+
+    <div class="gauge">
+      <span class="gauge__num"><span>01/04</span><span>02/04</span><span>03/04</span><span>04/04</span></span>
+      <span class="gauge__track"><i data-bar></i></span>
+      <span class="gauge__pct"><i data-pct>0</i>%</span>
+    </div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космонавт</span><span>пожарный</span><span>шеф-повар</span><span>хоккеист</span>
+    </p>
+  </div>
+</div>
+
+    <div class="pbar"><i data-bar></i></div>
+
+    <p class="preloader__title">Выбери свой мир</p>
+    <p class="preloader__worlds">
+      <span>космонавт</span><span>пожарный</span><span>шеф-повар</span><span>хоккеист</span>
+    </p>
+    <span class="preloader__pct"><i data-pct>0</i>%</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Миллениум, на главную">
+      <svg class="brand__mark" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect class="m-frame" x="1" y="6.5" width="28" height="19" rx="5" stroke-width="1.6"/>
+        <circle class="m-lens" cx="15" cy="16" r="6" stroke-width="1.6"/>
+        <circle class="m-dot" cx="15" cy="16" r="2.2"/>
+        <path class="m-top" d="M10.5 6.5l1.8-3.2h5.4l1.8 3.2" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span>Миллениум<small>photo experience</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="museums.html">Музеям и паркам</a>
+      <a href="schools.html">Сады и школы</a>
+      <a href="worlds.html">Образы</a>
+      <a href="contacts.html">Контакты</a>
+      <a class="btn btn--primary btn--sm nav-cta" href="tel:+79214063384">Позвонить</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Тёмная тема" aria-pressed="false">
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>
+      </svg>
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 14.2A8.2 8.2 0 019.8 4a8.4 8.4 0 102 10.2 8.2 8.2 0 018.2 0z"/>
+      </svg>
+    </button>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="collage" aria-hidden="true">
+  <div class="ring">
+    <figure class="tile tile--out" style="--x:3.4vmin;--y:-49.9vmin;--s:0.86;--rot:-6.7deg;--o:0.89;--ar:3/4;--t:13.1s"><span><img decoding="async" src="assets/img/ring/r03.jpg?v=ea72fa92" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:16.7vmin;--y:-48.1vmin;--s:0.94;--rot:4.2deg;--o:0.93;--ar:4/5;--t:13.5s"><span><img decoding="async" src="assets/img/ring/r25.jpg?v=bd8bdf38" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:35.4vmin;--y:-40.9vmin;--s:0.87;--rot:4.1deg;--o:0.91;--ar:4/5;--t:13.0s"><span><img decoding="async" src="assets/img/ring/k-retro.jpg?v=39d6a93e" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:51.5vmin;--y:-33.8vmin;--s:0.88;--rot:1.0deg;--o:0.89;--ar:1/1;--t:13.9s"><span><img decoding="async" src="assets/img/ring/k-detective.jpg?v=d860495b" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:55.7vmin;--y:-22.7vmin;--s:0.79;--rot:9.1deg;--o:0.85;--ar:3/4;--t:12.0s"><span><img decoding="async" src="assets/img/ring/k-dancer.jpg?v=18ae1885" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:66.1vmin;--y:-14.1vmin;--s:0.9;--rot:7.9deg;--o:0.91;--ar:4/5;--t:17.2s"><span><img decoding="async" src="assets/img/ring/k-racer.jpg?v=69ce5f31" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:68.4vmin;--y:-2.0vmin;--s:1.0;--rot:-9.3deg;--o:0.97;--ar:4/5;--t:12.7s"><span><img decoding="async" src="assets/img/ring/k-astronaut.jpg?v=2136d075" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:63.9vmin;--y:12.4vmin;--s:0.82;--rot:4.1deg;--o:0.87;--ar:4/5;--t:13.5s"><span><img decoding="async" src="assets/img/ring/r04.jpg?v=7e80c8e6" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:57.0vmin;--y:22.6vmin;--s:0.8;--rot:3.8deg;--o:0.85;--ar:1/1;--t:12.3s"><span><img decoding="async" src="assets/img/ring/r14.jpg?v=f4485f56" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:51.7vmin;--y:33.9vmin;--s:0.92;--rot:-5.3deg;--o:0.89;--ar:5/4;--t:13.8s"><span><img decoding="async" src="assets/img/ring/k-scientist.jpg?v=f358ca52" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:35.5vmin;--y:41.7vmin;--s:0.82;--rot:2.8deg;--o:1.0;--ar:1/1;--t:13.7s"><span><img decoding="async" src="assets/img/ring/r07.jpg?v=22c64b55" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:20.2vmin;--y:48.2vmin;--s:0.93;--rot:7.9deg;--o:0.84;--ar:1/1;--t:11.9s"><span><img decoding="async" src="assets/img/ring/r18.jpg?v=c93bc9ce" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:0.4vmin;--y:46.7vmin;--s:1.01;--rot:-0.9deg;--o:0.87;--ar:5/4;--t:17.8s"><span><img decoding="async" src="assets/img/ring/k-cellist.jpg?v=b23d9300" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-20.5vmin;--y:45.7vmin;--s:0.91;--rot:-0.4deg;--o:0.95;--ar:4/5;--t:14.8s"><span><img decoding="async" src="assets/img/ring/r10.jpg?v=07d91f01" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-34.7vmin;--y:39.3vmin;--s:1.0;--rot:-6.4deg;--o:0.92;--ar:1/1;--t:17.9s"><span><img decoding="async" src="assets/img/ring/r05.jpg?v=5301f33e" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-45.7vmin;--y:35.2vmin;--s:0.92;--rot:0.1deg;--o:0.92;--ar:4/5;--t:17.3s"><span><img decoding="async" src="assets/img/ring/k-artist.jpg?v=2297e294" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-60.0vmin;--y:23.3vmin;--s:0.96;--rot:-2.7deg;--o:0.96;--ar:4/5;--t:17.7s"><span><img decoding="async" src="assets/img/ring/r27.jpg?v=8281d023" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-67.0vmin;--y:14.2vmin;--s:0.97;--rot:-3.2deg;--o:0.99;--ar:3/4;--t:15.6s"><span><img decoding="async" src="assets/img/ring/r26.jpg?v=88d59b43" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-67.2vmin;--y:2.5vmin;--s:0.85;--rot:-0.7deg;--o:0.94;--ar:5/4;--t:16.2s"><span><img decoding="async" src="assets/img/ring/r13.jpg?v=51501baa" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-63.3vmin;--y:-13.7vmin;--s:0.95;--rot:6.6deg;--o:0.95;--ar:4/5;--t:18.4s"><span><img decoding="async" src="assets/img/ring/r19.jpg?v=7f243839" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-61.1vmin;--y:-23.4vmin;--s:0.9;--rot:-3.3deg;--o:0.89;--ar:3/4;--t:15.2s"><span><img decoding="async" src="assets/img/ring/k-chef.jpg?v=af6fa498" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-50.5vmin;--y:-33.9vmin;--s:1.03;--rot:3.8deg;--o:0.91;--ar:1/1;--t:12.4s"><span><img decoding="async" src="assets/img/ring/k-ballerina.jpg?v=d3d07711" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-32.0vmin;--y:-42.8vmin;--s:0.96;--rot:2.5deg;--o:0.9;--ar:4/5;--t:16.8s"><span><img decoding="async" src="assets/img/ring/k-cowboy.jpg?v=e8837308" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--out" style="--x:-19.9vmin;--y:-44.5vmin;--s:0.9;--rot:-5.6deg;--o:0.94;--ar:3/4;--t:16.0s"><span><img decoding="async" src="assets/img/ring/r11.jpg?v=a8e080dc" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:8.7vmin;--y:-35.0vmin;--s:0.55;--rot:-7.3deg;--o:0.31;--ar:4/5;--t:18.7s"><span><img decoding="async" src="assets/img/ring/r16.jpg?v=354609ac" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:30.9vmin;--y:-28.0vmin;--s:0.59;--rot:3.3deg;--o:0.37;--ar:4/5;--t:15.7s"><span><img decoding="async" src="assets/img/ring/r22.jpg?v=aae60fb9" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:45.8vmin;--y:-17.0vmin;--s:0.5;--rot:-4.4deg;--o:0.38;--ar:1/1;--t:17.9s"><span><img decoding="async" src="assets/img/ring/r06.jpg?v=b7f1ccde" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:49.7vmin;--y:0.7vmin;--s:0.71;--rot:-4.0deg;--o:0.41;--ar:4/5;--t:15.4s"><span><img decoding="async" src="assets/img/ring/r02.jpg?v=b85eb0ad" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:45.3vmin;--y:15.0vmin;--s:0.71;--rot:-1.6deg;--o:0.46;--ar:5/4;--t:16.1s"><span><img decoding="async" src="assets/img/ring/r08.jpg?v=6d2e9dc4" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:30.3vmin;--y:26.6vmin;--s:0.63;--rot:9.1deg;--o:0.41;--ar:3/4;--t:15.9s"><span><img decoding="async" src="assets/img/ring/r15.jpg?v=07d91f01" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:12.2vmin;--y:36.0vmin;--s:0.5;--rot:1.3deg;--o:0.32;--ar:5/4;--t:15.3s"><span><img decoding="async" src="assets/img/ring/r01.jpg?v=56881750" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-10.5vmin;--y:36.2vmin;--s:0.62;--rot:9.5deg;--o:0.39;--ar:1/1;--t:13.3s"><span><img decoding="async" src="assets/img/ring/r17.jpg?v=b05a8fcb" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-32.3vmin;--y:26.4vmin;--s:0.71;--rot:1.9deg;--o:0.48;--ar:4/5;--t:16.9s"><span><img decoding="async" src="assets/img/ring/r21.jpg?v=88f50d63" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-43.0vmin;--y:15.7vmin;--s:0.5;--rot:-3.9deg;--o:0.49;--ar:4/5;--t:12.1s"><span><img decoding="async" src="assets/img/ring/r23.jpg?v=41b6fc30" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-50.2vmin;--y:1.8vmin;--s:0.71;--rot:-9.2deg;--o:0.35;--ar:3/4;--t:17.6s"><span><img decoding="async" src="assets/img/ring/r12.jpg?v=4dfa52ca" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-45.8vmin;--y:-13.9vmin;--s:0.56;--rot:5.6deg;--o:0.49;--ar:3/4;--t:14.9s"><span><img decoding="async" src="assets/img/ring/r24.jpg?v=491dc982" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-30.1vmin;--y:-29.3vmin;--s:0.56;--rot:9.8deg;--o:0.4;--ar:5/4;--t:16.2s"><span><img decoding="async" src="assets/img/ring/r09.jpg?v=0460bcef" alt="" width="150" height="150"></span></figure>
+    <figure class="tile tile--in" style="--x:-10.7vmin;--y:-35.7vmin;--s:0.53;--rot:-4.0deg;--o:0.45;--ar:5/4;--t:16.7s"><span><img decoding="async" src="assets/img/ring/r20.jpg?v=b77d9ba2" alt="" width="150" height="150"></span></figure>
+  </div>
+  </div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__text">
+      <span class="eyebrow">Фотозоны · Образы · Альбомы</span>
+      <h1>Гость уходит из зала с кадром, которого нет ни у кого</h1>
+      <p class="hero__sub">Мы строим фотозону под тему площадки, настраиваем пресеты под её сюжеты и отдаём готовое фото через три минуты после съёмки. Музеям и паркам - фотозона под ключ. Садам и школам - выездная съёмка со стилистом и выпускные альбомы.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="museums.html">Фотозона для музея или парка</a>
+        <a class="btn btn--ghost" href="schools.html">Съёмка в саду и школе</a>
+      </div>
+      <div class="hero__meta">
+        <div><b>3 мин</b><span>от кадра до печати</span></div>
+        <div><b>6-12</b><span>сюжетов в пакете</span></div>
+        <div><b>2 формата</b><span>киоск или фотограф</span></div>
+        <div><b>0</b><span>настроек на смене</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <p class="note">Это лаборатория: здесь только первый экран, чтобы смотреть движение отдельно от остального сайта. Страница не в меню и не индексируется.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand__mark" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <rect class="m-frame" x="1" y="6.5" width="28" height="19" rx="5" stroke-width="1.6"/>
+            <circle class="m-lens" cx="15" cy="16" r="6" stroke-width="1.6"/>
+            <circle class="m-dot" cx="15" cy="16" r="2.2"/>
+            <path class="m-top" d="M10.5 6.5l1.8-3.2h5.4l1.8 3.2" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <span>Миллениум<small>photo experience</small></span>
+        </a>
+        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны и авторские образы для музеев, парков, детских садов и школ. Снимаем, обрабатываем, отдаём гостю готовый кадр.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <nav><a href="index.html">Главная</a>
+          <a href="museums.html">Музеям и паркам</a>
+          <a href="schools.html">Сады и школы</a>
+          <a href="worlds.html">Образы</a>
+          <a href="contacts.html">Контакты</a></nav>
+      </div>
+      <div>
+        <h4>Связаться</h4>
+        <nav>
+          <a class="footer-phone" href="tel:+79214063384">+7 (921) 406-33-84</a>
+          <span class="footer-who">Андрей, по всем вопросам</span>
+          <a href="presets.html">Библиотека пресетов</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Миллениум. Москва и область, выезд по России</span>
+      <span>Работаем по договору с юрлицами и родительскими комитетами</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js?v=f2579c24"></script>
+</body>
+</html>

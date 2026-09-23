@@ -57,6 +57,7 @@ LAYOUT = """<!DOCTYPE html>
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{domain}/assets/img/kiosk/main.jpg">
 <meta property="og:locale" content="ru_RU">
+{robots}
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -302,6 +303,7 @@ def build():
             title=html.escape(fill(meta.get("title", CONFIG["brand"]))),
             desc=html.escape(fill(meta.get("desc", ""))),
             nav=nav_html(src.name),
+            robots='<meta name="robots" content="noindex">' if src.name == "lab.html" else "",
             fnav=footer_nav(),
             body=label_tables(fill(raw.strip())),
             **CONFIG,
