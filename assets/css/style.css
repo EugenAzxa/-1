@@ -222,31 +222,42 @@ body.menu-open .burger span::after{opacity:0}
    чтобы текст лежал на чистом холсте. */
 .collage{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  -webkit-mask-image:
-    radial-gradient(farthest-side circle at 50% 46%,transparent 36%,#000 56%,#000 96%,transparent 100%),
-    linear-gradient(180deg,#000 46%,rgba(0,0,0,.28) 68%,transparent 84%);
-  -webkit-mask-composite:source-in;
-  mask-image:
-    radial-gradient(farthest-side circle at 50% 46%,transparent 36%,#000 56%,#000 96%,transparent 100%),
-    linear-gradient(180deg,#000 46%,rgba(0,0,0,.28) 68%,transparent 84%);
-  mask-composite:intersect;
+  /* никаких вырезов: плитка не должна обрезаться маской. Только туман книзу */
+  -webkit-mask-image:linear-gradient(180deg,#000 56%,rgba(0,0,0,.4) 80%,transparent 97%);
+  mask-image:linear-gradient(180deg,#000 56%,rgba(0,0,0,.4) 80%,transparent 97%);
 }
+/* орбита как у Cosmos: каждая плитка едет по фиксированному эллипсу, вписанному
+   в экран. Эллипс не вращается, поэтому форма кольца не расплывается и ничего
+   не срезается краем. Угол --ph анимируется через @property, положение плитки
+   считается в стилях через cos() и sin(); размер эллипса - в долях контейнера */
+@property --ph{syntax:'<angle>';inherits:true;initial-value:0deg}
+@keyframes ring-phase{to{--ph:360deg}}
+.collage{container-type:size}
 .ring{
   position:absolute;left:50%;top:var(--cy,50%);width:0;height:0;--k:1;
-  transform:translate3d(calc(var(--px,0px) * .6),calc(var(--py,0px) * .6),0) rotate(var(--sr,0deg));
-  animation:ring-orbit 70s linear infinite;
-  will-change:transform;
+  --RX:43.5cqw;--RY:40cqh;
+  transform:translate3d(calc(var(--px,0px) * .6),calc(var(--py,0px) * .6),0);
+  animation:ring-phase 70s linear infinite;
 }
 .tile{
   position:absolute;left:0;top:0;
   width:calc(var(--s) * 92px * var(--ks,var(--k)));margin:calc(var(--s) * -46px * var(--ks,var(--k)));
-  transform:translate(calc(var(--x) * var(--kx,var(--k))),calc(var(--y) * var(--ky,var(--k))));
+  transform:translate(
+    calc(cos(var(--a) + var(--ph) + var(--sr,0deg)) * var(--RX) * var(--rf,1)),
+    calc(sin(var(--a) + var(--ph) + var(--sr,0deg)) * var(--RY) * var(--rf,1)));
 }
-.tile>span{display:block;animation:ring-orbit-rev 70s linear infinite;perspective:520px}
+.tile>span{display:block;perspective:520px}
+/* внутренний пояс ближе к тексту: у верхней и нижней точки эллипса он гаснет */
+/* десктоп: внешний пояс гаснет у нижней точки - там строка с цифрами,
+   внутренний проявляется только по бокам, где рядом нет текста */
+@media (min-width:701px){
+  .tile{--fade:clamp(0, (.74 - sin(var(--a) + var(--ph) + var(--sr,0deg))) * 4.5, 1)}
+  .tile--in{--fade:clamp(0, (cos(var(--a) + var(--ph) + var(--sr,0deg)) * cos(var(--a) + var(--ph) + var(--sr,0deg)) - .4) * 2.8, 1)}
+}
 .tile img{
   display:block;width:100%;height:auto;aspect-ratio:var(--ar,1);object-fit:cover;
   border-radius:12px;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotate(var(--rot));
-  opacity:var(--o);box-shadow:0 10px 24px -14px rgba(13,13,13,.35);
+  opacity:calc(var(--o) * var(--fade,1));box-shadow:0 10px 24px -14px rgba(13,13,13,.35);
   animation:tile-breathe var(--t,14s) ease-in-out infinite alternate;
 }
 @keyframes tile-breathe{from{translate:0 0}to{translate:0 -8px}}
@@ -506,14 +517,13 @@ body.menu-open .burger span::after{opacity:0}
   }
   .hero__actions{margin-top:24px}
   /* окружность крупнее экрана: плитки проходят сверху и снизу от текста, по бокам уходят за край */
-  .ring{--k:1.18;--ks:1.05;--cy:50%}
+  .ring{--ks:1;--RX:37cqw;--RY:41cqh;--cy:50%}
   .ring .tile--in{display:none}
   /* на телефоне кольцо редкое, как у Cosmos: видна каждая третья плитка */
   .ring .tile:not(:nth-child(2n+1)){display:none}
-  .collage{
-    -webkit-mask-image:radial-gradient(ellipse 50% 28% at 50% 50%,transparent 62%,#000 100%);
-    mask-image:radial-gradient(ellipse 50% 28% at 50% 50%,transparent 62%,#000 100%);
-  }
+  .collage{-webkit-mask-image:none;mask-image:none}
+  /* плитка видна у верхней и нижней дуги, по бокам - где текст - растворяется целиком */
+  .tile{--fade:clamp(0, (sin(var(--a) + var(--ph) + var(--sr,0deg)) * sin(var(--a) + var(--ph) + var(--sr,0deg)) - .52) * 3.6, 1)}
 }
 
 @media (max-width:1040px){

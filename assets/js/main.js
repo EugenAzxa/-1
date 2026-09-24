@@ -203,7 +203,7 @@
     var active = links.filter(function (a) { return a.classList.contains('is-active'); })[0] || null;
     var cur = { x: 0, y: 0, w: 0, h: 0 }, vel = { x: 0, y: 0, w: 0, h: 0 };
     var target = null, raf = null, shown = false, last = 0, hovered = null;
-    var K = 420, D = 30, ZOOM = 1.16;
+    var K = 420, D = 30, ZOOM = 1.1;
     var originX = null;   // точка увеличения: центр пилюли или начало текста у широких строк
 
     function rectOf(a) {
@@ -256,9 +256,15 @@
       else { cur = { x: target.x, y: target.y, w: target.w, h: target.h }; vel = { x: 0, y: 0, w: 0, h: 0 }; paint(); raf = null; last = 0; }
     }
 
+    // стекло шире пункта: увеличенный текст целиком помещается внутри, без срезов
+    function glassRect(a) {
+      var r = rectOf(a), pad = originX === null ? 12 : 0;
+      return { x: r.x - pad, y: r.y - 1, w: r.w + pad * 2, h: r.h + 2 };
+    }
+
     function go(a, instant) {
       if (!a) { glass.classList.remove('is-on'); return; }
-      target = rectOf(a);
+      target = glassRect(a);
       glass.classList.add('is-on');
       if (!shown || instant || still) {
         cur = { x: target.x, y: target.y, w: target.w, h: target.h };
