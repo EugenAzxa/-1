@@ -927,3 +927,41 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 /* шаги без подзаголовков: текст крупнее, номер отбит сильнее */
 .steps--plain .step b{margin-bottom:14px}
 .steps--plain .step p{font-size:15.5px;line-height:1.55}
+
+/* ==========================================================================
+   Переходы между страницами: View Transitions API, без скриптов.
+   Старая страница уходит быстро (ease-in, 220 мс), новая приходит мягче
+   (expo-out, 480 мс) и чуть поднимается. Шапка - общий элемент: при переходе
+   она остаётся на месте, остальное растворяется под ней. Браузеры без
+   поддержки просто переходят как обычно.
+   ========================================================================== */
+@view-transition{navigation:auto}
+
+.site-header{view-transition-name:site-header}
+
+::view-transition-old(root){
+  animation:page-out .22s cubic-bezier(.4,0,1,1) both;
+}
+::view-transition-new(root){
+  animation:page-in .48s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes page-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes page-in{from{opacity:0;transform:translateY(16px)}}
+
+/* шапка не мигает и не переезжает: у неё своя группа без анимации */
+::view-transition-old(site-header),
+::view-transition-new(site-header){animation:none;mix-blend-mode:normal}
+
+/* появление секций при прокрутке: мягче и с лёгким наездом, дети заголовка
+   идут друг за другом */
+.reveal{opacity:0;transform:translateY(22px) scale(.985);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+.head.reveal>*{opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.head.reveal.is-in>*{opacity:1;transform:none}
+.head.reveal.is-in>*:nth-child(2){transition-delay:.08s}
+.head.reveal.is-in>*:nth-child(3){transition-delay:.16s}
+
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+  .reveal,.head.reveal>*{opacity:1;transform:none;transition:none}
+}
