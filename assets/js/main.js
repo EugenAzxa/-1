@@ -170,6 +170,152 @@
     filmUpdate();
   }
 
+  /* ---- стеклянная линза в меню --------------------------------------------
+     Линза - индикатор выбранного пункта. Внутри неё увеличенная копия
+     пунктов, выровненная по настоящим, поэтому текст под стеклом выглядит
+     преломлённым. Движение - пружина (жёсткость 420, затухание 30: чуть
+     перелетает и возвращается), на скорости стекло вытягивается. */
+  (function () {
+    var nav = document.querySelector('.nav-links');
+    if (!nav) return;
+    var links = [].slice.call(nav.querySelectorAll('a:not(.nav-cta)'));
+    if (!links.length) return;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var glass = document.createElement('span');
+    glass.className = 'glass';
+    glass.setAttribute('aria-hidden', 'true');
+    var lens = document.createElement('span');
+    lens.className = 'glass__lens';
+    var copy = document.createElement('span');
+    copy.className = 'glass__copy';
+    links.forEach(function (a) {
+      var s = document.createElement('span');
+      s.className = 'glass__item';
+      s.textContent = a.textContent.trim();
+      copy.appendChild(s);
+    });
+    lens.appendChild(copy);
+    glass.appendChild(lens);
+    nav.appendChild(glass);
+    nav.classList.add('has-glass');
+
+    var active = links.filter(function (a) { return a.classList.contains('is-active'); })[0] || null;
+    var cur = { x: 0, y: 0, w: 0, h: 0 }, vel = { x: 0, y: 0, w: 0, h: 0 };
+    var target = null, raf = null, shown = false, last = 0, hovered = null;
+    var K = 420, D = 30, ZOOM = 1.16;
+    var originX = null;   // точка увеличения: центр пилюли или начало текста у широких строк
+
+    function rectOf(a) {
+      var nb = nav.getBoundingClientRect(), b = a.getBoundingClientRect();
+      return { x: b.left - nb.left + nav.scrollLeft, y: b.top - nb.top + nav.scrollTop, w: b.width, h: b.height };
+    }
+
+    // копия пунктов стоит ровно там же, где настоящие, с тем же шрифтом и отступами
+    function layoutCopy() {
+      var items = copy.children;
+      links.forEach(function (a, i) {
+        var r = rectOf(a), cs = getComputedStyle(a), s = items[i];
+        s.style.left = r.x + 'px'; s.style.top = r.y + 'px';
+        s.style.width = r.w + 'px'; s.style.height = r.h + 'px';
+        s.style.padding = cs.padding; s.style.fontSize = cs.fontSize;
+        s.style.fontFamily = cs.fontFamily;
+        s.style.justifyContent = cs.textAlign === 'center' ? 'center' : 'flex-start';
+      });
+      // если пункт заметно шире текста (строки в мобильном меню) - увеличиваем от начала текста
+      var a0 = links[0], cs0 = getComputedStyle(a0);
+      originX = (rectOf(a0).w > a0.scrollWidth + 40 || cs0.display === 'block') ? parseFloat(cs0.paddingLeft) || 0 : null;
+    }
+
+    function paint() {
+      var sp = Math.abs(vel.x) + Math.abs(vel.y);
+      var stretch = Math.min(sp / 2600, 0.16);
+      var horizontal = Math.abs(vel.x) >= Math.abs(vel.y);
+      var sx = horizontal ? 1 + stretch : 1 - stretch * 0.5;
+      var sy = horizontal ? 1 - stretch * 0.5 : 1 + stretch;
+      glass.style.width = cur.w + 'px';
+      glass.style.height = cur.h + 'px';
+      glass.style.transform = 'translate(' + cur.x.toFixed(2) + 'px,' + cur.y.toFixed(2) + 'px) scale(' + sx.toFixed(3) + ',' + sy.toFixed(3) + ')';
+      var cx = cur.x + (originX === null ? cur.w / 2 : originX), cy = cur.y + cur.h / 2;
+      copy.style.transformOrigin = cx + 'px ' + cy + 'px';
+      copy.style.transform = 'translate(' + (-cur.x).toFixed(2) + 'px,' + (-cur.y).toFixed(2) + 'px) scale(' + ZOOM + ')';
+    }
+
+    function step(now) {
+      var dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
+      last = now;
+      var moving = false;
+      ['x', 'y', 'w', 'h'].forEach(function (k) {
+        var f = -K * (cur[k] - target[k]) - D * vel[k];
+        vel[k] += f * dt;
+        cur[k] += vel[k] * dt;
+        if (Math.abs(cur[k] - target[k]) > 0.25 || Math.abs(vel[k]) > 0.25) moving = true;
+      });
+      paint();
+      if (moving) { raf = requestAnimationFrame(step); }
+      else { cur = { x: target.x, y: target.y, w: target.w, h: target.h }; vel = { x: 0, y: 0, w: 0, h: 0 }; paint(); raf = null; last = 0; }
+    }
+
+    function go(a, instant) {
+      if (!a) { glass.classList.remove('is-on'); return; }
+      target = rectOf(a);
+      glass.classList.add('is-on');
+      if (!shown || instant || still) {
+        cur = { x: target.x, y: target.y, w: target.w, h: target.h };
+        vel = { x: 0, y: 0, w: 0, h: 0 };
+        shown = true; paint(); return;
+      }
+      if (!raf) raf = requestAnimationFrame(step);
+    }
+
+    // пересчёт раскладки не должен дёргать линзу с пункта, над которым курсор
+    function settle() { layoutCopy(); go(hovered || active, true); }
+
+    // стартовая позиция: если пришли с другой страницы кликом по меню -
+    // начинаем со старого пункта и доезжаем до нового
+    layoutCopy();
+    var from = null;
+    try { from = JSON.parse(sessionStorage.getItem('aib-glass') || 'null'); sessionStorage.removeItem('aib-glass'); } catch (e) {}
+    if (from && Date.now() - from.t < 4000 && active && !still) {
+      cur = { x: from.x, y: from.y, w: from.w, h: from.h };
+      shown = true; glass.classList.add('is-on'); paint();
+      requestAnimationFrame(function () { go(active); });
+    } else {
+      go(active, true);
+    }
+
+    nav.addEventListener('pointerover', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (a && links.indexOf(a) > -1) { hovered = a; go(a); }
+    });
+    nav.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'touch') { hovered = null; go(active); }
+    });
+    nav.addEventListener('focusin', function (e) {
+      if (links.indexOf(e.target) > -1) go(e.target);
+    });
+    nav.addEventListener('focusout', function () { go(active); });
+
+    // на телефоне линза едет за пальцем по списку
+    nav.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'touch') return;
+      var el = document.elementFromPoint(e.clientX, e.clientY);
+      var a = el && el.closest && el.closest('a');
+      if (a && links.indexOf(a) > -1) go(a);
+    });
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function () {
+        go(a);
+        try { sessionStorage.setItem('aib-glass', JSON.stringify({ x: cur.x, y: cur.y, w: cur.w, h: cur.h, t: Date.now() })); } catch (e) {}
+      });
+    });
+
+    window.addEventListener('resize', settle);
+    if ('ResizeObserver' in window) new ResizeObserver(settle).observe(nav);
+    document.fonts && document.fonts.ready.then(settle);
+  })();
+
   /* ---- sticky header ---------------------------------------------------- */
   var header = document.querySelector('.site-header');
   function onScroll() {
