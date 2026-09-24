@@ -175,6 +175,7 @@ LAYOUT = """<!DOCTYPE html>
         </nav>
       </div>
     </div>
+    <div class="wordmark" aria-hidden="true">{brand}</div>
     <div class="footer-bottom">
       <span>&copy; <span data-year></span> {brand}. {city}</span>
       <span>Работаем по договору с юрлицами и родительскими комитетами</span>
@@ -210,7 +211,12 @@ def fill(text):
     def include(m):
         return (PARTIALS / (m.group(1) + ".html")).read_text(encoding="utf-8")
 
-    text = re.sub(r"\{\{include:([a-z0-9_-]+)\}\}", include, text)
+    # фрагменты могут включать друг друга (финал включает кольцо) - раскрываем до конца
+    for _ in range(5):
+        new = re.sub(r"\{\{include:([a-z0-9_-]+)\}\}", include, text)
+        if new == text:
+            break
+        text = new
     for key, value in CONFIG.items():
         text = text.replace("{{" + key + "}}", value)
     return text

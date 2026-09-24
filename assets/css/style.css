@@ -234,19 +234,19 @@ body.menu-open .burger span::after{opacity:0}
 .ring{
   position:absolute;left:50%;top:var(--cy,50%);width:0;height:0;--k:1;
   transform:translate3d(calc(var(--px,0px) * .6),calc(var(--py,0px) * .6),0) rotate(var(--sr,0deg));
-  animation:ring-orbit 150s linear infinite;
+  animation:ring-orbit 70s linear infinite;
   will-change:transform;
 }
 .tile{
   position:absolute;left:0;top:0;
-  width:calc(var(--s) * 92px * var(--k));margin:calc(var(--s) * -46px * var(--k));
+  width:calc(var(--s) * 92px * var(--ks,var(--k)));margin:calc(var(--s) * -46px * var(--ks,var(--k)));
   transform:translate(calc(var(--x) * var(--kx,var(--k))),calc(var(--y) * var(--ky,var(--k))));
 }
-.tile>span{display:block;animation:ring-orbit-rev 150s linear infinite}
+.tile>span{display:block;animation:ring-orbit-rev 70s linear infinite;perspective:520px}
 .tile img{
   display:block;width:100%;height:auto;aspect-ratio:var(--ar,1);object-fit:cover;
-  border-radius:12px;transform:rotate(var(--rot));
-  opacity:var(--o);
+  border-radius:12px;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotate(var(--rot));
+  opacity:var(--o);box-shadow:0 10px 24px -14px rgba(13,13,13,.35);
   animation:tile-breathe var(--t,14s) ease-in-out infinite alternate;
 }
 @keyframes tile-breathe{from{translate:0 0}to{translate:0 -8px}}
@@ -492,17 +492,25 @@ body.menu-open .burger span::after{opacity:0}
 
 /* на узких экранах кольцо меньше и поднято: плитки идут дугой над заголовком,
    нижняя часть кольца скрыта маской, чтобы не ложиться на текст */
-/* телефон: та же орбита, но эллипс вытянут выше экрана по вертикали.
-   Плитки проходят через полосу над заголовком, уходят за боковые края и
-   выныривают под кнопками; полоса с текстом закрыта маской. Внутренний пояс
-   скрыт - он шёл бы прямо по тексту */
-@media (max-width:900px){
-  .hero{min-height:100svh;padding:214px 0 110px}
-  .ring{--k:.64;--kx:.98;--ky:2.4;--cy:53%}
-  .tile--in{display:none}
+/* телефон: как у Cosmos - короткий текст по центру экрана, вокруг него
+   вращается то же кольцо. Кольцо сжато по ширине и вытянуто по высоте, плитки
+   при этом крупные. Центр под текстом вырезан эллипсом, длинный абзац и
+   цифры на телефоне спрятаны - иначе плиткам негде жить */
+.hero__short{display:none}
+@media (max-width:700px){
+  .hero{min-height:100svh;padding:120px 0 90px}
+  .hero__sub,.hero__meta{display:none}
+  .hero__short{
+    display:block;margin:18px auto 0;max-width:30ch;
+    font-size:16px;line-height:1.45;color:var(--muted);
+  }
+  .hero__actions{margin-top:24px}
+  .ring{--k:.58;--ks:1.08;--kx:.95;--ky:1.75;--cy:50%}
+  /* на телефоне кольцо редкое, как у Cosmos: видна каждая третья плитка */
+  .ring .tile:not(:nth-child(3n+1)){display:none}
   .collage{
-    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 17%,transparent 23%,transparent 89%,#000 94%,#000 100%);
-    mask-image:linear-gradient(180deg,#000 0,#000 17%,transparent 23%,transparent 89%,#000 94%,#000 100%);
+    -webkit-mask-image:radial-gradient(ellipse 50% 28% at 50% 50%,transparent 62%,#000 100%);
+    mask-image:radial-gradient(ellipse 50% 28% at 50% 50%,transparent 62%,#000 100%);
   }
 }
 
@@ -964,4 +972,83 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 @media (prefers-reduced-motion:reduce){
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
   .reveal,.head.reveal>*{opacity:1;transform:none;transition:none}
+}
+
+/* ==========================================================================
+   «Фильм»: большая картинка, которая раскрывается при прокрутке, как у Cosmos.
+   Ширина и скругление привязаны к прогрессу --p (0..1), его считает скрипт
+   по положению блока в окне. Анимируется только clip-path и transform.
+   ========================================================================== */
+.film{position:relative;padding:clamp(40px,6vw,72px) 14px clamp(60px,8vw,100px)}
+.film__lead{
+  display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 clamp(22px,3vw,34px);
+  font-size:clamp(17px,1.6vw,21px);font-weight:500;color:var(--muted);
+}
+.film__frame{
+  --p:0;position:relative;max-width:1400px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;
+  border-radius:16px;background:var(--photo-dark);
+  clip-path:inset(0 calc((1 - var(--p)) * 22%) round 16px);
+  transform:translateY(calc((1 - var(--p)) * 40px));
+  will-change:clip-path,transform;
+}
+.film__frame img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(calc(1.12 - var(--p) * .12));will-change:transform;
+}
+.film__frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 40%,rgba(0,0,0,.45))}
+.film__cap{
+  position:absolute;left:0;right:0;top:50%;z-index:2;display:flex;justify-content:space-between;
+  padding:0 clamp(20px,4vw,52px);transform:translateY(-50%);color:#fff;pointer-events:none;
+  font-family:'Playfair Display',Georgia,serif;font-size:clamp(34px,6.4vw,92px);line-height:1;letter-spacing:-.04em;
+}
+.film__l,.film__r{
+  opacity:calc(var(--p) * 1.6 - .5);
+  transform:translateX(calc((1 - var(--p)) * -30px));
+}
+.film__r{transform:translateX(calc((1 - var(--p)) * 30px))}
+.film__note{
+  position:absolute;left:0;right:0;bottom:clamp(14px,2.4vw,26px);z-index:2;margin:0;text-align:center;
+  font-size:clamp(13px,1.1vw,15px);color:rgba(255,255,255,.82);
+}
+@media (max-width:700px){
+  .film__frame{aspect-ratio:4/5;clip-path:inset(0 calc((1 - var(--p)) * 10%) round 16px)}
+  .film__cap{flex-direction:column;align-items:flex-start;gap:6px}
+  .film__r{align-self:flex-end}
+}
+@media (prefers-reduced-motion:reduce){
+  .film__frame{--p:1!important;transform:none}
+}
+
+/* ---------- финал главной: кольцо вокруг призыва позвонить ---------- */
+.finale{
+  position:relative;overflow:hidden;min-height:min(100svh,900px);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 14px;border-radius:16px;border:1px solid var(--line-soft);background:var(--ink-2);
+  padding:clamp(100px,14vw,160px) 0;
+}
+.finale__inner{position:relative;z-index:2;text-align:center}
+.finale__lead{
+  margin:0 auto clamp(22px,3vw,34px);max-width:26ch;
+  font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.025em;
+}
+.finale__call{
+  display:inline-flex;align-items:center;gap:clamp(12px,1.4vw,20px);
+  padding:clamp(18px,2.2vw,28px) clamp(28px,3.6vw,52px);border-radius:9999px;
+  background:var(--text);color:var(--surface);
+  font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4.6vw,64px);line-height:1;letter-spacing:-.035em;
+  transition:transform .3s var(--ease);
+}
+.finale__call:hover{transform:scale(1.02)}
+.finale__who{margin:clamp(16px,2vw,24px) 0 0;color:var(--muted);font-size:15px}
+@media (max-width:700px){
+  .finale{min-height:100svh}
+  .finale__call{font-size:clamp(22px,6.4vw,30px);padding:18px 26px}
+}
+
+/* ---------- огромная надпись бренда внизу, как у Cosmos ---------- */
+.wordmark{
+  font-family:'Playfair Display',Georgia,serif;font-weight:400;
+  font-size:clamp(56px,15.2vw,262px);line-height:.78;letter-spacing:-.055em;
+  text-align:center;color:var(--text);white-space:nowrap;
+  margin:clamp(30px,5vw,60px) 0 0;padding-bottom:.06em;overflow:hidden;
 }

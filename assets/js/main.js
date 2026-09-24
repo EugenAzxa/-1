@@ -120,10 +120,11 @@
   /* ---- коллаж первого экрана ----------------------------------------------
      Плитки слегка следуют за курсором: каждая со своим коэффициентом глубины,
      поэтому получается лёгкая параллакс-сцена. Двигаем только transform. */
-  var ring = document.querySelector('.ring');
-  if (ring) {
+  var rings = document.querySelectorAll('.ring');
+  if (rings.length) {
     var onScrollRing = function () {
-      ring.style.setProperty('--sr', (window.scrollY * 0.03).toFixed(2) + 'deg');
+      var r = (window.scrollY * 0.03).toFixed(2) + 'deg';
+      rings.forEach(function (el) { el.style.setProperty('--sr', r); });
     };
     window.addEventListener('scroll', onScrollRing, { passive: true });
   }
@@ -147,6 +148,26 @@
       if (Math.abs(tx - cx) > .1 || Math.abs(ty - cy) > .1) requestAnimationFrame(step);
       else ticking = false;
     }
+  }
+
+  /* ---- «фильм»: раскрытие большой картинки по прокрутке -------------------
+     --p растёт от 0, когда верх блока у нижнего края окна, до 1, когда блок
+     поднялся на две трети. Считаем в requestAnimationFrame, без дребезга. */
+  var film = document.querySelector('[data-film]');
+  if (film && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var filmTick = false;
+    var filmUpdate = function () {
+      filmTick = false;
+      var b = film.getBoundingClientRect(), vh = window.innerHeight;
+      var p = (vh - b.top) / (vh * 0.8);
+      p = Math.max(0, Math.min(1, p));
+      film.style.setProperty('--p', p.toFixed(3));
+    };
+    window.addEventListener('scroll', function () {
+      if (!filmTick) { filmTick = true; requestAnimationFrame(filmUpdate); }
+    }, { passive: true });
+    window.addEventListener('resize', filmUpdate);
+    filmUpdate();
   }
 
   /* ---- sticky header ---------------------------------------------------- */
