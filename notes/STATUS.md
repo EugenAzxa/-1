@@ -65,7 +65,8 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Copy and family photos come from the client deck `~/Downloads/КП объекты 2.pdf` (extracted to `assets/img/kp/`). Families with kids at the booth are fine; costumed kid portraits are not.
 - Do not name specific museums (no Эрмитаж, РЖД etc.) - themes only. Railway theme uses the client's photo `kp/family-railway.jpg`.
 - Manager: «Андрей Михалев - звоните по всем вопросам».
-- New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls that changes while scrolling, guest-result card per step. Backgrounds `assets/img/tour/t-1..5.jpg` are TEMPORARY copies of `station-hall.jpg`.
+- New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls changing on scroll, guest card per step. t-1,3,4,5 are real SPb halls from Wikimedia; t-2 (railway) is still a TEMPORARY copy of station-hall.jpg - generate a railway museum hall in Higgsfield.
+- Wikimedia sources in `assets/img/spb/` (+ credits.json, kept off the server by .vercelignore). Every one used (rings s01-s18, tour) is credited in `src/partials/credits.html` on the contacts page - regenerate credits if the set changes.
 - Rings rebuilt from 15 museum-safe images `assets/img/ring/m01..m15.jpg` (360 px).
 - Open questions to the client: use the word «ИИ» like the deck does (currently avoided)? Confirm «0 ₽ вложений от музея».
 

@@ -1155,3 +1155,10 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 @media (prefers-reduced-motion:reduce){
   .tour__frame img,.tour__text,.tour__guest{transition:none;transform:none}
 }
+
+/* ---- подписи к фотографиям залов --------------------------------------- */
+.credits{border-top:1px solid var(--line-soft);padding-top:18px}
+.credits summary{cursor:pointer;font-size:14px;color:var(--muted)}
+.credits .note{margin:14px 0 10px}
+.credits ul{margin:0;padding-left:18px;font-size:13px;line-height:1.55;color:var(--muted)}
+.credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}
