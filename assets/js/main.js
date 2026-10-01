@@ -425,6 +425,112 @@
     });
   }
 
+  /* ---- сцена первого экрана ---------------------------------------------
+     Цикл на один зал (~5.4 с): фокус ищет и ловит, щелчок и вспышка,
+     полароид проявляется образом этого зала и улетает в стопку, следом
+     меняется зал. Пока первый экран не виден или вкладка скрыта - стоим. */
+  document.querySelectorAll('[data-scene]').forEach(function (scene) {
+    var halls = [].slice.call(scene.querySelectorAll('.scene__halls img'));
+    var vf = scene.querySelector('.scene__vf');
+    var focus = scene.querySelector('.scene__focus');
+    var flash = scene.querySelector('.scene__flash');
+    var burst = scene.querySelector('.scene__burst');
+    var photog = scene.querySelector('.scene__photog');
+    var stack = scene.querySelector('.scene__stack');
+    var countEl = scene.querySelector('[data-scene-count]');
+    var themeEl = scene.querySelector('[data-scene-theme]');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var i = 0, timers = [], running = false, visible = true, pile = [];
+
+    // кадры полароидов грузим заранее, чтобы проявка не начиналась с пустоты
+    halls.forEach(function (h) { var im = new Image(); im.src = h.getAttribute('data-shot'); });
+
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function rel(el) {
+      var a = scene.getBoundingClientRect(), b = el.getBoundingClientRect();
+      return { x: b.left - a.left, y: b.top - a.top, w: b.width, h: b.height };
+    }
+    function setHall(k) {
+      halls.forEach(function (h, n) { h.classList.toggle('is-on', n === k); });
+      if (countEl) countEl.textContent = (k < 9 ? '0' : '') + (k + 1);
+      if (themeEl) themeEl.textContent = halls[k].getAttribute('data-theme');
+    }
+    function makePola(k) {
+      var f = document.createElement('figure');
+      f.className = 'scene__pola';
+      var im = document.createElement('img');
+      im.src = halls[k].getAttribute('data-shot'); im.alt = '';
+      var cap = document.createElement('figcaption');
+      cap.textContent = halls[k].getAttribute('data-theme');
+      f.appendChild(im); f.appendChild(cap);
+      scene.appendChild(f);
+      return f;
+    }
+    function toPile(f, r) {
+      pile.push(f);
+      while (pile.length > 4) { var old = pile.shift(); old.remove(); }
+      pile.forEach(function (el, n) { el.style.zIndex = 2; el.style.opacity = String(0.55 + 0.15 * n); });
+    }
+    function shoot(k) {
+      vf.classList.add('is-shot');
+      setTimeout(function () { vf.classList.remove('is-shot'); }, 180);
+      flash.animate([{ opacity: 0 }, { opacity: 0.55, offset: 0.15 }, { opacity: 0 }], { duration: 420, easing: 'ease-out' });
+      var p = rel(photog);
+      burst.style.left = (p.x + p.w * 0.36) + 'px';
+      burst.style.top = (p.y + p.h * 0.05) + 'px';
+      burst.animate([{ opacity: 0, transform: 'scale(.2)' }, { opacity: 1, transform: 'scale(1)', offset: 0.2 }, { opacity: 0, transform: 'scale(1.6)' }], { duration: 520, easing: 'ease-out' });
+      photog.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(4px) rotate(-.4deg)' }, { transform: 'translateY(0)' }], { duration: 260, easing: 'ease-out' });
+
+      var f = makePola(k);
+      var fr = rel(focus), pw = f.offsetWidth, ph = f.offsetHeight;
+      var x0 = fr.x + fr.w / 2 - pw / 2, y0 = fr.y + fr.h / 2 - ph / 2;
+      f.style.left = x0 + 'px'; f.style.top = y0 + 'px';
+      f.classList.add('is-developing');
+      f.animate([{ opacity: 0, transform: 'scale(.35) rotate(0deg)' }, { opacity: 1, transform: 'scale(1) rotate(-4deg)' }],
+        { duration: 650, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' });
+      at(2100, function () {
+        var s = rel(stack), mobile = window.innerWidth <= 900;
+        var r = (Math.random() * 22 - 11).toFixed(1);
+        var sc = mobile ? 0.9 : 0.62;
+        // центр полароида после полёта = точка стопки, нижний край чуть выше неё
+        var tx = s.x - x0 - pw / 2 + (Math.random() * 36 - 18);
+        var ty = s.y - y0 - ph / 2 - ph * sc / 2 + (Math.random() * 12 - 6);
+        f.animate([{ transform: 'scale(1) rotate(-4deg)' }, { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(' + sc + ') rotate(' + r + 'deg)' }],
+          { duration: 850, easing: 'cubic-bezier(.5,0,.2,1)', fill: 'forwards' });
+        at(860, function () { toPile(f); });
+      });
+    }
+    function cycle() {
+      if (!running) return;
+      setHall(i);
+      focus.classList.remove('is-hunting', 'is-locked');
+      void focus.offsetWidth;
+      focus.classList.add('is-hunting');
+      at(1500, function () { focus.classList.add('is-locked'); });
+      at(2100, function () { shoot(i); });
+      at(5400, function () { i = (i + 1) % halls.length; cycle(); });
+    }
+    function start() { if (running || still) return; running = true; cycle(); }
+    function stop() { running = false; timers.forEach(clearTimeout); timers = []; }
+
+    if (still) {
+      setHall(0);
+      focus.style.opacity = 1;
+      var f = makePola(0); f.style.left = '46%'; f.style.top = '50%'; f.style.transform = 'rotate(-4deg) scale(.8)';
+      return;
+    }
+    setHall(0);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        if (visible && !document.hidden) start(); else stop();
+      }, { threshold: 0.15 }).observe(scene);
+    } else { start(); }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else if (visible) start();
+    });
+  });
+
   /* ---- экскурсия по музеям ----------------------------------------------
      Шаги идут поверх липкого кадра. Шаг, который ближе всего к середине
      экрана, включает свой зал на фоне, свою точку и свою карточку гостя. */

@@ -24,7 +24,7 @@
 <link rel="icon" href="assets/favicon.svg?v=b18bf816" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=9668d14a">
+<link rel="stylesheet" href="assets/css/style.css?v=068da044">
 <noscript><style>
   .preloader{display:none!important}
   body.is-loading{overflow:auto}
@@ -110,16 +110,26 @@
 </header>
 
 <main>
-<section class="hero hero--dark">
-  <div class="mbg" aria-hidden="true">
-  <img fetchpriority="high" decoding="async" src="assets/img/halls/h1.jpg?v=16b65a29" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h2.jpg?v=b9592f92" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h3.jpg?v=50d8d864" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h4.jpg?v=8dd04e98" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h5.jpg?v=68b51782" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h6.jpg?v=86ba54db" alt="">
-  <img loading="lazy" decoding="async" src="assets/img/halls/h7.jpg?v=c0a69e8c" alt="">
-  <span class="mbg__shade"></span>
+<section class="hero hero--dark hero--scene">
+  <div class="scene" aria-hidden="true" data-scene>
+  <div class="scene__halls">
+    <img fetchpriority="high" decoding="async" src="assets/img/halls/h1.jpg?v=16b65a29" alt="" data-shot="assets/img/gen/pola-ball.jpg" data-theme="Императорский бал">
+    <img decoding="async" src="assets/img/halls/h6.jpg?v=86ba54db" alt="" data-shot="assets/img/gen/pola-railway.jpg" data-theme="Железная дорога">
+    <img decoding="async" src="assets/img/halls/h2.jpg?v=b9592f92" alt="" data-shot="assets/img/gen/pola-art.jpg" data-theme="Искусство">
+    <img decoding="async" src="assets/img/halls/h5.jpg?v=68b51782" alt="" data-shot="assets/img/gen/pola-adventure.jpg" data-theme="Экспедиция">
+    <img decoding="async" src="assets/img/halls/h7.jpg?v=c0a69e8c" alt="" data-shot="assets/img/gen/pola-naval.jpg" data-theme="Морской Петербург">
+    <img decoding="async" src="assets/img/halls/h3.jpg?v=50d8d864" alt="" data-shot="assets/img/gen/pola-space.jpg" data-theme="Космос">
+  </div>
+  <span class="scene__shade"></span>
+  <div class="scene__vf">
+    <i class="scene__c scene__c--tl"></i><i class="scene__c scene__c--tr"></i><i class="scene__c scene__c--bl"></i><i class="scene__c scene__c--br"></i>
+    <span class="scene__focus"></span>
+    <span class="scene__hud"><b class="scene__rec"></b><span data-scene-count>01</span>/06<span class="scene__theme" data-scene-theme>Императорский бал</span></span>
+  </div>
+  <div class="scene__stack"></div>
+  <img class="scene__photog" decoding="async" src="assets/img/gen/photographer.webp?v=0b5176c6" alt="" width="815" height="1100">
+  <span class="scene__burst"></span>
+  <span class="scene__flash"></span>
 </div>
 
 
@@ -188,6 +198,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/main.js?v=1e721e06"></script>
+<script src="assets/js/main.js?v=ddcb6749"></script>
 </body>
 </html>
