@@ -520,15 +520,22 @@
       return;
     }
     setHall(0);
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        visible = es[0].isIntersecting;
-        if (visible && !document.hidden) start(); else stop();
-      }, { threshold: 0.15 }).observe(scene);
-    } else { start(); }
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop(); else if (visible) start();
-    });
+    // видимость считаем по прокрутке, а не наблюдателем: на холодной загрузке
+    // наблюдатель успевал сообщить «не видно» и больше не срабатывал - сцена стояла
+    function check() {
+      var r = scene.getBoundingClientRect();
+      visible = r.bottom > 80 && r.top < window.innerHeight;
+      if (visible && !document.hidden) start(); else stop();
+    }
+    var queued = false;
+    window.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; check(); });
+    }, { passive: true });
+    window.addEventListener('resize', check);
+    document.addEventListener('visibilitychange', check);
+    check();
   });
 
   /* ---- экскурсия по музеям ----------------------------------------------
