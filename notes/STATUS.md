@@ -65,7 +65,7 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Copy and family photos come from the client deck `~/Downloads/КП объекты 2.pdf` (extracted to `assets/img/kp/`). Families with kids at the booth are fine; costumed kid portraits are not.
 - Do not name specific museums (no Эрмитаж, РЖД etc.) - themes only. Railway theme uses the client's photo `kp/family-railway.jpg`.
 - Manager: «Андрей Михалев - звоните по всем вопросам».
-- New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls changing on scroll, guest card per step. t-1,3,4,5 are real SPb halls from Wikimedia; t-2 (railway) is still a TEMPORARY copy of station-hall.jpg - generate a railway museum hall in Higgsfield.
+- New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls changing on scroll, guest card per step. t-1,3,5 are real SPb halls (Wikimedia); t-2 railway depot and t-4 dinosaur hall generated in Higgsfield.
 - Wikimedia sources in `assets/img/spb/` (+ credits.json, kept off the server by .vercelignore). Every one used (rings s01-s18, tour) is credited in `src/partials/credits.html` on the contacts page - regenerate credits if the set changes.
 - Hero and finale rings REMOVED at the client's request (2026-10-01): replaced by crossfading SPb museum halls `src/partials/museums-bg.html` / `museums-bg-b.html` (CSS `.mbg`, 7 images `assets/img/halls/h1..h7.jpg`, 6 s each, pure CSS). Ring partials still exist but are unused (lab.html too uses the new hero).
 - Home: statement «Музею не нужен разговор про технологии» removed; «Пять шагов по созданию зоны притяжения» restored on home.
@@ -76,8 +76,8 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 ## Next steps
 
 1. Production deploy was blocked by the session permission filter - the client must allow `vercel deploy --prod`, then deploy and push.
-2. Higgsfield CLI installed (`higgsfield`), skills installed; `higgsfield auth login` timed out twice waiting for the client to approve in the browser. After login generate 5 hall backgrounds for the tour: palace ballroom, railway museum with steam locomotives, picture gallery, dinosaur hall, rocket hall (16:9, no people, no logos) and replace `assets/img/tour/t-*.jpg`.
-3. A background agent was sourcing free Wikimedia photos of SPb museum halls into `assets/img/spb/` with `credits.json` - if used anywhere, add author/licence credits to the footer.
+2. Higgsfield is logged in (workspace Private, ultra). Model `gpt_image_2_5`, `--resolution 2k --quality high --wait`; run at most 2 jobs at once (7 parallel jobs failed with «API request failed»). Generated so far: halls railway/naval/dino (hero h5-h7, tour t-2/t-4) and family portraits `assets/img/gen/fam-{ball,naval,curio,whitenights}.jpg` (themes tiles, tour step 1). Client wants it to look EXPENSIVE (premium editorial light).
+3. Wikimedia photos in use: only hero h1-h4 and tour t-1/t-3/t-5 (4 files); credits in `src/partials/credits.html` on contacts - update it whenever the set of used Wikimedia files changes.
 4. Screenshot all pages at 1440 and 390 after the real tour images land.
 
 ## Testing notes (Chrome over CDP)
