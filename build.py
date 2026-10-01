@@ -22,16 +22,15 @@ CONFIG = {
     "brand_sub": "photo experience",
     "phone": "+7 (921) 406-33-84",
     "phone_href": "+79214063384",
-    "manager": "Андрей",
-    "city": "Москва и область, выезд по России",
+    "manager": "Андрей Михалев",
+    "city": "Санкт-Петербург",
     "domain": "https://millenium-photo.ru",
 }
 
 NAV = [
     ("index.html", "Главная"),
-    ("museums.html", "Музеям и паркам"),
-    ("schools.html", "Сады и школы"),
-    ("worlds.html", "Образы"),
+    ("museums.html", "Фотозона"),
+    ("worlds.html", "Сюжеты"),
     ("contacts.html", "Контакты"),
 ]
 
@@ -55,7 +54,7 @@ LAYOUT = """<!DOCTYPE html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{domain}/assets/img/kiosk/main.jpg">
+<meta property="og:image" content="{domain}/assets/img/station-hall.jpg">
 <meta property="og:locale" content="ru_RU">
 {robots}
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -80,10 +79,10 @@ LAYOUT = """<!DOCTYPE html>
 
     <div class="finder">
       <div class="finder__shots">
-        <img src="assets/img/intro/role-1.jpg" alt="" width="480" height="600" fetchpriority="high">
-        <img src="assets/img/intro/role-2.jpg" alt="" width="480" height="600" fetchpriority="high">
-        <img src="assets/img/intro/role-3.jpg" alt="" width="480" height="600" fetchpriority="high">
-        <img src="assets/img/intro/role-4.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/m-1.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/m-2.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/m-3.jpg" alt="" width="480" height="600" fetchpriority="high">
+        <img src="assets/img/intro/m-4.jpg" alt="" width="480" height="600" fetchpriority="high">
       </div>
       <span class="finder__grain"></span>
       <span class="finder__vignette"></span>
@@ -111,7 +110,7 @@ LAYOUT = """<!DOCTYPE html>
 
     <p class="preloader__title">Выбери свой мир</p>
     <p class="preloader__worlds">
-      <span>космонавт</span><span>пожарный</span><span>шеф-повар</span><span>хоккеист</span>
+      <span>космос</span><span>искусство</span><span>приключения</span><span>сказка</span>
     </p>
   </div>
 </div>
@@ -160,7 +159,7 @@ LAYOUT = """<!DOCTYPE html>
           </svg>
           <span>{brand}<small>{brand_sub}</small></span>
         </a>
-        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны и авторские образы для музеев, парков, детских садов и школ. Снимаем, обрабатываем, отдаём гостю готовый кадр.</p>
+        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны для музеев Санкт-Петербурга. Гость становится героем сюжета вашей экспозиции и уносит кадр с собой.</p>
       </div>
       <div>
         <h4>Разделы</h4>
@@ -170,7 +169,7 @@ LAYOUT = """<!DOCTYPE html>
         <h4>Связаться</h4>
         <nav>
           <a class="footer-phone" href="tel:{phone_href}">{phone}</a>
-          <span class="footer-who">{manager}, по всем вопросам</span>
+          <span class="footer-who">{manager} - звоните по всем вопросам</span>
           <a href="presets.html">Библиотека пресетов</a>
         </nav>
       </div>
@@ -178,7 +177,7 @@ LAYOUT = """<!DOCTYPE html>
     <div class="wordmark" aria-hidden="true">{brand}</div>
     <div class="footer-bottom">
       <span>&copy; <span data-year></span> {brand}. {city}</span>
-      <span>Работаем по договору с юрлицами и родительскими комитетами</span>
+      <span>Работаем по договору с музеями, парками и выставочными пространствами</span>
     </div>
   </div>
 </footer>

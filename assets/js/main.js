@@ -425,6 +425,40 @@
     });
   }
 
+  /* ---- экскурсия по музеям ----------------------------------------------
+     Шаги идут поверх липкого кадра. Шаг, который ближе всего к середине
+     экрана, включает свой зал на фоне, свою точку и свою карточку гостя. */
+  document.querySelectorAll('[data-tour]').forEach(function (tour) {
+    var steps = [].slice.call(tour.querySelectorAll('.tour__step'));
+    var imgs = [].slice.call(tour.querySelectorAll('.tour__frame img'));
+    var dots = [].slice.call(tour.querySelectorAll('.tour__dots li'));
+    var cur = -1;
+    function show(i) {
+      if (i === cur) return;
+      cur = i;
+      [imgs, dots, steps].forEach(function (list) {
+        list.forEach(function (el, k) { el.classList.toggle('is-on', k === i); });
+      });
+    }
+    function pick() {
+      var mid = window.innerHeight / 2, best = 0, bestD = Infinity;
+      steps.forEach(function (st, k) {
+        var r = st.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = k; }
+      });
+      show(best);
+    }
+    var queued = false;
+    window.addEventListener('scroll', function () {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; pick(); });
+    }, { passive: true });
+    window.addEventListener('resize', pick);
+    pick();
+  });
+
   /* ---- current year ----------------------------------------------------- */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

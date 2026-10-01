@@ -15,30 +15,37 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 GROUPS = [
     ("base", "Служебные"),
+    ("history", "История и эпохи"),
+    ("art", "Искусство"),
+    ("city", "Морской и парадный Петербург"),
+    ("adventure", "Приключения и наука"),
     ("space", "Космос"),
-    ("pro", "Профессии"),
-    ("speed", "Скорость и спорт"),
-    ("fantasy", "Фэнтези и сказка"),
-    ("museum", "Музейные темы"),
-    ("holiday", "Праздники"),
+    ("fairy", "Сказка и сезоны"),
 ]
 
 IDENTITY = (
-    "Keep the child's face, facial features, skin tone, hair and age exactly as in the source photo. "
-    "Do not beautify, do not age up, do not change ethnicity or body type. "
-    "Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved."
+    "Keep every person's face, facial features, skin tone, hair and age exactly as in the source photo. "
+    "Keep the original position and order of people in the frame. "
+    "Do not beautify, do not age up or down, do not change ethnicity or body type. "
+    "Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved."
 )
 CAMERA = (
     "Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, "
     "shallow depth of field, true-to-life colour, no plastic skin, print-ready detail."
 )
 
+
+def preset(group, tag, title, desc, scene, note):
+    return {"group": group, "tag": tag, "title": title, "desc": desc,
+            "prompt": IDENTITY + "\n" + scene + "\n" + CAMERA, "note": note}
+
+
 PRESETS = [
     {
         "group": "base",
         "tag": "База",
         "title": "Базовый блок сохранения внешности",
-        "desc": "Вставляется в начало любого промпта. Держит лицо ребёнка неизменным - это то, за что родители платят.",
+        "desc": "Вставляется в начало любого промпта. Держит лица гостей неизменными - это то, за что платят.",
         "prompt": IDENTITY + "\n" + CAMERA,
         "note": "Никогда не убирайте этот блок ради «более красивого» результата.",
     },
@@ -49,249 +56,96 @@ PRESETS = [
         "desc": "Один на все сюжеты. Ставится в поле negative prompt целиком.",
         "prompt": (
             "cartoon, anime, 3d render, cgi, plastic skin, waxy skin, airbrushed, beauty filter, "
-            "changed face, different person, adult face, older child, distorted eyes, crossed eyes, "
-            "extra fingers, deformed hands, malformed helmet, floating head, detached collar, "
-            "mismatched lighting, harsh cutout edges, double exposure ghosting, "
+            "changed face, different person, swapped faces, distorted eyes, crossed eyes, "
+            "extra fingers, deformed hands, floating head, detached collar, "
+            "mismatched lighting, harsh cutout edges, double exposure ghosting, modern objects in period scenes, "
             "text, watermark, signature, logo, brand marks, copyrighted characters, "
             "blurry, low resolution, oversharpen halo, heavy noise, blown highlights"
         ),
         "note": "Если в кадре появляется чужое лицо - в первую очередь поднимаем вес этого блока.",
     },
-    {
-        "group": "space",
-        "tag": "Космос",
-        "title": "Космонавт будущего",
-        "desc": "Основной кадр космической темы. Шлем держим в руках, а не на голове: лицо должно быть открыто.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a modern white and graphite spacesuit with soft blue indicator lights, "
-            "holding a mirrored helmet under one arm. Background: museum hall of a space centre, "
-            "a lunar module and a large planet projection softly out of focus. "
-            "Cool ambient light with warm accent from the left.\n" + CAMERA
-        ),
-        "note": "Отражения в стекле шлема проверяем отдельно: там чаще всего появляется мусор.",
-    },
-    {
-        "group": "space",
-        "tag": "Космос",
-        "title": "Исследователь Марса",
-        "desc": "Сюжет на общий план, хорошо продаётся в формате постера.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child stands on a red rocky plain in a dusty explorer spacesuit with a life-support backpack, "
-            "pointing at a distant research base with domes and antennas. Warm orange sunset haze, long soft shadows, "
-            "fine dust in the air, epic wide scene.\n" + CAMERA
-        ),
-        "note": "Для постера просим 3:2 и оставляем воздух справа под заголовок миссии.",
-    },
-    {
-        "group": "space",
-        "tag": "Космос",
-        "title": "Семейный экипаж",
-        "desc": "Групповой кадр. Сохраняем расстановку людей из исходника, иначе теряется узнаваемость.",
-        "prompt": (
-            IDENTITY.replace("the child's", "each person's").replace("child", "person") + "\n"
-            "The family wears worn white flight suits with red stripes, seated together inside an orbital station module "
-            "beside a large round window with the Earth behind them. Keep the original position and order of people. "
-            "Warm interior light, cool light from the window, visible fabric wear and straps.\n" + CAMERA
-        ),
-        "note": "Групповые кадры генерируем сериями по четыре: сходство держится не в каждом.",
-    },
-    {
-        "group": "pro",
-        "tag": "Профессии",
-        "title": "Пожарный",
-        "desc": "Самый востребованный образ у мальчиков 5-9 лет.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears authentic fire-service turnout gear: dark jacket with reflective stripes, "
-            "helmet pushed slightly back so the face stays fully visible. Background: fire station bay with a truck, "
-            "warm amber light and soft smoke haze in the depth of the frame. Confident calm expression.\n" + CAMERA
-        ),
-        "note": "Никакого открытого огня рядом с ребёнком: только отсветы и дымка на фоне.",
-    },
-    {
-        "group": "pro",
-        "tag": "Профессии",
-        "title": "Врач",
-        "desc": "Хорошо работает для школьных наборов «кем я стану».",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a crisp white medical coat over a light shirt, stethoscope around the neck. "
-            "Background: bright modern clinic room, softly blurred equipment and a window with daylight. "
-            "Friendly, calm expression, clean neutral colour palette.\n" + CAMERA
-        ),
-        "note": "Следим за бейджем: любые надписи убираем, они всегда выходят кривыми.",
-    },
-    {
-        "group": "pro",
-        "tag": "Профессии",
-        "title": "Пилот",
-        "desc": "Даёт эффектный кадр даже с посредственного исходника.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a navy airline pilot uniform with shoulder stripes and a cap, standing in an aircraft cockpit "
-            "with instrument panels glowing softly. Sunrise light through the windshield, clouds far below. "
-            "Proud, relaxed posture.\n" + CAMERA
-        ),
-        "note": "Погоны и кокарду делаем нейтральными, без эмблем авиакомпаний.",
-    },
-    {
-        "group": "pro",
-        "tag": "Профессии",
-        "title": "Шеф-повар",
-        "desc": "Тёплый бытовой сюжет, который любят родители девочек и мальчиков одинаково.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a white chef jacket and a classic chef hat, standing at a professional kitchen pass "
-            "with copper pans and herbs around. Warm tungsten light, light steam in the air, "
-            "cheerful working atmosphere.\n" + CAMERA
-        ),
-        "note": "Руки в кадре - частая проблема. Проще просить кадр по грудь.",
-    },
-    {
-        "group": "speed",
-        "tag": "Скорость",
-        "title": "Гонщик",
-        "desc": "Флагман для детских парков. Шлем под мышкой, лицо открыто.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a racing suit in deep red and graphite with plain unbranded patches and a fireproof collar, "
-            "holding a racing helmet under one arm. Background: pit lane with a blurred race car and team garage lights. "
-            "Late afternoon sun, slight heat haze, energetic mood.\n" + CAMERA
-        ),
-        "note": "Логотипы команд и спонсоров не рисуем: только выдуманные нашивки.",
-    },
-    {
-        "group": "speed",
-        "tag": "Скорость",
-        "title": "Футболист",
-        "desc": "Ставим под вечерний стадионный свет: кадр сразу читается как постер.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a plain football kit in blue and white with no logos, standing on a stadium pitch at dusk. "
-            "Stadium floodlights create a strong rim light, crowd softly blurred in the background, "
-            "light mist in the beams. Determined, happy expression.\n" + CAMERA
-        ),
-        "note": "Номер на футболке ставим двузначный, буквы не пишем.",
-    },
-    {
-        "group": "speed",
-        "tag": "Скорость",
-        "title": "Балерина на сцене",
-        "desc": "Сильный образ для девочек, продаётся в паре с парадным портретом.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a classical ballet costume with a soft tutu, standing on a theatre stage. "
-            "Warm spotlight from above and behind, deep velvet darkness of the auditorium, delicate dust in the light beam. "
-            "Graceful posture, calm confident expression.\n" + CAMERA
-        ),
-        "note": "Позу не меняем сильно: руки из исходника всегда достовернее сгенерированных.",
-    },
-    {
-        "group": "fantasy",
-        "tag": "Фэнтези",
-        "title": "Галактический страж",
-        "desc": "Наша замена «супергероям»: собственный костюм, никаких чужих франшиз.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears an original heroic suit: matte navy armour plates with gold trim and a flowing deep-red cape, "
-            "an abstract star emblem on the chest that belongs to no existing brand. "
-            "Background: city rooftop at blue hour, distant lights, light wind in the cape. Brave, kind expression.\n" + CAMERA
-        ),
-        "note": "Эмблема всегда абстрактная. Любой намёк на известного персонажа - брак.",
-    },
-    {
-        "group": "fantasy",
-        "tag": "Фэнтези",
-        "title": "Волшебная школа",
-        "desc": "Атмосфера старой библиотеки без отсылок к конкретной франшизе.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a dark academic robe over a knitted vest, holding an old leather-bound book. "
-            "Background: ancient library with tall shelves, floating candles, warm golden light and soft dust. "
-            "Curious, slightly mischievous expression.\n" + CAMERA
-        ),
-        "note": "Никаких шарфов с цветами факультетов и узнаваемых гербов.",
-    },
-    {
-        "group": "fantasy",
-        "tag": "Фэнтези",
-        "title": "Мир динозавров",
-        "desc": "Приключенческий сюжет для парков и детских музеев.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a young palaeontologist outfit: khaki vest, rolled sleeves, field hat, "
-            "standing in a prehistoric valley at sunrise with ferns and a huge peaceful sauropod far in the background. "
-            "Golden light, morning mist, sense of wonder.\n" + CAMERA
-        ),
-        "note": "Хищников в детском наборе не ставим, только травоядные и на расстоянии.",
-    },
-    {
-        "group": "fantasy",
-        "tag": "Фэнтези",
-        "title": "Подводный мир",
-        "desc": "Хорошо заходит для океанариумов и летних сезонов.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a modern exploration diving suit with a transparent bubble helmet showing the face clearly, "
-            "surrounded by a coral reef, rays of sunlight from the surface, schools of small fish, a calm sea turtle nearby. "
-            "Turquoise light, clear water, no bubbles covering the face.\n" + CAMERA
-        ),
-        "note": "Шлем прозрачный и без бликов поверх лица, иначе теряется сходство.",
-    },
-    {
-        "group": "museum",
-        "tag": "Музей",
-        "title": "Небылицы: сказочный портрет",
-        "desc": "Для музеев небылиц и сказок: портрет в стиле старой книжной иллюстрации, но фотографичный.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a folk-tale costume: embroidered linen shirt, woven belt, soft fur-trimmed cloak. "
-            "Background: wooden fairy-tale interior with a painted stove, warm candlelight, a cat on a bench. "
-            "Slightly theatrical but photorealistic, storybook warmth.\n" + CAMERA
-        ),
-        "note": "Орнаменты берём обобщённые, без привязки к конкретному региону.",
-    },
-    {
-        "group": "museum",
-        "tag": "Музей",
-        "title": "Мистика: готический портрет",
-        "desc": "Взрослая версия. Для детей всегда собираем облегчённый вариант: меньше тьмы, больше тепла.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The subject wears a Victorian-style coat with a high collar, holding an old brass lantern. "
-            "Background: dim study of a collector, glass cabinets, maps, fog behind the window, single candle warmth. "
-            "Mysterious but not frightening, deep shadows with detail retained.\n" + CAMERA
-        ),
-        "note": "Для детского набора убираем туман и поднимаем экспозицию фона на две ступени.",
-    },
-    {
-        "group": "museum",
-        "tag": "Музей",
-        "title": "Историческая эпоха",
-        "desc": "Портрет в костюме выбранного века. Эпоху задаём одним словом в промпте.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The subject wears an authentic early twentieth century outfit with period-correct fabric and buttons, "
-            "photographed in a period interior with patterned wallpaper and a tall window. "
-            "Soft window light, restrained colour palette, subtle film grain, no modern objects in the frame.\n" + CAMERA
-        ),
-        "note": "Эпоху меняем одной фразой. Проверяем, что в кадр не попали современные предметы.",
-    },
-    {
-        "group": "holiday",
-        "tag": "Праздник",
-        "title": "Новогодняя сказка",
-        "desc": "Декабрьский набор. Снимаем в ноябре, продаём весь декабрь.",
-        "prompt": (
-            IDENTITY + "\n"
-            "The child wears a cosy winter outfit: knitted sweater, soft scarf, light snow on the shoulders. "
-            "Background: evening winter town with a decorated tree, warm garland bokeh, gently falling snow. "
-            "Warm golden light on the face, cool blue tones in the background, joyful calm expression.\n" + CAMERA
-        ),
-        "note": "Гирлянды держим в расфокусе: резкие лампочки перетягивают внимание с лица.",
-    },
+    preset("history", "Эпоха", "Императорский бал",
+           "Главный сюжет для дворцовых экспозиций. Парадный портрет семьи в бальных костюмах XVIII века.",
+           "The guests wear 18th-century court ball costumes: embroidered silk gowns with pearls, "
+           "dark green or blue caftans with gold braid, lace cuffs. Background: grand palace ballroom with gilded carving, "
+           "tall mirrors, crystal chandeliers and parquet floor, softly out of focus. Warm golden candlelight.",
+           "Позолоту держим в расфокусе: резкий узор спорит с лицами."),
+    preset("history", "Эпоха", "Петровская эпоха",
+           "Для экспозиций начала XVIII века: камзолы, треуголки, карты и навигационные приборы.",
+           "The guests wear early 18th-century clothing: long buttoned coats, tricorn hats, linen shirts, simple wool dresses with aprons. "
+           "Background: a study with nautical charts, a brass astrolabe, a globe and a window onto a river with sailing ships. "
+           "Cool daylight from the window, warm candle accent.",
+           "Парики не надеваем: прятать волосы гостя значит терять сходство."),
+    preset("history", "Эпоха", "Начало XX века",
+           "Портрет в стиле салонной фотографии начала прошлого века. Эпоху задаём одной фразой.",
+           "The guests wear authentic early twentieth century outfits with period-correct fabric and buttons, "
+           "photographed in a period interior with patterned wallpaper, a tall window and a carved chair. "
+           "Soft window light, restrained colour palette, subtle film grain, no modern objects in the frame.",
+           "Проверяем, что в кадр не попали современные предметы: часы, серьги, телефоны."),
+    preset("art", "Искусство", "Портрет в художественном стиле",
+           "Для художественных музеев: гость как герой картины, но фотографичный и узнаваемый.",
+           "Render the scene as a classical oil portrait in the manner of old masters: warm umber shadows, soft chiaroscuro, "
+           "visible but fine brush texture on clothing and background only, faces remain photographic and sharp. "
+           "Background: dark draped fabric and a hint of a marble column.",
+           "Мазок только на фоне и одежде. Лицо не «закрашиваем» - иначе гость себя не узнаёт."),
+    preset("art", "Искусство", "Мастерская художника",
+           "Семейный сюжет: палитры, мольберты, гипсовые головы, тёплый свет из высокого окна.",
+           "The guests wear linen shirts, artist aprons and simple period dresses, holding a palette and brushes. "
+           "Background: a sunlit painter's studio with canvases, plaster busts, shelves with jars of pigment, a tall arched window. "
+           "Warm afternoon light, dust in the air.",
+           "Кисти и палитры чаще всего ломают руки - проверяем пальцы отдельно."),
+    preset("city", "Петербург", "Морской Петербург",
+           "Для морских экспозиций: парусный флот, мундиры, канаты и латунь.",
+           "The guests wear 19th-century naval uniforms and elegant travel dresses. "
+           "Background: the deck of a tall sailing ship at a granite embankment, rigging and furled sails, a misty northern river behind. "
+           "Cool silver morning light, light breeze in hair and fabric.",
+           "Знаки различия и флаги не воспроизводим точно: только обобщённые морские детали."),
+    preset("city", "Петербург", "Белые ночи",
+           "Летний сюжет: прогулка по набережной в костюмах XIX века под светлым ночным небом.",
+           "The guests wear 19th-century summer promenade clothes: light dresses, parasols, frock coats and top hats. "
+           "Background: a wide granite river embankment with classical facades and a drawbridge in soft focus, "
+           "pale pink and lilac sky of a northern white night.",
+           "Небо держим светлым и мягким, без заката: это не вечер, а белая ночь."),
+    preset("adventure", "Приключения", "Экспедиция к динозаврам",
+           "Для палеонтологических и естественнонаучных залов. Хорошо продаётся семьям.",
+           "The guests wear expedition clothes: canvas shirts, wide-brimmed hats, field bags. "
+           "Background: lush prehistoric valley with a waterfall and a large friendly dinosaur in the distance. "
+           "Golden afternoon light, humid haze.",
+           "Динозавр всегда на заднем плане и не страшный."),
+    preset("adventure", "Приключения", "Кабинет редкостей",
+           "Для естественнонаучных и антропологических собраний: шкафы с диковинами, глобусы, микроскопы.",
+           "The guests wear 18th-century scholar clothing: dark coats with brass buttons, lace collars, modest dresses. "
+           "Background: a cabinet of curiosities with glass cases of shells, minerals, skeletons of small animals, old globes and leather books. "
+           "Warm candlelight, mysterious but friendly atmosphere.",
+           "Никаких заспиртованных экспонатов в кадре - только минералы, раковины, приборы."),
+    preset("adventure", "Приключения", "Подводный мир",
+           "Для морских и океанографических экспозиций, хорошо идёт летом.",
+           "The guests wear modern exploration diving suits with transparent bubble helmets showing faces clearly, "
+           "surrounded by a coral reef, rays of sunlight from the surface, schools of small fish, a calm sea turtle nearby. "
+           "Turquoise light, clear water, no bubbles covering faces.",
+           "Шлемы прозрачные и без бликов поверх лица, иначе теряется сходство."),
+    preset("space", "Космос", "Семейный экипаж",
+           "Групповой кадр для космических экспозиций. Самый продаваемый сюжет темы.",
+           "The family wears worn white flight suits with red stripes, seated together inside an orbital station module "
+           "beside a large round window with the Earth behind them. Warm interior light, cool light from the window, "
+           "visible fabric wear and straps.",
+           "Групповые кадры генерируем сериями по четыре: сходство держится не в каждом."),
+    preset("space", "Космос", "Исследователи Марса",
+           "Сюжет на общий план, хорошо продаётся в формате постера.",
+           "The guests stand on a red rocky plain in dusty explorer spacesuits with open visors, "
+           "looking at a distant research base with domes and antennas. Warm orange sunset haze, long soft shadows, fine dust in the air.",
+           "Для постера просим 3:2 и оставляем воздух справа под заголовок."),
+    preset("fairy", "Сказка", "Сказочное королевство",
+           "Путешествие в сказку: замок на скале, парадные костюмы, тёплый закат.",
+           "The guests wear fairy-tale royal costumes: embroidered velvet doublets, flowing gowns, light circlets. "
+           "Background: a castle on a cliff above a valley with a river, flowering garden terrace, warm sunset light.",
+           "Короны лёгкие и не закрывают лоб: причёска гостя должна читаться."),
+    preset("fairy", "Сезон", "Зимний город",
+           "Декабрьский набор: зимний город XIX века, огни, снег. Снимаем в ноябре, продаём весь декабрь.",
+           "The guests wear 19th-century winter clothes: fur-trimmed coats, muffs, warm hats. "
+           "Background: an evening winter embankment with lanterns, a decorated tree and a horse-drawn sleigh in soft focus, gently falling snow. "
+           "Warm light on faces, cool blue background.",
+           "Фонари держим в расфокусе: резкие огни перетягивают внимание с лиц."),
 ]
 
 WORKFLOW = [
@@ -312,7 +166,7 @@ PARAMS = [
 ]
 
 CHECKS = [
-    "Ребёнка узнают с первого взгляда: лицо, причёска, возраст - свои",
+    "Гостей узнают с первого взгляда: лица, причёски, возраст - свои",
     "Свет на костюме совпадает с направлением света на лице",
     "Руки и пальцы целы, ничего лишнего в кадре не выросло",
     "Нет чужих логотипов, надписей и узнаваемых персонажей",
@@ -332,9 +186,9 @@ def page_html():
       '    <h1>Библиотека пресетов</h1>\n'
       '    <p class="lede">Рабочая страница смены. Берём исходник, копируем карточку сюжета целиком, '
       'генерируем серию, отбираем по чек-листу. Ничего придумывать на ходу не нужно: '
-      'все промпты уже проверены на детских портретах.</p>\n'
+      'все промпты собраны под семейные и индивидуальные портреты в музее.</p>\n'
       '    <div class="phero__actions">\n'
-      '      <a class="btn btn--ghost" href="worlds.html">Витрина образов для клиента</a>\n'
+      '      <a class="btn btn--ghost" href="worlds.html">Витрина сюжетов для клиента</a>\n'
       '    </div>\n'
       '    <div class="phero__strip"><span><b>%d</b> пресетов в наборе</span>'
       '<span><b>4 кадра</b> серия на сюжет</span>'
@@ -397,7 +251,7 @@ def page_html():
 def markdown():
     out = ["# Библиотека пресетов «Миллениум»\n",
            "\nРабочий документ для фотографов и ретушёров. "
-           "Промпты отредактированы под детский портрет: главное требование - сохранить сходство.\n",
+           "Промпты собраны под портреты гостей музея: главное требование - сохранить сходство.\n",
            "\n## Порядок работы\n\n"]
     for num, title, text in WORKFLOW:
         out.append(f"{int(num)}. **{title}.** {text}\n")

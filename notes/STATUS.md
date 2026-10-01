@@ -1,6 +1,6 @@
 # Миллениум - session notes and handoff
 
-Last updated: 2026-10-01. Read this file first in a new session, then `README.md` and `docs/DESIGN-cosmos.md`.
+Last updated: 2026-10-01 (museum pivot). Read this file first in a new session, then `README.md` and `docs/DESIGN-cosmos.md`.
 
 ## Start a fresh session
 
@@ -59,15 +59,22 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Spare portraits cut from the client collages: `scientist, ballet, detective, dancer, cellist, cowboy, artist, retro`.
 - Crop images with a canvas in Chrome, not `sips --cropOffset` (it crops from the center).
 
-## Next steps (unfinished when this session ended)
+## Pivot 2026-10-01: museums of Saint Petersburg only
 
-1. **Worlds page «Профессии» row** - the client asked to swap photos there.
-   - `assets/img/works/chef-girl.jpg` is already cut (girl in chef hat, from the kids collage) and committed but NOT used yet.
-   - In `src/pages/worlds.html` line ~96: change `works/chef.jpg` to `works/chef-girl.jpg`, alt «Девочка в поварском колпаке на кухне».
-   - Line ~112 («Скорость и спорт», Гонщик): change `works/racer.jpg` (Red Bull boy) to `works/racer-speed.jpg`; adjust alt/caption from «за рулём болида» to helmet/track wording.
-   - Then build, screenshot both rows at 1440 and 390, deploy, commit, push, update `assets/img/works/README.md`.
-2. Tell the client honestly: there are no other photos for Пожарный, Пилот, Врач. Offer either new profession cards from the spare portraits (художник, виолончелист, сыщик, ковбой, ретро, диско) or new generated shots.
-3. `src/pages/schools.html` line ~93 «Профессии» card still uses `chef.jpg` (boy) - ask if it should also change.
+- Site is now strictly about photo zones for museums in Saint Petersburg. Schools/kindergartens page, albums and all kids-in-costume portraits removed (`/schools` redirects to `/museums` in `vercel.json`).
+- Copy and family photos come from the client deck `~/Downloads/КП объекты 2.pdf` (extracted to `assets/img/kp/`). Families with kids at the booth are fine; costumed kid portraits are not.
+- Do not name specific museums (no Эрмитаж, РЖД etc.) - themes only. Railway theme uses the client's photo `kp/family-railway.jpg`.
+- Manager: «Андрей Михалев - звоните по всем вопросам».
+- New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls that changes while scrolling, guest-result card per step. Backgrounds `assets/img/tour/t-1..5.jpg` are TEMPORARY copies of `station-hall.jpg`.
+- Rings rebuilt from 15 museum-safe images `assets/img/ring/m01..m15.jpg` (360 px).
+- Open questions to the client: use the word «ИИ» like the deck does (currently avoided)? Confirm «0 ₽ вложений от музея».
+
+## Next steps
+
+1. Production deploy was blocked by the session permission filter - the client must allow `vercel deploy --prod`, then deploy and push.
+2. Higgsfield CLI installed (`higgsfield`), skills installed; `higgsfield auth login` timed out twice waiting for the client to approve in the browser. After login generate 5 hall backgrounds for the tour: palace ballroom, railway museum with steam locomotives, picture gallery, dinosaur hall, rocket hall (16:9, no people, no logos) and replace `assets/img/tour/t-*.jpg`.
+3. A background agent was sourcing free Wikimedia photos of SPb museum halls into `assets/img/spb/` with `credits.json` - if used anywhere, add author/licence credits to the footer.
+4. Screenshot all pages at 1440 and 390 after the real tour images land.
 
 ## Testing notes (Chrome over CDP)
 

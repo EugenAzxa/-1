@@ -6,11 +6,11 @@ desc: Рабочая страница команды: промпты по сюж
   <div class="wrap">
     <span class="eyebrow eyebrow--blue">Для фотографов и ретушёров</span>
     <h1>Библиотека пресетов</h1>
-    <p class="lede">Рабочая страница смены. Берём исходник, копируем карточку сюжета целиком, генерируем серию, отбираем по чек-листу. Ничего придумывать на ходу не нужно: все промпты уже проверены на детских портретах.</p>
+    <p class="lede">Рабочая страница смены. Берём исходник, копируем карточку сюжета целиком, генерируем серию, отбираем по чек-листу. Ничего придумывать на ходу не нужно: все промпты собраны под семейные и индивидуальные портреты в музее.</p>
     <div class="phero__actions">
-      <a class="btn btn--ghost" href="worlds.html">Витрина образов для клиента</a>
+      <a class="btn btn--ghost" href="worlds.html">Витрина сюжетов для клиента</a>
     </div>
-    <div class="phero__strip"><span><b>18</b> пресетов в наборе</span><span><b>4 кадра</b> серия на сюжет</span><span><b>1 базовый блок</b> во всех промптах</span></div>
+    <div class="phero__strip"><span><b>14</b> пресетов в наборе</span><span><b>4 кадра</b> серия на сюжет</span><span><b>1 базовый блок</b> во всех промптах</span></div>
   </div>
 </section>
 <section class="section section--alt">
@@ -31,18 +31,18 @@ desc: Рабочая страница команды: промпты по сюж
     <div class="filters reveal">
       <button class="is-on" data-filter="all">Все</button>
       <button data-filter="base">Служебные</button>
+      <button data-filter="history">История и эпохи</button>
+      <button data-filter="art">Искусство</button>
+      <button data-filter="city">Морской и парадный Петербург</button>
+      <button data-filter="adventure">Приключения и наука</button>
       <button data-filter="space">Космос</button>
-      <button data-filter="pro">Профессии</button>
-      <button data-filter="speed">Скорость и спорт</button>
-      <button data-filter="fantasy">Фэнтези и сказка</button>
-      <button data-filter="museum">Музейные темы</button>
-      <button data-filter="holiday">Праздники</button>
+      <button data-filter="fairy">Сказка и сезоны</button>
     </div>
     <div class="grid grid--2">
       <div class="preset reveal" data-group="base">
         <div class="preset__head"><h3>Базовый блок сохранения внешности</h3><span class="preset__tag">База</span></div>
-        <p class="preset__desc">Вставляется в начало любого промпта. Держит лицо ребёнка неизменным - это то, за что родители платят.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
+        <p class="preset__desc">Вставляется в начало любого промпта. Держит лица гостей неизменными - это то, за что платят.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
@@ -52,208 +52,164 @@ Shot on 85mm f/2.0, soft key light matching the direction of light in the source
       <div class="preset reveal" data-group="base">
         <div class="preset__head"><h3>Негативный промпт</h3><span class="preset__tag">База</span></div>
         <p class="preset__desc">Один на все сюжеты. Ставится в поле negative prompt целиком.</p>
-        <pre>cartoon, anime, 3d render, cgi, plastic skin, waxy skin, airbrushed, beauty filter, changed face, different person, adult face, older child, distorted eyes, crossed eyes, extra fingers, deformed hands, malformed helmet, floating head, detached collar, mismatched lighting, harsh cutout edges, double exposure ghosting, text, watermark, signature, logo, brand marks, copyrighted characters, blurry, low resolution, oversharpen halo, heavy noise, blown highlights</pre>
+        <pre>cartoon, anime, 3d render, cgi, plastic skin, waxy skin, airbrushed, beauty filter, changed face, different person, swapped faces, distorted eyes, crossed eyes, extra fingers, deformed hands, floating head, detached collar, mismatched lighting, harsh cutout edges, double exposure ghosting, modern objects in period scenes, text, watermark, signature, logo, brand marks, copyrighted characters, blurry, low resolution, oversharpen halo, heavy noise, blown highlights</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
           <span class="preset__note">Если в кадре появляется чужое лицо - в первую очередь поднимаем вес этого блока.</span>
         </div>
       </div>
-      <div class="preset reveal" data-group="space">
-        <div class="preset__head"><h3>Космонавт будущего</h3><span class="preset__tag">Космос</span></div>
-        <p class="preset__desc">Основной кадр космической темы. Шлем держим в руках, а не на голове: лицо должно быть открыто.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a modern white and graphite spacesuit with soft blue indicator lights, holding a mirrored helmet under one arm. Background: museum hall of a space centre, a lunar module and a large planet projection softly out of focus. Cool ambient light with warm accent from the left.
+      <div class="preset reveal" data-group="history">
+        <div class="preset__head"><h3>Императорский бал</h3><span class="preset__tag">Эпоха</span></div>
+        <p class="preset__desc">Главный сюжет для дворцовых экспозиций. Парадный портрет семьи в бальных костюмах XVIII века.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear 18th-century court ball costumes: embroidered silk gowns with pearls, dark green or blue caftans with gold braid, lace cuffs. Background: grand palace ballroom with gilded carving, tall mirrors, crystal chandeliers and parquet floor, softly out of focus. Warm golden candlelight.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Отражения в стекле шлема проверяем отдельно: там чаще всего появляется мусор.</span>
+          <span class="preset__note">Позолоту держим в расфокусе: резкий узор спорит с лицами.</span>
         </div>
       </div>
-      <div class="preset reveal" data-group="space">
-        <div class="preset__head"><h3>Исследователь Марса</h3><span class="preset__tag">Космос</span></div>
-        <p class="preset__desc">Сюжет на общий план, хорошо продаётся в формате постера.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child stands on a red rocky plain in a dusty explorer spacesuit with a life-support backpack, pointing at a distant research base with domes and antennas. Warm orange sunset haze, long soft shadows, fine dust in the air, epic wide scene.
+      <div class="preset reveal" data-group="history">
+        <div class="preset__head"><h3>Петровская эпоха</h3><span class="preset__tag">Эпоха</span></div>
+        <p class="preset__desc">Для экспозиций начала XVIII века: камзолы, треуголки, карты и навигационные приборы.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear early 18th-century clothing: long buttoned coats, tricorn hats, linen shirts, simple wool dresses with aprons. Background: a study with nautical charts, a brass astrolabe, a globe and a window onto a river with sailing ships. Cool daylight from the window, warm candle accent.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Для постера просим 3:2 и оставляем воздух справа под заголовок миссии.</span>
+          <span class="preset__note">Парики не надеваем: прятать волосы гостя значит терять сходство.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="history">
+        <div class="preset__head"><h3>Начало XX века</h3><span class="preset__tag">Эпоха</span></div>
+        <p class="preset__desc">Портрет в стиле салонной фотографии начала прошлого века. Эпоху задаём одной фразой.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear authentic early twentieth century outfits with period-correct fabric and buttons, photographed in a period interior with patterned wallpaper, a tall window and a carved chair. Soft window light, restrained colour palette, subtle film grain, no modern objects in the frame.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Проверяем, что в кадр не попали современные предметы: часы, серьги, телефоны.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="art">
+        <div class="preset__head"><h3>Портрет в художественном стиле</h3><span class="preset__tag">Искусство</span></div>
+        <p class="preset__desc">Для художественных музеев: гость как герой картины, но фотографичный и узнаваемый.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+Render the scene as a classical oil portrait in the manner of old masters: warm umber shadows, soft chiaroscuro, visible but fine brush texture on clothing and background only, faces remain photographic and sharp. Background: dark draped fabric and a hint of a marble column.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Мазок только на фоне и одежде. Лицо не «закрашиваем» - иначе гость себя не узнаёт.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="art">
+        <div class="preset__head"><h3>Мастерская художника</h3><span class="preset__tag">Искусство</span></div>
+        <p class="preset__desc">Семейный сюжет: палитры, мольберты, гипсовые головы, тёплый свет из высокого окна.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear linen shirts, artist aprons and simple period dresses, holding a palette and brushes. Background: a sunlit painter&#x27;s studio with canvases, plaster busts, shelves with jars of pigment, a tall arched window. Warm afternoon light, dust in the air.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Кисти и палитры чаще всего ломают руки - проверяем пальцы отдельно.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="city">
+        <div class="preset__head"><h3>Морской Петербург</h3><span class="preset__tag">Петербург</span></div>
+        <p class="preset__desc">Для морских экспозиций: парусный флот, мундиры, канаты и латунь.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear 19th-century naval uniforms and elegant travel dresses. Background: the deck of a tall sailing ship at a granite embankment, rigging and furled sails, a misty northern river behind. Cool silver morning light, light breeze in hair and fabric.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Знаки различия и флаги не воспроизводим точно: только обобщённые морские детали.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="city">
+        <div class="preset__head"><h3>Белые ночи</h3><span class="preset__tag">Петербург</span></div>
+        <p class="preset__desc">Летний сюжет: прогулка по набережной в костюмах XIX века под светлым ночным небом.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear 19th-century summer promenade clothes: light dresses, parasols, frock coats and top hats. Background: a wide granite river embankment with classical facades and a drawbridge in soft focus, pale pink and lilac sky of a northern white night.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Небо держим светлым и мягким, без заката: это не вечер, а белая ночь.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="adventure">
+        <div class="preset__head"><h3>Экспедиция к динозаврам</h3><span class="preset__tag">Приключения</span></div>
+        <p class="preset__desc">Для палеонтологических и естественнонаучных залов. Хорошо продаётся семьям.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear expedition clothes: canvas shirts, wide-brimmed hats, field bags. Background: lush prehistoric valley with a waterfall and a large friendly dinosaur in the distance. Golden afternoon light, humid haze.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Динозавр всегда на заднем плане и не страшный.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="adventure">
+        <div class="preset__head"><h3>Кабинет редкостей</h3><span class="preset__tag">Приключения</span></div>
+        <p class="preset__desc">Для естественнонаучных и антропологических собраний: шкафы с диковинами, глобусы, микроскопы.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear 18th-century scholar clothing: dark coats with brass buttons, lace collars, modest dresses. Background: a cabinet of curiosities with glass cases of shells, minerals, skeletons of small animals, old globes and leather books. Warm candlelight, mysterious but friendly atmosphere.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Никаких заспиртованных экспонатов в кадре - только минералы, раковины, приборы.</span>
+        </div>
+      </div>
+      <div class="preset reveal" data-group="adventure">
+        <div class="preset__head"><h3>Подводный мир</h3><span class="preset__tag">Приключения</span></div>
+        <p class="preset__desc">Для морских и океанографических экспозиций, хорошо идёт летом.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear modern exploration diving suits with transparent bubble helmets showing faces clearly, surrounded by a coral reef, rays of sunlight from the surface, schools of small fish, a calm sea turtle nearby. Turquoise light, clear water, no bubbles covering faces.
+Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
+        <div class="preset__foot">
+          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
+          <span class="preset__note">Шлемы прозрачные и без бликов поверх лица, иначе теряется сходство.</span>
         </div>
       </div>
       <div class="preset reveal" data-group="space">
         <div class="preset__head"><h3>Семейный экипаж</h3><span class="preset__tag">Космос</span></div>
-        <p class="preset__desc">Групповой кадр. Сохраняем расстановку людей из исходника, иначе теряется узнаваемость.</p>
-        <pre>Keep each person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural person proportions, real fabric texture, fine skin texture preserved.
-The family wears worn white flight suits with red stripes, seated together inside an orbital station module beside a large round window with the Earth behind them. Keep the original position and order of people. Warm interior light, cool light from the window, visible fabric wear and straps.
+        <p class="preset__desc">Групповой кадр для космических экспозиций. Самый продаваемый сюжет темы.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The family wears worn white flight suits with red stripes, seated together inside an orbital station module beside a large round window with the Earth behind them. Warm interior light, cool light from the window, visible fabric wear and straps.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
           <span class="preset__note">Групповые кадры генерируем сериями по четыре: сходство держится не в каждом.</span>
         </div>
       </div>
-      <div class="preset reveal" data-group="pro">
-        <div class="preset__head"><h3>Пожарный</h3><span class="preset__tag">Профессии</span></div>
-        <p class="preset__desc">Самый востребованный образ у мальчиков 5-9 лет.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears authentic fire-service turnout gear: dark jacket with reflective stripes, helmet pushed slightly back so the face stays fully visible. Background: fire station bay with a truck, warm amber light and soft smoke haze in the depth of the frame. Confident calm expression.
+      <div class="preset reveal" data-group="space">
+        <div class="preset__head"><h3>Исследователи Марса</h3><span class="preset__tag">Космос</span></div>
+        <p class="preset__desc">Сюжет на общий план, хорошо продаётся в формате постера.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests stand on a red rocky plain in dusty explorer spacesuits with open visors, looking at a distant research base with domes and antennas. Warm orange sunset haze, long soft shadows, fine dust in the air.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Никакого открытого огня рядом с ребёнком: только отсветы и дымка на фоне.</span>
+          <span class="preset__note">Для постера просим 3:2 и оставляем воздух справа под заголовок.</span>
         </div>
       </div>
-      <div class="preset reveal" data-group="pro">
-        <div class="preset__head"><h3>Врач</h3><span class="preset__tag">Профессии</span></div>
-        <p class="preset__desc">Хорошо работает для школьных наборов «кем я стану».</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a crisp white medical coat over a light shirt, stethoscope around the neck. Background: bright modern clinic room, softly blurred equipment and a window with daylight. Friendly, calm expression, clean neutral colour palette.
+      <div class="preset reveal" data-group="fairy">
+        <div class="preset__head"><h3>Сказочное королевство</h3><span class="preset__tag">Сказка</span></div>
+        <p class="preset__desc">Путешествие в сказку: замок на скале, парадные костюмы, тёплый закат.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear fairy-tale royal costumes: embroidered velvet doublets, flowing gowns, light circlets. Background: a castle on a cliff above a valley with a river, flowering garden terrace, warm sunset light.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Следим за бейджем: любые надписи убираем, они всегда выходят кривыми.</span>
+          <span class="preset__note">Короны лёгкие и не закрывают лоб: причёска гостя должна читаться.</span>
         </div>
       </div>
-      <div class="preset reveal" data-group="pro">
-        <div class="preset__head"><h3>Пилот</h3><span class="preset__tag">Профессии</span></div>
-        <p class="preset__desc">Даёт эффектный кадр даже с посредственного исходника.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a navy airline pilot uniform with shoulder stripes and a cap, standing in an aircraft cockpit with instrument panels glowing softly. Sunrise light through the windshield, clouds far below. Proud, relaxed posture.
+      <div class="preset reveal" data-group="fairy">
+        <div class="preset__head"><h3>Зимний город</h3><span class="preset__tag">Сезон</span></div>
+        <p class="preset__desc">Декабрьский набор: зимний город XIX века, огни, снег. Снимаем в ноябре, продаём весь декабрь.</p>
+        <pre>Keep every person&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Keep the original position and order of people in the frame. Do not beautify, do not age up or down, do not change ethnicity or body type. Photorealistic editorial portrait, natural proportions, real fabric texture, fine skin texture preserved.
+The guests wear 19th-century winter clothes: fur-trimmed coats, muffs, warm hats. Background: an evening winter embankment with lanterns, a decorated tree and a horse-drawn sleigh in soft focus, gently falling snow. Warm light on faces, cool blue background.
 Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
         <div class="preset__foot">
           <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Погоны и кокарду делаем нейтральными, без эмблем авиакомпаний.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="pro">
-        <div class="preset__head"><h3>Шеф-повар</h3><span class="preset__tag">Профессии</span></div>
-        <p class="preset__desc">Тёплый бытовой сюжет, который любят родители девочек и мальчиков одинаково.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a white chef jacket and a classic chef hat, standing at a professional kitchen pass with copper pans and herbs around. Warm tungsten light, light steam in the air, cheerful working atmosphere.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Руки в кадре - частая проблема. Проще просить кадр по грудь.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="speed">
-        <div class="preset__head"><h3>Гонщик</h3><span class="preset__tag">Скорость</span></div>
-        <p class="preset__desc">Флагман для детских парков. Шлем под мышкой, лицо открыто.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a racing suit in deep red and graphite with plain unbranded patches and a fireproof collar, holding a racing helmet under one arm. Background: pit lane with a blurred race car and team garage lights. Late afternoon sun, slight heat haze, energetic mood.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Логотипы команд и спонсоров не рисуем: только выдуманные нашивки.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="speed">
-        <div class="preset__head"><h3>Футболист</h3><span class="preset__tag">Скорость</span></div>
-        <p class="preset__desc">Ставим под вечерний стадионный свет: кадр сразу читается как постер.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a plain football kit in blue and white with no logos, standing on a stadium pitch at dusk. Stadium floodlights create a strong rim light, crowd softly blurred in the background, light mist in the beams. Determined, happy expression.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Номер на футболке ставим двузначный, буквы не пишем.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="speed">
-        <div class="preset__head"><h3>Балерина на сцене</h3><span class="preset__tag">Скорость</span></div>
-        <p class="preset__desc">Сильный образ для девочек, продаётся в паре с парадным портретом.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a classical ballet costume with a soft tutu, standing on a theatre stage. Warm spotlight from above and behind, deep velvet darkness of the auditorium, delicate dust in the light beam. Graceful posture, calm confident expression.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Позу не меняем сильно: руки из исходника всегда достовернее сгенерированных.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="fantasy">
-        <div class="preset__head"><h3>Галактический страж</h3><span class="preset__tag">Фэнтези</span></div>
-        <p class="preset__desc">Наша замена «супергероям»: собственный костюм, никаких чужих франшиз.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears an original heroic suit: matte navy armour plates with gold trim and a flowing deep-red cape, an abstract star emblem on the chest that belongs to no existing brand. Background: city rooftop at blue hour, distant lights, light wind in the cape. Brave, kind expression.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Эмблема всегда абстрактная. Любой намёк на известного персонажа - брак.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="fantasy">
-        <div class="preset__head"><h3>Волшебная школа</h3><span class="preset__tag">Фэнтези</span></div>
-        <p class="preset__desc">Атмосфера старой библиотеки без отсылок к конкретной франшизе.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a dark academic robe over a knitted vest, holding an old leather-bound book. Background: ancient library with tall shelves, floating candles, warm golden light and soft dust. Curious, slightly mischievous expression.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Никаких шарфов с цветами факультетов и узнаваемых гербов.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="fantasy">
-        <div class="preset__head"><h3>Мир динозавров</h3><span class="preset__tag">Фэнтези</span></div>
-        <p class="preset__desc">Приключенческий сюжет для парков и детских музеев.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a young palaeontologist outfit: khaki vest, rolled sleeves, field hat, standing in a prehistoric valley at sunrise with ferns and a huge peaceful sauropod far in the background. Golden light, morning mist, sense of wonder.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Хищников в детском наборе не ставим, только травоядные и на расстоянии.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="fantasy">
-        <div class="preset__head"><h3>Подводный мир</h3><span class="preset__tag">Фэнтези</span></div>
-        <p class="preset__desc">Хорошо заходит для океанариумов и летних сезонов.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a modern exploration diving suit with a transparent bubble helmet showing the face clearly, surrounded by a coral reef, rays of sunlight from the surface, schools of small fish, a calm sea turtle nearby. Turquoise light, clear water, no bubbles covering the face.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Шлем прозрачный и без бликов поверх лица, иначе теряется сходство.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="museum">
-        <div class="preset__head"><h3>Небылицы: сказочный портрет</h3><span class="preset__tag">Музей</span></div>
-        <p class="preset__desc">Для музеев небылиц и сказок: портрет в стиле старой книжной иллюстрации, но фотографичный.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a folk-tale costume: embroidered linen shirt, woven belt, soft fur-trimmed cloak. Background: wooden fairy-tale interior with a painted stove, warm candlelight, a cat on a bench. Slightly theatrical but photorealistic, storybook warmth.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Орнаменты берём обобщённые, без привязки к конкретному региону.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="museum">
-        <div class="preset__head"><h3>Мистика: готический портрет</h3><span class="preset__tag">Музей</span></div>
-        <p class="preset__desc">Взрослая версия. Для детей всегда собираем облегчённый вариант: меньше тьмы, больше тепла.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The subject wears a Victorian-style coat with a high collar, holding an old brass lantern. Background: dim study of a collector, glass cabinets, maps, fog behind the window, single candle warmth. Mysterious but not frightening, deep shadows with detail retained.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Для детского набора убираем туман и поднимаем экспозицию фона на две ступени.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="museum">
-        <div class="preset__head"><h3>Историческая эпоха</h3><span class="preset__tag">Музей</span></div>
-        <p class="preset__desc">Портрет в костюме выбранного века. Эпоху задаём одним словом в промпте.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The subject wears an authentic early twentieth century outfit with period-correct fabric and buttons, photographed in a period interior with patterned wallpaper and a tall window. Soft window light, restrained colour palette, subtle film grain, no modern objects in the frame.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Эпоху меняем одной фразой. Проверяем, что в кадр не попали современные предметы.</span>
-        </div>
-      </div>
-      <div class="preset reveal" data-group="holiday">
-        <div class="preset__head"><h3>Новогодняя сказка</h3><span class="preset__tag">Праздник</span></div>
-        <p class="preset__desc">Декабрьский набор. Снимаем в ноябре, продаём весь декабрь.</p>
-        <pre>Keep the child&#x27;s face, facial features, skin tone, hair and age exactly as in the source photo. Do not beautify, do not age up, do not change ethnicity or body type. Photorealistic editorial portrait, natural child proportions, real fabric texture, fine skin texture preserved.
-The child wears a cosy winter outfit: knitted sweater, soft scarf, light snow on the shoulders. Background: evening winter town with a decorated tree, warm garland bokeh, gently falling snow. Warm golden light on the face, cool blue tones in the background, joyful calm expression.
-Shot on 85mm f/2.0, soft key light matching the direction of light in the source photo, gentle rim light, shallow depth of field, true-to-life colour, no plastic skin, print-ready detail.</pre>
-        <div class="preset__foot">
-          <button class="copy" type="button"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v5a2 2 0 002 2h1" stroke="currentColor" stroke-width="1.5"/></svg><span>Копировать</span></button>
-          <span class="preset__note">Гирлянды держим в расфокусе: резкие лампочки перетягивают внимание с лица.</span>
+          <span class="preset__note">Фонари держим в расфокусе: резкие огни перетягивают внимание с лиц.</span>
         </div>
       </div>
     </div>
@@ -276,7 +232,7 @@ Shot on 85mm f/2.0, soft key light matching the direction of light in the source
       <div class="reveal" data-delay="80">
         <span class="eyebrow eyebrow--blue">Контроль</span><h2>Чек-лист перед выдачей</h2>
         <ul class="list list--blue mt-m">
-          <li>Ребёнка узнают с первого взгляда: лицо, причёска, возраст - свои</li>
+          <li>Гостей узнают с первого взгляда: лица, причёски, возраст - свои</li>
           <li>Свет на костюме совпадает с направлением света на лице</li>
           <li>Руки и пальцы целы, ничего лишнего в кадре не выросло</li>
           <li>Нет чужих логотипов, надписей и узнаваемых персонажей</li>
