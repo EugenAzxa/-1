@@ -30,7 +30,7 @@ Open Claude Code in `~/Desktop/photo-bureau` and paste:
 cd ~/Desktop/photo-bureau
 python3 build.py                      # src/pages + src/partials -> *.html in root
 python3 -m http.server 8080           # http://localhost:8080
-npx --yes vercel@latest deploy --prod --yes   # retry once if "Not authorized"
+git push   # Vercel auto-deploys main (CLI deploy also possible: npx vercel@latest deploy --prod)
 git add -A
 git -c user.email="Eugen@azxa.io" -c user.name="EugenAzxa" commit -m "..."
 GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
@@ -70,13 +70,12 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Hero is now an animated SCENE (`src/partials/hero-scene.html`, CSS `.scene*`, JS `[data-scene]` in main.js): photographer cutout `assets/img/gen/photographer.webp` (GPT Image, transparent bg) on the right, viewfinder corners + focus box hunt/lock, shutter flash from the speedlight (x 36 %, y 5 % of the cutout), a polaroid develops with the theme portrait (`assets/img/gen/pola-*.jpg`) and flies to a pile, then the hall changes. 6 hall/portrait pairs, ~5.4 s per cycle; pauses off-screen and in hidden tabs; static under reduced motion. Finale still uses the crossfade `museums-bg-b`.
 - Hero and finale rings REMOVED at the client's request (2026-10-01): replaced by crossfading SPb museum halls `src/partials/museums-bg.html` / `museums-bg-b.html` (CSS `.mbg`, 7 images `assets/img/halls/h1..h7.jpg`, 6 s each, pure CSS). Ring partials still exist but are unused (lab.html too uses the new hero).
 - Home: statement «Музею не нужен разговор про технологии» removed; «Пять шагов по созданию зоны притяжения» restored on home.
-- Client said «пока локально» - do not deploy until asked.
 - (old) Rings rebuilt from 15 museum-safe images `assets/img/ring/m01..m15.jpg` (360 px).
 - Open questions to the client: use the word «ИИ» like the deck does (currently avoided)? Confirm «0 ₽ вложений от музея».
 
 ## Next steps
 
-1. Production deploy was blocked by the session permission filter - the client must allow `vercel deploy --prod`, then deploy and push.
+1. DEPLOYED 2026-10-01 (commit 350f8b7). The Vercel project is connected to GitHub: `git push` to main auto-deploys in ~20 s. `vercel deploy --prod` from the CLI kept failing with «fetch failed» mid-upload (flaky network from the session sandbox) - just push instead. Verify with `curl -s https://photo-bureau.vercel.app/ | grep -o 'main.js?v=[0-9a-f]*'`.
 2. Higgsfield is logged in (workspace Private, ultra). Model `gpt_image_2_5`, `--resolution 2k --quality high --wait`; run at most 2 jobs at once (7 parallel jobs failed with «API request failed»). Generated so far: halls railway/naval/dino (hero h5-h7, tour t-2/t-4) and family portraits `assets/img/gen/fam-{ball,naval,curio,whitenights}.jpg` (themes tiles, tour step 1). Client wants it to look EXPENSIVE (premium editorial light).
 3. Wikimedia photos in use: only hero h1-h4 and tour t-1/t-3/t-5 (4 files); credits in `src/partials/credits.html` on contacts - update it whenever the set of used Wikimedia files changes.
 4. Screenshot all pages at 1440 and 390 after the real tour images land.
