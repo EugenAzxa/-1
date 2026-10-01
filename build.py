@@ -110,7 +110,7 @@ LAYOUT = """<!DOCTYPE html>
 
     <p class="preloader__title">Выбери свой мир</p>
     <p class="preloader__worlds">
-      <span>космос</span><span>искусство</span><span>приключения</span><span>сказка</span>
+      <span>космос</span><span>искусство</span><span>сафари</span><span>сказка</span>
     </p>
   </div>
 </div>
