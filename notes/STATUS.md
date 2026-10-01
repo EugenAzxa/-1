@@ -67,7 +67,10 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Manager: «Андрей Михалев - звоните по всем вопросам».
 - New home block `src/partials/tour.html` (+ CSS `.tour*`, JS `[data-tour]`): sticky background of museum halls changing on scroll, guest card per step. t-1,3,4,5 are real SPb halls from Wikimedia; t-2 (railway) is still a TEMPORARY copy of station-hall.jpg - generate a railway museum hall in Higgsfield.
 - Wikimedia sources in `assets/img/spb/` (+ credits.json, kept off the server by .vercelignore). Every one used (rings s01-s18, tour) is credited in `src/partials/credits.html` on the contacts page - regenerate credits if the set changes.
-- Rings rebuilt from 15 museum-safe images `assets/img/ring/m01..m15.jpg` (360 px).
+- Hero and finale rings REMOVED at the client's request (2026-10-01): replaced by crossfading SPb museum halls `src/partials/museums-bg.html` / `museums-bg-b.html` (CSS `.mbg`, 7 images `assets/img/halls/h1..h7.jpg`, 6 s each, pure CSS). Ring partials still exist but are unused (lab.html too uses the new hero).
+- Home: statement «Музею не нужен разговор про технологии» removed; «Пять шагов по созданию зоны притяжения» restored on home.
+- Client said «пока локально» - do not deploy until asked.
+- (old) Rings rebuilt from 15 museum-safe images `assets/img/ring/m01..m15.jpg` (360 px).
 - Open questions to the client: use the word «ИИ» like the deck does (currently avoided)? Confirm «0 ₽ вложений от музея».
 
 ## Next steps
