@@ -8,8 +8,8 @@
 
   var GX = 49, GY = 37;          // узлы сетки (4:3)
   var PAD = 56;                  // запас холста вокруг полотна под складки и тень (на телефоне меньше)
-  var OPT = { amp: 34, drape: 34, sway: 10, light: 0.9, sheen: 0.2, radius: 16,
-              persp: 1000, brush: 3.2, brushSize: 0.2, damping: 2.4, wave: 1.0 };
+  var OPT = { amp: 14, drape: 18, sway: 4, light: 0.7, sheen: 0.14, radius: 16,
+              persp: 1100, brush: 1.4, brushSize: 0.2, damping: 3.0, wave: 1.0 };
 
   var VS = [
     'attribute vec2 aUv;',
@@ -189,8 +189,8 @@
         var zu = z[yy > 0 ? i - GX : i], zd = z[yy < GY - 1 ? i + GX : i];
         var sx = (xx > 0 && xx < GX - 1 ? 2 : 1) * W / (GX - 1), sy = (yy > 0 && yy < GY - 1 ? 2 : 1) * H / (GY - 1);
         dyn[i * 3] = z[i];
-        dyn[i * 3 + 1] = (zr - zl) / sx * 3.2;
-        dyn[i * 3 + 2] = (zd - zu) / sy * 3.2;
+        dyn[i * 3 + 1] = (zr - zl) / sx * 2.6;
+        dyn[i * 3 + 2] = (zd - zu) / sy * 2.6;
       }
       gust *= Math.pow(0.35, dt);
     }
@@ -198,7 +198,7 @@
     function draw(now) {
       var dt = Math.min((now - last) / 1000, 1 / 30);
       last = now;
-      var time = (now - t0) / 1000 * 0.9;
+      var time = (now - t0) / 1000 * 0.6;
       step(dt, time);
       if (mixv < 1) mixv = Math.min(1, (now - mixStart) / 800);
       gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
@@ -226,8 +226,8 @@
       show: function (i) {
         if (i === cur) return;
         from = mixv < 1 ? cur : cur; cur = i; mixv = 0; mixStart = performance.now();
-        gust = 0.45;
-        poke(0.5, 0.95, 22);
+        gust = 0.25;
+        poke(0.5, 0.95, 10);
       },
       start: start, stop: stop
     };

@@ -1363,3 +1363,14 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 .cloth{position:absolute;z-index:1;display:block;touch-action:pan-y;
   filter:drop-shadow(0 22px 26px rgba(13,13,13,.22)) drop-shadow(0 4px 8px rgba(13,13,13,.12))}
 .flow__cap{z-index:2;pointer-events:none}
+
+/* ---- продукция ----------------------------------------------------------- */
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px)}
+.prod{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:clamp(20px,2vw,26px);display:flex;flex-direction:column}
+.prod__icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--ikona-gold) 14%,transparent);color:var(--ikona-gold);margin-bottom:16px}
+.prod h3{font-size:20px;line-height:1.2;letter-spacing:-.015em;margin:0 0 8px}
+.prod p{font-size:14.5px;line-height:1.5;color:var(--muted);margin:0}
+.prod__fmt{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.prod__fmt i{font:600 12px/1 'Manrope',sans-serif;font-style:normal;letter-spacing:.06em;padding:6px 9px;border-radius:999px;border:1px solid var(--line-strong);color:var(--text)}
+@media (max-width:1080px){.prods{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.prods{grid-template-columns:1fr}}
