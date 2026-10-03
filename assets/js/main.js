@@ -447,6 +447,7 @@
       imgs.forEach(function (im, n) { im.classList.toggle('is-on', n === k); });
       if (capEl) capEl.textContent = btns[k].getAttribute('data-cap');
       if (numEl) numEl.textContent = '0' + (k + 1);
+      flow.dispatchEvent(new CustomEvent('flow:change', { detail: k }));
     }
     function play() {
       clearTimeout(timer);

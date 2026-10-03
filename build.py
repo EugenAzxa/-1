@@ -184,6 +184,7 @@ LAYOUT = """<!DOCTYPE html>
   </div>
 </footer>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/cloth.js" defer></script>
 </body>
 </html>
 """

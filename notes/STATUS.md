@@ -65,6 +65,7 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Home: «Шесть направлений» block `src/partials/directions.html` (also on worlds.html) - 6 venue types x family + individual shot, images `assets/img/dir/d1..d6-{family,ind}.jpg` (9 generated in GPT Image 2.5, 3 reused). Venue names are generic on purpose (Гранд Макет / РЖД / Maza Park not named).
 - Home: «Примеры фотографий» gallery (client photos `assets/img/examples/{alchemy,magician,library}.jpg`) before the FAQ.
 - «Пять шагов» is now an interactive block `src/partials/steps5.html` (home + museums): steps autoplay every 5 s with a gold progress bar, click selects; images `assets/img/steps/s1..s5.jpg` (s3 is a 2x2 collage of gen portraits). Heading «Пять шагов: создаём интерактивную зону в вашем музее». Service block on home has 4 steps (Контроль removed).
+- Five-steps image is a CLOTH (style of canvasui.dev cloth): own WebGL1 implementation `assets/js/cloth.js` (no deps; canvasui's version needs the experimental HTML-in-Canvas API, Chrome-flag only). Image hangs pinned at the top, wind folds + lighting + sheen, pointer ripples, gust + crossfade on `flow:change`. Tunables in `OPT`. Falls back to plain images without WebGL / with reduced motion. Gotcha: uniforms shared by both shaders need the same precision (`uniform highp vec2 uSize` in FS) or the program silently fails to link.
 - Higgsfield jobs: run ONE at a time with `--json`; parallel jobs often fail with «API request failed».
 
 ## Pivot 2026-10-01: museums of Saint Petersburg only

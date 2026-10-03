@@ -1356,3 +1356,10 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
   .flow__txt{font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){.flow__view img,.flow__step{transition:none}}
+
+/* ---- ткань поверх картинки этапа (assets/js/cloth.js) ------------------- */
+.flow__view.has-cloth{overflow:visible;background:transparent;border-color:transparent}
+.flow__view.has-cloth img{visibility:hidden}
+.cloth{position:absolute;z-index:1;display:block;touch-action:pan-y;
+  filter:drop-shadow(0 22px 26px rgba(13,13,13,.22)) drop-shadow(0 4px 8px rgba(13,13,13,.12))}
+.flow__cap{z-index:2;pointer-events:none}
