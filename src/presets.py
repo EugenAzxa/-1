@@ -17,7 +17,7 @@ GROUPS = [
     ("base", "Служебные"),
     ("history", "История и эпохи"),
     ("art", "Искусство"),
-    ("city", "Морской и парадный Петербург"),
+    ("city", "Морская история и парадные залы"),
     ("adventure", "Приключения и наука"),
     ("space", "Космос"),
     ("fairy", "Сказка и сезоны"),
@@ -94,13 +94,13 @@ PRESETS = [
            "Background: a sunlit painter's studio with canvases, plaster busts, shelves with jars of pigment, a tall arched window. "
            "Warm afternoon light, dust in the air.",
            "Кисти и палитры чаще всего ломают руки - проверяем пальцы отдельно."),
-    preset("city", "Петербург", "Морской Петербург",
+    preset("city", "История", "Морская история",
            "Для морских экспозиций: парусный флот, мундиры, канаты и латунь.",
            "The guests wear 19th-century naval uniforms and elegant travel dresses. "
            "Background: the deck of a tall sailing ship at a granite embankment, rigging and furled sails, a misty northern river behind. "
            "Cool silver morning light, light breeze in hair and fabric.",
            "Знаки различия и флаги не воспроизводим точно: только обобщённые морские детали."),
-    preset("city", "Петербург", "Белые ночи",
+    preset("city", "История", "Белые ночи",
            "Летний сюжет: прогулка по набережной в костюмах XIX века под светлым ночным небом.",
            "The guests wear 19th-century summer promenade clothes: light dresses, parasols, frock coats and top hats. "
            "Background: a wide granite river embankment with classical facades and a drawbridge in soft focus, "

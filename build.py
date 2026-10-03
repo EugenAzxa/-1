@@ -23,7 +23,7 @@ CONFIG = {
     "phone": "+7 (921) 406-33-84",
     "phone_href": "+79214063384",
     "manager": "Андрей Михалев",
-    "city": "Санкт-Петербург",
+    "city": "Работаем по всей России",
     "domain": "https://millenium-photo.ru",
 }
 
@@ -161,7 +161,7 @@ LAYOUT = """<!DOCTYPE html>
       </svg>
           <span class="brand__word">Ikona<em>AI</em></span>
         </a>
-        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны для музеев Санкт-Петербурга. Гость становится героем сюжета вашей экспозиции и уносит кадр с собой.</p>
+        <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны для музеев, парков и выставок по всей России. Гость становится героем сюжета вашей экспозиции и уносит кадр с собой.</p>
       </div>
       <div>
         <h4>Разделы</h4>

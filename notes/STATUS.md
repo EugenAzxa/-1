@@ -59,6 +59,10 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Spare portraits cut from the client collages: `scientist, ballet, detective, dancer, cellist, cowboy, artist, retro`.
 - Crop images with a canvas in Chrome, not `sips --cropOffset` (it crops from the center).
 
+## No city (2026-10-03)
+
+- Do NOT bind the site to Saint Petersburg (or any city): the client will work in Moscow and across Russia. Wording: «Фотозоны для музеев и парков», footer «Работаем по всей России». Former «Морской Петербург» theme is «Морская история».
+
 ## Rename 2026-10-03: brand is now «Ikona AI»
 
 - CONFIG brand «Ikona AI»; logo = navy arch #1A2F6E with gold inner line and sparkle #C79C40 and a white person (inline SVG in LAYOUT header/footer, `assets/favicon.svg`); header word «Ikona» navy + «AI» gold (`.brand__word`), footer wordmark the same.
