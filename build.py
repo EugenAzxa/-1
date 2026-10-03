@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Сборка статического сайта «Миллениум».
+Сборка статического сайта «Ikona AI».
 
 Запуск:  python3 build.py
 Результат: готовые .html в корне репозитория (их и деплоим).
@@ -18,7 +18,7 @@ ROOT = pathlib.Path(__file__).parent
 PAGES = ROOT / "src" / "pages"
 
 CONFIG = {
-    "brand": "Миллениум",
+    "brand": "Ikona AI",
     "brand_sub": "photo experience",
     "phone": "+7 (921) 406-33-84",
     "phone_href": "+79214063384",
@@ -118,13 +118,14 @@ LAYOUT = """<!DOCTYPE html>
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="index.html" aria-label="{brand}, на главную">
-      <svg class="brand__mark" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-        <rect class="m-frame" x="1" y="6.5" width="28" height="19" rx="5" stroke-width="1.6"/>
-        <circle class="m-lens" cx="15" cy="16" r="6" stroke-width="1.6"/>
-        <circle class="m-dot" cx="15" cy="16" r="2.2"/>
-        <path class="m-top" d="M10.5 6.5l1.8-3.2h5.4l1.8 3.2" stroke-width="1.6" stroke-linejoin="round"/>
+      <svg class="brand__mark" width="26" height="31" viewBox="0 0 40 48" aria-hidden="true">
+        <path d="M2 46V20a18 18 0 0 1 36 0v26z" fill="#1A2F6E"/>
+        <path d="M5.2 43.6V20a14.8 14.8 0 0 1 29.6 0v23.6z" fill="none" stroke="#C79C40" stroke-width="1.1"/>
+        <circle cx="20" cy="24.5" r="5.2" fill="#fff"/>
+        <path d="M9.4 43.6c0-7.4 4.8-11.6 10.6-11.6s10.6 4.2 10.6 11.6z" fill="#fff"/>
+        <path d="M28.6 8.6q.6 3.6 4 4.2-3.4.6-4 4.2-.6-3.6-4-4.2 3.4-.6 4-4.2z" fill="#C79C40"/>
       </svg>
-      <span>{brand}<small>{brand_sub}</small></span>
+      <span class="brand__word">Ikona<em>AI</em></span>
     </a>
     <nav class="nav-links">
       {nav}
@@ -151,13 +152,14 @@ LAYOUT = """<!DOCTYPE html>
     <div class="footer-top">
       <div>
         <a class="brand" href="index.html" style="margin-bottom:16px">
-          <svg class="brand__mark" width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-            <rect class="m-frame" x="1" y="6.5" width="28" height="19" rx="5" stroke-width="1.6"/>
-            <circle class="m-lens" cx="15" cy="16" r="6" stroke-width="1.6"/>
-            <circle class="m-dot" cx="15" cy="16" r="2.2"/>
-            <path class="m-top" d="M10.5 6.5l1.8-3.2h5.4l1.8 3.2" stroke-width="1.6" stroke-linejoin="round"/>
-          </svg>
-          <span>{brand}<small>{brand_sub}</small></span>
+          <svg class="brand__mark" width="26" height="31" viewBox="0 0 40 48" aria-hidden="true">
+        <path d="M2 46V20a18 18 0 0 1 36 0v26z" fill="#1A2F6E"/>
+        <path d="M5.2 43.6V20a14.8 14.8 0 0 1 29.6 0v23.6z" fill="none" stroke="#C79C40" stroke-width="1.1"/>
+        <circle cx="20" cy="24.5" r="5.2" fill="#fff"/>
+        <path d="M9.4 43.6c0-7.4 4.8-11.6 10.6-11.6s10.6 4.2 10.6 11.6z" fill="#fff"/>
+        <path d="M28.6 8.6q.6 3.6 4 4.2-3.4.6-4 4.2-.6-3.6-4-4.2 3.4-.6 4-4.2z" fill="#C79C40"/>
+      </svg>
+          <span class="brand__word">Ikona<em>AI</em></span>
         </a>
         <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны для музеев Санкт-Петербурга. Гость становится героем сюжета вашей экспозиции и уносит кадр с собой.</p>
       </div>
@@ -174,7 +176,7 @@ LAYOUT = """<!DOCTYPE html>
         </nav>
       </div>
     </div>
-    <div class="wordmark" aria-hidden="true">{brand}</div>
+    <div class="wordmark" aria-hidden="true">Ikona<em>AI</em></div>
     <div class="footer-bottom">
       <span>&copy; <span data-year></span> {brand}. {city}</span>
       <span>Работаем по договору с музеями, парками и выставочными пространствами</span>
