@@ -64,6 +64,7 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - CONFIG brand «Ikona AI»; logo = navy arch #1A2F6E with gold inner line and sparkle #C79C40 and a white person (inline SVG in LAYOUT header/footer, `assets/favicon.svg`); header word «Ikona» navy + «AI» gold (`.brand__word`), footer wordmark the same.
 - Home: «Шесть направлений» block `src/partials/directions.html` (also on worlds.html) - 6 venue types x family + individual shot, images `assets/img/dir/d1..d6-{family,ind}.jpg` (9 generated in GPT Image 2.5, 3 reused). Venue names are generic on purpose (Гранд Макет / РЖД / Maza Park not named).
 - Home: «Примеры фотографий» gallery (client photos `assets/img/examples/{alchemy,magician,library}.jpg`) before the FAQ.
+- «Пять шагов» is now an interactive block `src/partials/steps5.html` (home + museums): steps autoplay every 5 s with a gold progress bar, click selects; images `assets/img/steps/s1..s5.jpg` (s3 is a 2x2 collage of gen portraits). Heading «Пять шагов: создаём интерактивную зону в вашем музее». Service block on home has 4 steps (Контроль removed).
 - Higgsfield jobs: run ONE at a time with `--json`; parallel jobs often fail with «API request failed».
 
 ## Pivot 2026-10-01: museums of Saint Petersburg only

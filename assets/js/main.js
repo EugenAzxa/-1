@@ -425,6 +425,56 @@
     });
   }
 
+  /* ---- пять шагов: интерактивный блок -----------------------------------
+     Шаги идут сами (полоса под активным шагом показывает время), нажатие
+     выбирает шаг и перезапускает отсчёт. Пока блок не на экране - стоим. */
+  document.querySelectorAll('[data-flow]').forEach(function (flow) {
+    var btns = [].slice.call(flow.querySelectorAll('.flow__step'));
+    var imgs = [].slice.call(flow.querySelectorAll('.flow__view img'));
+    var capEl = flow.querySelector('[data-flow-cap]');
+    var numEl = flow.querySelector('[data-flow-num]');
+    var DUR = 5000, cur = 0, timer = null;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    flow.style.setProperty('--flow-dur', DUR + 'ms');
+    function show(k) {
+      cur = k;
+      btns.forEach(function (b, n) {
+        b.classList.toggle('is-on', n === k);
+        b.setAttribute('aria-pressed', n === k ? 'true' : 'false');
+        var bar = b.querySelector('.flow__bar i');
+        if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      });
+      imgs.forEach(function (im, n) { im.classList.toggle('is-on', n === k); });
+      if (capEl) capEl.textContent = btns[k].getAttribute('data-cap');
+      if (numEl) numEl.textContent = '0' + (k + 1);
+    }
+    function play() {
+      clearTimeout(timer);
+      if (still) return;
+      flow.classList.add('is-playing');
+      timer = setTimeout(function () { show((cur + 1) % btns.length); play(); }, DUR);
+    }
+    function pause() { clearTimeout(timer); flow.classList.remove('is-playing'); }
+    btns.forEach(function (b, n) {
+      b.addEventListener('click', function () { show(n); if (visible()) play(); });
+    });
+    function visible() {
+      var r = flow.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight && !document.hidden;
+    }
+    var on = false, queued = false;
+    function check() {
+      var v = visible();
+      if (v && !on) { on = true; play(); } else if (!v && on) { on = false; pause(); }
+    }
+    window.addEventListener('scroll', function () {
+      if (queued) return; queued = true;
+      requestAnimationFrame(function () { queued = false; check(); });
+    }, { passive: true });
+    document.addEventListener('visibilitychange', check);
+    check();
+  });
+
   /* ---- сцена первого экрана ---------------------------------------------
      Цикл на один зал (~5.4 с): фокус ищет и ловит, щелчок и вспышка,
      полароид проявляется образом этого зала и улетает в стопку, следом

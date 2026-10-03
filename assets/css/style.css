@@ -1326,3 +1326,33 @@ body.is-loading .hero__shot--b{transform:translateY(calc(clamp(10px,1.5vw,24px) 
 .steps--4{grid-template-columns:repeat(4,1fr)}
 @media (max-width:1080px){.steps--4{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:700px){.steps--4{grid-template-columns:1fr}}
+
+/* ---- пять шагов: интерактивный блок ------------------------------------- */
+.flow{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,3vw,48px);align-items:center}
+.flow__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.flow__step{position:relative;display:grid;grid-template-columns:42px 1fr;gap:10px;width:100%;text-align:left;cursor:pointer;
+  padding:16px 18px 18px;border:1px solid var(--line-soft);border-radius:var(--radius-lg);background:var(--surface);color:var(--text);
+  font:inherit;opacity:.62;transition:opacity .35s var(--ease),border-color .35s,transform .35s var(--ease)}
+.flow__step:hover{opacity:.9}
+.flow__step.is-on{opacity:1;border-color:var(--line-strong);transform:translateX(6px)}
+.flow__num{font:600 12px/1.7 'Manrope',sans-serif;letter-spacing:.14em;color:var(--muted)}
+.flow__step.is-on .flow__num{color:var(--ikona-gold)}
+.flow__txt{font-size:15.5px;line-height:1.5}
+.flow__bar{position:absolute;left:18px;right:18px;bottom:8px;height:2px;border-radius:2px;background:var(--line-soft);overflow:hidden;opacity:0;transition:opacity .3s}
+.flow__step.is-on .flow__bar{opacity:1}
+.flow__bar i{display:block;height:100%;width:0;background:var(--ikona-gold)}
+.flow.is-playing .flow__step.is-on .flow__bar i{animation:flow-fill var(--flow-dur,5s) linear forwards}
+@keyframes flow-fill{to{width:100%}}
+.flow__view{position:relative;margin:0;aspect-ratio:4/3;border-radius:var(--radius-lg);overflow:hidden;background:#0d0d0d;border:1px solid var(--line-soft)}
+.flow__view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .7s var(--ease),transform 1.6s var(--ease)}
+.flow__view img.is-on{opacity:1;transform:scale(1)}
+.flow__cap{position:absolute;left:14px;bottom:14px;display:flex;gap:10px;align-items:center;padding:9px 14px;border-radius:999px;
+  background:rgba(13,13,13,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-size:13.5px}
+.flow__cap span:first-child{font:600 11.5px/1 'Manrope',sans-serif;letter-spacing:.14em;color:var(--ikona-gold)}
+@media (max-width:900px){
+  .flow{grid-template-columns:1fr}
+  .flow__view{order:-1}
+  .flow__step.is-on{transform:none}
+  .flow__txt{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){.flow__view img,.flow__step{transition:none}}
