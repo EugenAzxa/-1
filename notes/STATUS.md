@@ -68,6 +68,7 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Five-steps image is a CLOTH (style of canvasui.dev cloth): own WebGL1 implementation `assets/js/cloth.js` (no deps; canvasui's version needs the experimental HTML-in-Canvas API, Chrome-flag only). Image hangs pinned at the top, wind folds + lighting + sheen, pointer ripples, gust + crossfade on `flow:change`. Tunables in `OPT`. Falls back to plain images without WebGL / with reduced motion. Gotcha: uniforms shared by both shaders need the same precision (`uniform highp vec2 uSize` in FS) or the program silently fails to link.
 - Cloth calmed down at the client's request (amp 14, drape 18, gust .25, brush 1.4, time x0.6) - they found the first version too strong.
 - «Продукция» block `src/partials/products.html` (home before FAQ + museums before CTA): 9 product cards incl. A6-A3 format chips. Client's own wording includes «ИИ» here.
+- «Примеры наших работ» = physical photo pile `src/partials/works.html` + `assets/js/pile.js` (replaced the 3-photo gallery): cards drop in on first view, drag/fling with inertia and tilt, tap opens a shared-layout lightbox (prev/next/Esc), button toggles pile <-> grid. Images `assets/img/works/<name>.jpg` + `-s.jpg` thumbs. Client photos with Soyuzmultfilm characters (Cheburashka, Prostokvashino, Soviet Winnie-the-Pooh) were NOT added - copyright; asked the client.
 - Higgsfield jobs: run ONE at a time with `--json`; parallel jobs often fail with «API request failed».
 
 ## Pivot 2026-10-01: museums of Saint Petersburg only

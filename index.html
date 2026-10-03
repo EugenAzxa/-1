@@ -24,7 +24,7 @@
 <link rel="icon" href="assets/favicon.svg?v=b8463a0c" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=b488f107">
+<link rel="stylesheet" href="assets/css/style.css?v=d98d1fd5">
 <noscript><style>
   .preloader{display:none!important}
   body.is-loading{overflow:auto}
@@ -386,28 +386,69 @@
   </div>
 </section>
 
-<section class="section section--tight">
+<section class="section section--tight" id="works">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">Примеры фотографий</span>
-      <h2>Так выглядят кадры, которые гости уносят с собой</h2>
+    <div class="head head--row reveal">
+      <div>
+        <span class="eyebrow">Примеры наших работ</span>
+        <h2>Так выглядят кадры, которые гости уносят с собой</h2>
+        <p class="lede">Возьмите любой снимок и переложите, бросьте в сторону или откройте нажатием.</p>
+      </div>
+      <button class="btn btn--ghost pile__toggle" type="button" data-pile-toggle aria-pressed="false">Разложить</button>
     </div>
-    <div class="examples reveal">
-      <figure class="examples__item">
-        <img loading="lazy" decoding="async" src="assets/img/examples/alchemy.jpg?v=93c75fdd" alt="Семья в старинных костюмах в лаборатории алхимика: медный перегонный куб, колбы, старые книги" width="1024" height="1280">
-        <figcaption><b>Лаборатория алхимика</b><span>старинные костюмы, медный куб, свитки</span></figcaption>
-      </figure>
-      <figure class="examples__item">
-        <img loading="lazy" decoding="async" src="assets/img/examples/magician.jpg?v=56173d21" alt="Семья фокусников на сцене: волшебная палочка, кролик в цилиндре, карты" width="1024" height="1280">
-        <figcaption><b>Магическое шоу</b><span>сцена, бархат, кролик в цилиндре</span></figcaption>
-      </figure>
-      <figure class="examples__item">
-        <img loading="lazy" decoding="async" src="assets/img/examples/library.jpg?v=d9adebe4" alt="Семья в бархатных мантиях в старинной библиотеке со свечами и глобусом" width="1024" height="1280">
-        <figcaption><b>Волшебная библиотека</b><span>мантии, свечи, старинные фолианты</span></figcaption>
-      </figure>
+    <div class="pile" data-pile>
+      <button class="pile__card" type="button" data-full="assets/img/works/skazka.jpg" style="--ar:520/347">
+        <img loading="lazy" decoding="async" src="assets/img/works/skazka-s.jpg?v=4cd5e76c" alt="Русская сказка: терем, жар-птица, кокошники" width="520" height="347" draggable="false">
+        <span class="pile__cap"><b>Русская сказка</b><span>терем, жар-птица, кокошники</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/carpet.jpg" style="--ar:520/347">
+        <img loading="lazy" decoding="async" src="assets/img/works/carpet-s.jpg?v=b2599a60" alt="Ковёр-самолёт: полёт над северными озёрами" width="520" height="347" draggable="false">
+        <span class="pile__cap"><b>Ковёр-самолёт</b><span>полёт над северными озёрами</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/ball.jpg" style="--ar:520/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/ball-s.jpg?v=782289fd" alt="Императорский бал: позолота, свечи, бальные костюмы" width="520" height="520" draggable="false">
+        <span class="pile__cap"><b>Императорский бал</b><span>позолота, свечи, бальные костюмы</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/dinoworld.jpg" style="--ar:520/347">
+        <img loading="lazy" decoding="async" src="assets/img/works/dinoworld-s.jpg?v=add0904a" alt="Затерянный мир: экспедиция к динозаврам" width="520" height="347" draggable="false">
+        <span class="pile__cap"><b>Затерянный мир</b><span>экспедиция к динозаврам</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/alchemy.jpg" style="--ar:416/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/alchemy-s.jpg?v=4bdff7e0" alt="Лаборатория алхимика: медный куб, колбы, свитки" width="416" height="520" draggable="false">
+        <span class="pile__cap"><b>Лаборатория алхимика</b><span>медный куб, колбы, свитки</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/musicians.jpg" style="--ar:520/347">
+        <img loading="lazy" decoding="async" src="assets/img/works/musicians-s.jpg?v=1cea681f" alt="Бродячие музыканты: кибитка, гитара, старый город" width="520" height="347" draggable="false">
+        <span class="pile__cap"><b>Бродячие музыканты</b><span>кибитка, гитара, старый город</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/whitenights.jpg" style="--ar:520/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/whitenights-s.jpg?v=8cdce892" alt="Белые ночи: набережная, разведённый мост" width="520" height="520" draggable="false">
+        <span class="pile__cap"><b>Белые ночи</b><span>набережная, разведённый мост</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/magician.jpg" style="--ar:416/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/magician-s.jpg?v=859c15dd" alt="Магическое шоу: сцена, бархат, кролик в цилиндре" width="416" height="520" draggable="false">
+        <span class="pile__cap"><b>Магическое шоу</b><span>сцена, бархат, кролик в цилиндре</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/underwater.jpg" style="--ar:520/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/underwater-s.jpg?v=f2f31412" alt="Подводное королевство: кораллы, черепаха, прозрачные шлемы" width="520" height="520" draggable="false">
+        <span class="pile__cap"><b>Подводное королевство</b><span>кораллы, черепаха, прозрачные шлемы</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/library.jpg" style="--ar:416/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/library-s.jpg?v=491b5bcd" alt="Волшебная библиотека: мантии, свечи, фолианты" width="416" height="520" draggable="false">
+        <span class="pile__cap"><b>Волшебная библиотека</b><span>мантии, свечи, фолианты</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/curio.jpg" style="--ar:520/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/curio-s.jpg?v=e9e21484" alt="Кабинет редкостей: глобусы, минералы, лупа" width="520" height="520" draggable="false">
+        <span class="pile__cap"><b>Кабинет редкостей</b><span>глобусы, минералы, лупа</span></span>
+      </button>
+      <button class="pile__card" type="button" data-full="assets/img/works/heroes.jpg" style="--ar:520/520">
+        <img loading="lazy" decoding="async" src="assets/img/works/heroes-s.jpg?v=0ac661cf" alt="Команда супергероев: свои костюмы и своя эмблема" width="520" height="520" draggable="false">
+        <span class="pile__cap"><b>Команда супергероев</b><span>свои костюмы и своя эмблема</span></span>
+      </button>
     </div>
   </div>
 </section>
+
 
 <section class="section section--alt">
   <div class="wrap">
@@ -563,5 +604,6 @@
 </footer>
 <script src="assets/js/main.js?v=fc6060f7"></script>
 <script src="assets/js/cloth.js?v=de7dd6cd" defer></script>
+<script src="assets/js/pile.js?v=e509cba9" defer></script>
 </body>
 </html>

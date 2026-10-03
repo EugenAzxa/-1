@@ -185,6 +185,7 @@ LAYOUT = """<!DOCTYPE html>
 </footer>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cloth.js" defer></script>
+<script src="assets/js/pile.js" defer></script>
 </body>
 </html>
 """
