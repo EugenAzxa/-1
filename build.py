@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Сборка статического сайта «Ikona AI».
+Сборка статического сайта «Герои Дня».
 
 Запуск:  python3 build.py
 Результат: готовые .html в корне репозитория (их и деплоим).
@@ -18,13 +18,13 @@ ROOT = pathlib.Path(__file__).parent
 PAGES = ROOT / "src" / "pages"
 
 CONFIG = {
-    "brand": "Ikona AI",
+    "brand": "Герои Дня",
     "brand_sub": "photo experience",
     "phone": "+7 (921) 406-33-84",
     "phone_href": "+79214063384",
     "manager": "Андрей Михалев",
     "city": "Работаем по всей России",
-    "domain": "https://millenium-photo.ru",
+    "domain": "https://geroidnya.ru",
 }
 
 NAV = [
@@ -125,7 +125,7 @@ LAYOUT = """<!DOCTYPE html>
         <path d="M9.4 43.6c0-7.4 4.8-11.6 10.6-11.6s10.6 4.2 10.6 11.6z" fill="#fff"/>
         <path d="M28.6 8.6q.6 3.6 4 4.2-3.4.6-4 4.2-.6-3.6-4-4.2 3.4-.6 4-4.2z" fill="#C79C40"/>
       </svg>
-      <span class="brand__word">Ikona<em>AI</em></span>
+      <span class="brand__word">Герои<em>Дня</em></span>
     </a>
     <nav class="nav-links">
       {nav}
@@ -159,7 +159,7 @@ LAYOUT = """<!DOCTYPE html>
         <path d="M9.4 43.6c0-7.4 4.8-11.6 10.6-11.6s10.6 4.2 10.6 11.6z" fill="#fff"/>
         <path d="M28.6 8.6q.6 3.6 4 4.2-3.4.6-4 4.2-.6-3.6-4-4.2 3.4-.6 4-4.2z" fill="#C79C40"/>
       </svg>
-          <span class="brand__word">Ikona<em>AI</em></span>
+          <span class="brand__word">Герои<em>Дня</em></span>
         </a>
         <p style="color:var(--muted);font-size:15px;max-width:34ch">Фотозоны для музеев, парков и выставок по всей России. Гость становится героем сюжета вашей экспозиции и уносит кадр с собой.</p>
       </div>
@@ -176,7 +176,7 @@ LAYOUT = """<!DOCTYPE html>
         </nav>
       </div>
     </div>
-    <div class="wordmark" aria-hidden="true">Ikona<em>AI</em></div>
+    <div class="wordmark" aria-hidden="true">Герои<em>Дня</em></div>
     <div class="footer-bottom">
       <span>&copy; <span data-year></span> {brand}. {city}</span>
       <span>Работаем по договору с музеями, парками и выставочными пространствами</span>
@@ -312,5 +312,35 @@ def build():
     print("Собрано:", ", ".join(made))
 
 
+def pack():
+    """Архив для хостинга Reg.ru: dist/geroidnya.ru.zip.
+
+    Внутри ровно то, что нужно сайту: готовые страницы, assets и .htaccess.
+    Исходники (src/, build.py, заметки) и сырые фото Wikimedia (assets/img/spb)
+    на хостинг не попадают. Архив распаковывается в папку сайта
+    (на Reg.ru обычно www/geroidnya.ru).
+    """
+    import zipfile
+    dist = ROOT / "dist"
+    dist.mkdir(exist_ok=True)
+    out = dist / "geroidnya.ru.zip"
+    pages = sorted(ROOT.glob("*.html"))
+    # берём только те файлы, на которые ссылаются страницы, стили и скрипты
+    used = set()
+    sources = pages + sorted((ROOT / "assets" / "css").glob("*.css")) + sorted((ROOT / "assets" / "js").glob("*.js"))
+    for src in sources:
+        for m in re.findall(r"assets/[A-Za-z0-9_./-]+\.(?:jpg|jpeg|png|webp|svg|css|js|woff2?)", src.read_text(encoding="utf-8")):
+            if (ROOT / m).is_file():
+                used.add(m)
+    files = pages + [ROOT / ".htaccess"] + [ROOT / m for m in sorted(used)]
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+        for f in files:
+            z.write(f, f.relative_to(ROOT).as_posix())
+    size = out.stat().st_size / 1024 / 1024
+    print(f"Архив для Reg.ru: {out.relative_to(ROOT)} - {len(files)} файлов, {size:.1f} МБ")
+
+
 if __name__ == "__main__":
     build()
+    if "--zip" in sys.argv:
+        pack()

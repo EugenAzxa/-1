@@ -59,6 +59,14 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Spare portraits cut from the client collages: `scientist, ballet, detective, dancer, cellist, cowboy, artist, retro`.
 - Crop images with a canvas in Chrome, not `sips --cropOffset` (it crops from the center).
 
+## 2026-10-07: brand «Герои Дня», hosting on Reg.ru
+
+- Brand is now «Герои Дня» (header/footer word «Герои» navy + «Дня» gold, same arch logo). Domain geroidnya.ru, CONFIG domain set.
+- Production hosting = Reg.ru shared hosting (Apache), NOT Vercel. `python3 build.py --zip` -> `dist/geroidnya.ru.zip` (only referenced assets) to unpack into `www/geroidnya.ru`. `.htaccess` in repo root: clean URLs, /schools and www redirects, caching, https block commented until SSL is issued. Tested on local macOS Apache 2.4.
+- Reg.ru panel shows «нужно пройти идентификацию» for hosting - the client must do it. Upload: via file manager, or FTP creds from the «Доступы» tab.
+- geroidnya.online is a second site on the same hosting - offer a 301 to .ru.
+- Vercel (photo-bureau.vercel.app) still auto-deploys on push; I briefly added geroidnya.ru to the Vercel account and removed it again.
+
 ## No city (2026-10-03)
 
 - Do NOT bind the site to Saint Petersburg (or any city): the client will work in Moscow and across Russia. Wording: «Фотозоны для музеев и парков», footer «Работаем по всей России». Former «Морской Петербург» theme is «Морская история».
