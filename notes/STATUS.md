@@ -59,6 +59,11 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Spare portraits cut from the client collages: `scientist, ballet, detective, dancer, cellist, cowboy, artist, retro`.
 - Crop images with a canvas in Chrome, not `sips --cropOffset` (it crops from the center).
 
+## 2026-10-08: hosting moved to SpaceWeb
+
+- Client switched hosting to SpaceWeb (site «Микхалев сайт», backend Apache 2.2 + PHP 7.1). `.htaccess` is now 2.2/2.4-compatible (no `Options`, `Require` wrapped in IfModule mod_authz_core with Order/Deny fallback). Same zip `python3 build.py --zip` -> unpack into the SpaceWeb site folder (public_html).
+- geroidnya.ru is registered at Reg.ru and delegated to ns1/ns2.hosting.reg.ru (A 37.140.192.146). To serve from SpaceWeb the NS at Reg.ru must be switched to SpaceWeb's (see SpaceWeb panel - Домены), or A record set to the SpaceWeb server IP.
+
 ## 2026-10-07: brand «Герои Дня», hosting on Reg.ru
 
 - Brand is now «Герои Дня» (header/footer word «Герои» navy + «Дня» gold, same arch logo). Domain geroidnya.ru, CONFIG domain set.

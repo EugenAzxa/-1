@@ -1,7 +1,6 @@
-# Герои Дня - настройки для хостинга Reg.ru (Apache).
+# Герои Дня - настройки для хостинга (SpaceWeb / Reg.ru). Совместимо с Apache 2.2 и 2.4.
 AddDefaultCharset UTF-8
 DirectoryIndex index.html
-Options -Indexes
 AddType image/webp .webp
 AddType image/svg+xml .svg
 
@@ -44,6 +43,13 @@ AddType image/svg+xml .svg
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>
 
+# служебные файлы закрыты (синтаксис 2.4 и 2.2)
 <FilesMatch "\.(py|md|json|log)$">
-  Require all denied
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
 </FilesMatch>
