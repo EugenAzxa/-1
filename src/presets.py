@@ -272,10 +272,10 @@ def markdown():
 
 
 def render():
-    (ROOT / "src" / "pages" / "presets.html").write_text(page_html(), encoding="utf-8")
+    # страница пресетов с сайта убрана (2026-10-08): библиотека только для команды, в PROMPTS.md
     (ROOT / "PROMPTS.md").write_text(markdown(), encoding="utf-8")
 
 
 if __name__ == "__main__":
     render()
-    print("presets.html и PROMPTS.md обновлены")
+    print("PROMPTS.md обновлён")

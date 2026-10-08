@@ -172,7 +172,6 @@ LAYOUT = """<!DOCTYPE html>
         <nav>
           <a class="footer-phone" href="tel:{phone_href}">{phone}</a>
           <span class="footer-who">{manager} - звоните по всем вопросам</span>
-          <a href="presets.html">Библиотека пресетов</a>
         </nav>
       </div>
     </div>
@@ -313,7 +312,7 @@ def build():
 
 
 def pack():
-    """Архив для хостинга Reg.ru: dist/geroidnya.ru.zip.
+    """Файлы для хостинга (SpaceWeb): архив dist/geroidnya.ru.zip и папка dist/site.
 
     Внутри ровно то, что нужно сайту: готовые страницы, assets и .htaccess.
     Исходники (src/, build.py, заметки) и сырые фото Wikimedia (assets/img/spb)
@@ -336,8 +335,17 @@ def pack():
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for f in files:
             z.write(f, f.relative_to(ROOT).as_posix())
+    # те же файлы папкой dist/site - её заливает на хостинг GitHub Actions
+    import shutil
+    site = dist / "site"
+    if site.exists():
+        shutil.rmtree(site)
+    for f in files:
+        dst = site / f.relative_to(ROOT)
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(f, dst)
     size = out.stat().st_size / 1024 / 1024
-    print(f"Архив для Reg.ru: {out.relative_to(ROOT)} - {len(files)} файлов, {size:.1f} МБ")
+    print(f"Для хостинга: {out.relative_to(ROOT)} и папка dist/site - {len(files)} файлов, {size:.1f} МБ")
 
 
 if __name__ == "__main__":

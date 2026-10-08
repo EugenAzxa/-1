@@ -32,6 +32,16 @@
       "source": "/schools.html",
       "destination": "/museums",
       "permanent": true
+    },
+    {
+      "source": "/presets",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/presets.html",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

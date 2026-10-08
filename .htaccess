@@ -16,6 +16,9 @@ AddType image/svg+xml .svg
   # RewriteCond %{HTTP:X-Forwarded-Proto} !https
   # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+  # убранные страницы
+  RewriteRule ^presets(\.html)?/?$ / [R=301,L]
+
   # старая страница садов и школ
   RewriteRule ^schools(\.html)?/?$ /museums [R=301,L]
 

@@ -59,6 +59,13 @@ GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=20" git push
 - Spare portraits cut from the client collages: `scientist, ballet, detective, dancer, cellist, cowboy, artist, retro`.
 - Crop images with a canvas in Chrome, not `sips --cropOffset` (it crops from the center).
 
+## 2026-10-08 (evening): live on SpaceWeb, presets removed, auto-deploy
+
+- geroidnya.ru is LIVE on SpaceWeb (all 85 files verified; server header `nginx/1.31.3` = SpaceWeb, plain `nginx` = old Reg.ru stub while caches expire).
+- Presets page removed from the public site (client request): no presets.html, links gone, `/presets` 301 -> `/` (.htaccess + vercel.json). Library lives only in PROMPTS.md.
+- Auto-deploy: `.github/workflows/deploy-spaceweb.yml` builds and FTP-syncs `dist/site` to `geroidnya/public_html` on push to main. Needs repo secrets SPACEWEB_FTP_HOST/USER/PASSWORD (client adds them in GitHub UI; `gh` CLI is not installed). Upload step is skipped while secrets are missing.
+- SSL (Let's Encrypt, DNS check) requested in SpaceWeb; after it is active uncomment the https block in .htaccess.
+
 ## 2026-10-08: hosting moved to SpaceWeb
 
 - Client switched hosting to SpaceWeb (site «Микхалев сайт», backend Apache 2.2 + PHP 7.1). `.htaccess` is now 2.2/2.4-compatible (no `Options`, `Require` wrapped in IfModule mod_authz_core with Order/Deny fallback). Same zip `python3 build.py --zip` -> unpack into the SpaceWeb site folder (public_html).

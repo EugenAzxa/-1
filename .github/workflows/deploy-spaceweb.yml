@@ -1,0 +1,45 @@
+# Автоматическая выкладка geroidnya.ru на хостинг SpaceWeb.
+# При каждом push в main: собрать сайт и залить по FTP только изменённые файлы
+# в папку geroidnya/public_html. Данные FTP лежат в секретах репозитория:
+#   SPACEWEB_FTP_HOST, SPACEWEB_FTP_USER, SPACEWEB_FTP_PASSWORD
+name: Deploy to SpaceWeb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-spaceweb
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_HOST: ${{ secrets.SPACEWEB_FTP_HOST }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build site
+        run: python3 build.py --zip
+
+      - name: Skip upload (no FTP secrets yet)
+        if: env.FTP_HOST == ''
+        run: echo "Секреты SPACEWEB_FTP_* не заданы - выкладка пропущена."
+
+      - name: Upload to SpaceWeb (FTP)
+        if: env.FTP_HOST != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SPACEWEB_FTP_HOST }}
+          username: ${{ secrets.SPACEWEB_FTP_USER }}
+          password: ${{ secrets.SPACEWEB_FTP_PASSWORD }}
+          local-dir: ./dist/site/
+          server-dir: geroidnya/public_html/
+          exclude: |
+            **/.DS_Store
